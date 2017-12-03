@@ -5,12 +5,6 @@ class About extends Component {
   render() {
     return (
       <div className="about">
-        <h1>
-          Andrew Smith
-        </h1>
-
-        <blockquote>developer, speaker, OSS contributor; lifelong learner</blockquote>
-
         <p>Software craftsman, speaker and open source contributor, I am passionate about creating quality software. As
           a craftsman, I am a strong subscriber to TDD and firmly believe in the emergent design of software
           architectures. Software development is truly dynamic and evolutionary and its architecture is less about the
@@ -26,14 +20,6 @@ class About extends Component {
 
         <p>Being a lifelong learner, I am in constant pursuit of improvement in all things I do. My goal is to be better
           today than I was yesterday and to overcome, instead of succumb, to the challenges presented before me.</p>
-
-        <div className="about-me social-links">
-          <div className="container">
-            <a href="https://twitter.com/andrew_codes"><i className="fa fa-twitter"/></a>
-            <a href="https://github.com/andrew-codes"><i className="fa fa-github"/></a>
-            <a href="https://linkedin.com/in/jamesandrewsmith"><i className="fa fa-linkedin"/></a>
-          </div>
-        </div>
       </div>
     );
   }

@@ -15,18 +15,23 @@ module.exports = {
   userTwitter: "andrew_codes", // Optionally renders "Follow Me" in the UserInfo segment.
   userLocation: "Atlanta, GA", // User location to display in the author segment.
   userAvatar: "https://www.gravatar.com/avatar/9c3d77fcdf0f8df38f39c6ef5b4cf47b", // User avatar to display in the author segment.
-  userDescription: "", // User description to display in the author segment.
+  userDescription: "developer, speaker, OSS contributor; lifelong learner", // User description to display in the author segment.
   // Links to social profiles/projects you want to display in the author segment/navigation bar.
   userLinks: [
+    {
+      label: "Twitter",
+      url: "https://twitter.com/andrew_codes",
+      iconClassName: "fa fa-twitter"
+    },
     {
       label: "GitHub",
       url: "https://github.com/andrew-codes",
       iconClassName: "fa fa-github"
     },
     {
-      label: "Twitter",
-      url: "https://twitter.com/andrew_codes",
-      iconClassName: "fa fa-twitter"
+      label: "LinkedIn",
+      url: "https://linkedin.com/jamesandrewsmith",
+      iconClassName: "fa fa-linkedin"
     },
   ],
   copyright: "Copyright © 2017. Andrew Smith", // Copyright string for the footer of the website and RSS feed.
