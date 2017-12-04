@@ -24,3 +24,8 @@ h6 {
 main {
   margin: 1rem;
 }
+
+.sidebar {
+  margin: 1rem;
+  width: 350px;
+}

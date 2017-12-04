@@ -3,7 +3,6 @@ import Helmet from "react-helmet";
 import Sidebar from 'react-sidebar';
 import Author from '../components/Author';
 import config from "../../data/SiteConfig";
-import SidebarContent from '../components/SidebarContent';
 import "./index.css";
 
 const mql = window.matchMedia(`(min-width: 800px)`);
@@ -38,10 +37,7 @@ export default class MainLayout extends React.Component {
       return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    const pathPrefix = config.pathPrefix ? config.pathPrefix : "/";
-    const currentPath = this.props.location.pathname
-      .replace(pathPrefix, "")
-      .replace("/", "");
+    const currentPath = getCurrentPath(this.props.location.pathname, config.pathPrefix);
     let title = "";
     if (currentPath === "") {
       title = "Home";
@@ -88,14 +84,7 @@ export default class MainLayout extends React.Component {
           onSetOpen={this.onSetSidebarOpen}
         >
           <main>
-            {!docked && (
-              <Author
-                avatarUrl={config.userAvatar}
-                bio={config.userDescription}
-                fullName={config.userName}
-                links={config.userLinks}
-              />
-            )}
+            {!docked && renderAuthor(config)}
             {children()}
           </main>
         </Sidebar>
@@ -118,14 +107,33 @@ export default class MainLayout extends React.Component {
 
   renderSidebarContent() {
     return (
-      <SidebarContent
-        author={{
-          avatarUrl: config.userAvatar,
-          bio: config.userDescription,
-          fullName: config.userName,
-          links: config.userLinks,
-        }}
-      />
+      <aside className="sidebar">
+        <header>
+          {renderAuthor(config)}
+        </header>
+      </aside>
     );
   }
+}
+
+function getCurrentPath(pathname, pathPrefix) {
+  return pathname
+    .replace(pathPrefix || '/', '')
+    .replace('/', '');
+}
+
+function renderAuthor({
+                        userAvatar,
+                        userDescription,
+                        userName,
+                        userLinks,
+                      }) {
+  return (
+    <Author
+      avatarUrl={userAvatar}
+      bio={userDescription}
+      fullName={userName}
+      links={userLinks}
+    />
+  )
 }
