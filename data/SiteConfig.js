@@ -14,7 +14,8 @@ module.exports = {
   userName: "Andrew Smith", // Username to display in the author segment.
   userTwitter: "andrew_codes", // Optionally renders "Follow Me" in the UserInfo segment.
   userLocation: "Atlanta, GA", // User location to display in the author segment.
-  userAvatar: "https://www.gravatar.com/avatar/9c3d77fcdf0f8df38f39c6ef5b4cf47b", // User avatar to display in the author segment.
+  userAvatar:
+    "https://www.gravatar.com/avatar/9c3d77fcdf0f8df38f39c6ef5b4cf47b", // User avatar to display in the author segment.
   userDescription: "developer, speaker, OSS contributor; lifelong learner", // User description to display in the author segment.
   // Links to social profiles/projects you want to display in the author segment/navigation bar.
   userLinks: [
@@ -32,7 +33,7 @@ module.exports = {
       label: "LinkedIn",
       url: "https://linkedin.com/jamesandrewsmith",
       iconClassName: "fa fa-linkedin"
-    },
+    }
   ],
   copyright: "Copyright © 2017. Andrew Smith", // Copyright string for the footer of the website and RSS feed.
   themeColor: "#c62828", // Used for setting manifest and progress theme colors.

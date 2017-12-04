@@ -40,25 +40,25 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     resolve(
       graphql(
         `
-        {
-          allMarkdownRemark {
-            edges {
-              node {
-                frontmatter {
-                  tags
-                  category
-                }
-                fields {
-                  slug
+          {
+            allMarkdownRemark {
+              edges {
+                node {
+                  frontmatter {
+                    tags
+                    category
+                  }
+                  fields {
+                    slug
+                  }
                 }
               }
             }
           }
-        }
-      `
+        `
       ).then(result => {
         if (result.errors) {
-          /* eslint no-console: "off"*/
+          /* eslint no-console: "off" */
           console.log(result.errors);
           reject(result.errors);
         }

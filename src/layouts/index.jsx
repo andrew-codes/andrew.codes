@@ -1,11 +1,28 @@
 import React from "react";
 import Helmet from "react-helmet";
-import Sidebar from 'react-sidebar';
-import Author from '../components/Author';
+import Sidebar from "react-sidebar";
+import Author from "../components/Author";
 import config from "../../data/SiteConfig";
 import "./index.css";
 
 const mql = window.matchMedia(`(min-width: 800px)`);
+
+const getCurrentPath = (pathname, pathPrefix) => pathname.replace(pathPrefix || "/", "").replace("/", "");
+
+const renderAuthor = ({userAvatar, userDescription, userName, userLinks}) => (
+  <Author
+    avatarUrl={userAvatar}
+    bio={userDescription}
+    fullName={userName}
+    links={userLinks}
+  />
+);
+
+const renderSidebarContent = () => (
+  <aside className="sidebar">
+    <header>{renderAuthor(config)}</header>
+  </aside>
+);
 
 export default class MainLayout extends React.Component {
   constructor(props) {
@@ -24,7 +41,7 @@ export default class MainLayout extends React.Component {
     mql.addListener(this.mediaQueryChanged);
     this.setState({
       mql,
-      docked: mql.matches,
+      docked: mql.matches
     });
   }
 
@@ -37,7 +54,10 @@ export default class MainLayout extends React.Component {
       return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    const currentPath = getCurrentPath(this.props.location.pathname, config.pathPrefix);
+    const currentPath = getCurrentPath(
+      this.props.location.pathname,
+      config.pathPrefix
+    );
     let title = "";
     if (currentPath === "") {
       title = "Home";
@@ -65,20 +85,29 @@ export default class MainLayout extends React.Component {
     return title;
   }
 
+  setSidebarOpen(open) {
+    this.setState({
+      open
+    });
+  }
+
+  mediaQueryChanged() {
+    this.setState({
+      docked: this.state.mql.matches
+    });
+  }
+
   render() {
     const {children} = this.props;
-    const {
-      open,
-      docked,
-    } = this.state;
+    const {open, docked} = this.state;
     return (
       <div>
         <Helmet>
           <title>{`${config.siteTitle} |  ${this.getLocalTitle()}`}</title>
-          <meta name="description" content={config.siteDescription}/>
+          <meta name="description" content={config.siteDescription} />
         </Helmet>
         <Sidebar
-          sidebar={this.renderSidebarContent()}
+          sidebar={renderSidebarContent()}
           open={open}
           docked={docked}
           onSetOpen={this.onSetSidebarOpen}
@@ -88,52 +117,7 @@ export default class MainLayout extends React.Component {
             {children()}
           </main>
         </Sidebar>
-
       </div>
     );
   }
-
-  setSidebarOpen(open) {
-    this.setState({
-      open,
-    });
-  }
-
-  mediaQueryChanged() {
-    this.setState({
-      docked: this.state.mql.matches,
-    });
-  }
-
-  renderSidebarContent() {
-    return (
-      <aside className="sidebar">
-        <header>
-          {renderAuthor(config)}
-        </header>
-      </aside>
-    );
-  }
-}
-
-function getCurrentPath(pathname, pathPrefix) {
-  return pathname
-    .replace(pathPrefix || '/', '')
-    .replace('/', '');
-}
-
-function renderAuthor({
-                        userAvatar,
-                        userDescription,
-                        userName,
-                        userLinks,
-                      }) {
-  return (
-    <Author
-      avatarUrl={userAvatar}
-      bio={userDescription}
-      fullName={userName}
-      links={userLinks}
-    />
-  )
 }
