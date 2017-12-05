@@ -31,7 +31,7 @@ module.exports = {
     },
     {
       label: "LinkedIn",
-      url: "https://linkedin.com/jamesandrewsmith",
+      url: "https://linkedin.com/in/jamesandrewsmith",
       iconClassName: "fa fa-linkedin"
     }
   ],
