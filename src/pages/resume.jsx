@@ -2,7 +2,7 @@ import Helmet from "react-helmet";
 import React, {Component} from "react";
 import config from "../../data/SiteConfig";
 import Resume from '../components/Resume';
-import resumeSections from '../../data/resumeSections';
+import resumeSections from '../resumeSections';
 
 class ResumePage extends Component {
   render() {

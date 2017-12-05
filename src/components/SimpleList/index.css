@@ -1,0 +1,8 @@
+.simple-list {
+  margin: 0;
+  padding: 0;
+}
+
+.simple-list li {
+  margin-left: 2rem;
+}
