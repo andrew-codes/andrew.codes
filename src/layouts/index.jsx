@@ -1,8 +1,10 @@
-import React from "react";
+import Link from 'gatsby-link';
 import Helmet from "react-helmet";
+import React from "react";
 import Sidebar from "react-sidebar";
 import Author from "../components/Author";
 import config from "../../data/SiteConfig";
+import resumeSections from '../../data/resumeSections';
 import "./index.css";
 
 const mql = window.matchMedia(`(min-width: 800px)`);
@@ -18,9 +20,25 @@ const renderAuthor = ({userAvatar, userDescription, userName, userLinks}) => (
   />
 );
 
-const renderSidebarContent = () => (
+const renderSidebarContent = (currentPath) => (
   <aside className="sidebar">
     <header>{renderAuthor(config)}</header>
+    <nav>
+      <ul>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/resume">Resume</Link>
+          {currentPath === 'resume' && (
+            <ul>
+              {resumeSections.map((section, index) => (
+                <li>
+                  <Link to={`/resume/#${index === 0 ? '' : section.slug}`}>{section.heading}</Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      </ul>
+    </nav>
   </aside>
 );
 
@@ -49,15 +67,11 @@ export default class MainLayout extends React.Component {
     this.state.mql.removeListener(this.mediaQueryChanged);
   }
 
-  getLocalTitle() {
+  getLocalTitle(currentPath) {
     function capitalize(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    const currentPath = getCurrentPath(
-      this.props.location.pathname,
-      config.pathPrefix
-    );
     let title = "";
     if (currentPath === "") {
       title = "Home";
@@ -100,14 +114,18 @@ export default class MainLayout extends React.Component {
   render() {
     const {children} = this.props;
     const {open, docked} = this.state;
+    const currentPath = getCurrentPath(
+      this.props.location.pathname,
+      config.pathPrefix
+    );
     return (
       <div>
         <Helmet>
-          <title>{`${config.siteTitle} |  ${this.getLocalTitle()}`}</title>
-          <meta name="description" content={config.siteDescription} />
+          <title>{`${config.siteTitle} |  ${this.getLocalTitle(currentPath)}`}</title>
+          <meta name="description" content={config.siteDescription}/>
         </Helmet>
         <Sidebar
-          sidebar={renderSidebarContent()}
+          sidebar={renderSidebarContent(currentPath)}
           open={open}
           docked={docked}
           onSetOpen={this.onSetSidebarOpen}

@@ -1,7 +1,14 @@
-exports.onRouteUpdate = ({action, location}) => {
-  if (action === 'POP' && location.hash === '') {
+exports.onRouteUpdate = ({location}) => {
+  if (location.hash === '') {
     setTimeout(() => {
-      document.querySelector('main').parentElement.scrollTo(0, 0);
+      const scrollDoc = document.querySelector('main').parentElement;
+      scrollDoc.scrollTo(0, 0);
+    }, 0);
+  } else {
+    setTimeout(() => {
+      const scrollDoc = document.querySelector('main').parentElement;
+      const hashElement = document.querySelector(location.hash);
+      scrollDoc.scrollTo(0, hashElement.offsetTop);
     }, 0);
   }
 };
