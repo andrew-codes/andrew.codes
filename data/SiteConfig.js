@@ -16,7 +16,7 @@ module.exports = {
   userLocation: "Atlanta, GA", // User location to display in the author segment.
   userAvatar:
     "https://www.gravatar.com/avatar/9c3d77fcdf0f8df38f39c6ef5b4cf47b", // User avatar to display in the author segment.
-  userDescription: "developer, speaker, OSS contributor; lifelong learner", // User description to display in the author segment.
+  userDescription: "craftsman, speaker, OSS contributor; lifelong learner", // User description to display in the author segment.
   // Links to social profiles/projects you want to display in the author segment/navigation bar.
   userLinks: [
     {

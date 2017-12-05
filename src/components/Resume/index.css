@@ -1,7 +1,7 @@
-.resume section {
+.resume article > section {
   min-height: 100vh;
 }
 
-.resume section + section {
+.resume article > section + section {
   min-height: calc(100vh - 2rem);
 }
