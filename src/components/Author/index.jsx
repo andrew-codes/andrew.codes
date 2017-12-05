@@ -28,7 +28,7 @@ Author.propTypes = {
       iconClassName: PropTypes.string.isRequired,
       url: PropTypes.string.isRequired
     })
-  )
+  ),
 };
 
 Author.defaultProps = {
