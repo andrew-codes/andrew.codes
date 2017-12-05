@@ -1,0 +1,28 @@
+.resume section {
+  height: 100vh;
+}
+
+.resume .navbar {
+  margin: -1rem;
+  padding: 0 20px;
+  position: fixed;
+  width: 100%;
+}
+
+.resume .navbar ul {
+  align-items: center;
+  display: flex;
+  height: 60px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.resume .navbar ul li {
+  list-style: none;
+  margin: 0;
+}
+
+.resume article {
+  padding-top: calc(60px - 1rem);
+}
