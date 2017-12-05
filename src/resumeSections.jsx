@@ -1,4 +1,5 @@
 import React from 'react';
+import ContactForm from './components/ContactForm/index';
 import DatedResumeEntry from './components/DatedResumeEntry';
 import SimpleList from './components/SimpleList/index';
 
@@ -269,6 +270,9 @@ export default [
         description="Completion of undergraduate and some graduate degree course work."
       />
     </div>
+  )),
+  createSection('Contact', (
+    <ContactForm />
   ))
 ].map(section => ({
   ...section,

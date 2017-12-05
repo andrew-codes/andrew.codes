@@ -1,0 +1,32 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form input,
+.form textarea {
+  border: none;
+  border-bottom: 2px solid black;
+  padding: 0.5rem 0.25rem;
+  flex: 1;
+  margin: 0.5rem;
+}
+
+.form input:focus,
+.form textarea:focus {
+  outline: none;
+  border-color: deepskyblue;
+}
+
+.form textarea {
+  height: 100px;
+}
+
+.form .reply-to {
+  display: flex;
+  flex-direction: row;
+}
+
+.form .reply-to input[type=tel] {
+  flex: 0.5;
+}

@@ -6,6 +6,7 @@ import Author from "../components/Author";
 import config from "../../data/SiteConfig";
 import resumeSections from '../resumeSections';
 import "./index.css";
+import "./filepicker.css";
 
 const mql = window.matchMedia(`(min-width: 800px)`);
 

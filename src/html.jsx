@@ -2,6 +2,7 @@
 /* eslint import/extensions:"off" */
 /* eslint global-require:"off" */
 import React from "react";
+import 'whatwg-fetch';
 import favicon from "./favicon.png";
 
 let inlinedStyles = "";
