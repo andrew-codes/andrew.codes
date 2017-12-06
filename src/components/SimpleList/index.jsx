@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import Typography from 'material-ui/Typography';
 import './index.css';
 
 const SimpleList = ({
@@ -7,7 +8,7 @@ const SimpleList = ({
                     }) => (
   <ul className="simple-list">
     {items.map(item => (
-      <li key={item}>{item}</li>
+      <li key={item}><Typography type="body1">{item}</Typography></li>
     ))}
   </ul>
 );
