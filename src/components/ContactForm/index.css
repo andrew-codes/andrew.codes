@@ -30,3 +30,36 @@
 .form .reply-to input[type=tel] {
   flex: 0.5;
 }
+
+button {
+  align-self: flex-end;
+  border: 1px solid gray;
+  color: rgba(255, 255, 255, 0.9);
+  display: block;
+  font-size: 1.25rem;
+  margin: 0.5rem;
+  padding: 20px;
+  width: 124px;
+  transition: 0.25s ease-in-out;
+}
+
+button .fa {
+  padding-left: 4px;
+}
+
+button.primary {
+  background-color: #03A678;
+  border-color: #26A65B;
+}
+
+button.primary:hover {
+  background-color: #16A085;
+  box-shadow: 0 5px 15px rgba(0, 100, 66, .4);
+  color: rgba(255, 255, 255, 1);
+}
+
+button.primary:focus {
+  outline: none;
+  box-shadow: #16A085
+}
+

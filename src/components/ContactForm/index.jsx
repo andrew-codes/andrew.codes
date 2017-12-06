@@ -35,6 +35,7 @@ class ContactForm extends Component {
           }}
         />
         <button
+          className="primary"
           type="button"
           onClick={() => {
             const data = Array.from(this.form.querySelectorAll('input').values())
@@ -58,7 +59,7 @@ class ContactForm extends Component {
               }));
           }}
         >
-          Send
+          Send <i className="fa fa-send"/>
         </button>
         <Notification
           activeBarStyle={{
@@ -79,5 +80,4 @@ class ContactForm extends Component {
   }
 }
 
-export default ContactForm
-;
+export default ContactForm;
