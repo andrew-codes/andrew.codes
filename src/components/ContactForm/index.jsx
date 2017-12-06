@@ -102,7 +102,7 @@ class ContactForm extends Component {
         <TextField
           required
           className={classes.textField}
-          label="Your name"
+          label="name"
           margin="normal"
           name="name"
         />
@@ -110,14 +110,14 @@ class ContactForm extends Component {
           <TextField
             required
             className={classes.textField}
-            label="Your email"
+            label="email"
             margin="normal"
             name="email"
             type="email"
           />
           <TextField
             className={classNames(classes.textField, classes.textFieldPhone)}
-            label="Your phone number"
+            label="phone"
             margin="normal"
             name="phone"
             type="tel"
@@ -127,7 +127,7 @@ class ContactForm extends Component {
           multiline
           required
           className={classes.textField}
-          label="Your message"
+          label="message"
           margin="normal"
           name="message"
           rows={4}
