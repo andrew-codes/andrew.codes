@@ -2,13 +2,17 @@ import Link from 'gatsby-link';
 import Helmet from "react-helmet";
 import React from "react";
 import Sidebar from "react-sidebar";
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import 'typeface-roboto';
 import Author from "../components/Author";
 import config from "../../data/SiteConfig";
 import resumeSections from '../resumeSections';
-import "./index.css";
-import "./filepicker.css";
+import './index.css';
+import './filepicker.css';
 
 const mql = window.matchMedia(`(min-width: 800px)`);
+
+const theme = createMuiTheme();
 
 const getCurrentPath = (pathname, pathPrefix) => pathname.replace(pathPrefix || "/", "").replace("/", "");
 
@@ -120,6 +124,7 @@ export default class MainLayout extends React.Component {
       config.pathPrefix
     );
     return (
+      <MuiThemeProvider theme={theme}>
       <div>
         <Helmet>
           <title>{`${config.siteTitle} |  ${this.getLocalTitle(currentPath)}`}</title>
@@ -137,6 +142,7 @@ export default class MainLayout extends React.Component {
           </main>
         </Sidebar>
       </div>
+      </MuiThemeProvider>
     );
   }
 }
