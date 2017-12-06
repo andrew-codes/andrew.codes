@@ -1,9 +1,14 @@
 import Button from 'material-ui/Button';
+import CheckIcon from 'material-ui-icons/Check';
+import CloseIcon from 'material-ui-icons/Close';
+import green from 'material-ui/colors/green';
+import IconButton from 'material-ui/IconButton';
 import classNames from 'classnames';
 import React, {Component} from 'react';
-import Send from 'material-ui-icons/Send';
+import SendIcon from 'material-ui-icons/Send';
+import Snackbar from 'material-ui/Snackbar';
 import TextField from 'material-ui/TextField';
-import {Notification} from 'react-notification';
+import {CircularProgress} from 'material-ui/Progress';
 import {withStyles} from 'material-ui/styles';
 
 const styles = theme => ({
@@ -34,12 +39,41 @@ const styles = theme => ({
   textFieldPhone: {
     flex: 0.75,
   },
+  wrapper: {
+    margin: theme.spacing.unit,
+    position: 'relative',
+  },
+  buttonSuccess: {
+    backgroundColor: green[500],
+    '&:hover': {
+      backgroundColor: green[700],
+    },
+  },
+  fabProgress: {
+    color: green[500],
+    position: 'absolute',
+    top: -6,
+    left: -6,
+    zIndex: 1,
+  },
+  buttonProgress: {
+    color: green[500],
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12,
+  },
 });
 
 class ContactForm extends Component {
   constructor(...rest) {
     super(...rest);
-    this.state = {};
+    this.state = {
+      open: false,
+    };
+    this.handleClose = this.handleClose.bind(this);
+    this.handleSend = this.handleSend.bind(this);
     this.send = this.send.bind(this);
   }
 
@@ -48,9 +82,14 @@ class ContactForm extends Component {
       classes,
     } = this.props;
     const {
+      loading,
       message,
+      open,
       success,
     } = this.state;
+    const buttonClassname = classNames({
+      [classes.buttonSuccess]: success,
+    });
 
     return (
       <form
@@ -94,41 +133,67 @@ class ContactForm extends Component {
           rows={4}
         />
         <div className={classNames(classes.rowContainer, classes.containerToRight)}>
-          <Button
-            raised
-            className={classes.button}
-            color="primary"
-            onClick={this.send}
-          >
-            Send
-            <Send className={classes.iconToRight}/>
-          </Button>
+          <div className={classes.wrapper}>
+            <Button fab color="primary" className={buttonClassname} onClick={this.handleSend}>
+              {success ? <CheckIcon/> : <SendIcon className={classes.iconToRight}/>}
+            </Button>
+            {loading && <CircularProgress size={68} className={classes.fabProgress}/>}
+          </div>
         </div>
-        <Notification
-          activeBarStyle={{
-            backgroundColor: success ? 'green' : 'red',
-            right: 40,
-            left: undefined,
+        <Snackbar
+          action={[
+            <IconButton
+              key="close"
+              aria-label="Close"
+              color="accent"
+              className={classes.close}
+              onClick={this.handleClose}
+            >
+              <CloseIcon/>
+            </IconButton>
+          ]}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
           }}
-          isActive={Boolean(message)}
-          onDismiss={() => this.setState({
-            message: null,
-          })
-          }
-          title={success ? 'Success' : 'Error'}
+          autoHideDuraction={2000}
+          onRequestClose={this.handleClose}
+          open={open}
           message={message}
         />
       </form>
     )
   }
 
-  send() {
-    const data = Array.from(this.form.querySelectorAll('input').values())
+  handleClose() {
+    this.setState({
+      open: false,
+    });
+  }
+
+  handleSend() {
+    const alreadySent = this.state.success;
+    if (alreadySent) {
+      return;
+    }
+    this.setState({
+      loading: true,
+      success: false,
+    }, () => {
+      const fields = Array.from(this.form.querySelectorAll('input').values())
+        .concat([
+          this.form.querySelector('textarea'),
+        ]);
+      this.send(fields)
+    });
+  }
+
+  send(fields) {
+    const data = fields
       .reduce((prev, input) => {
         prev.append(input.name, input.value);
         return prev;
       }, new FormData());
-    data.append('message', this.form.querySelector('textarea').value);
 
     fetch('https://script.google.com/a/andrew.codes/macros/s/AKfycbxbMlRdxhzoKuTZNjtmEMBT5TQeiHq4lNdEmjdLW-Od6DjjagQF/exec', {
       method: 'POST',
@@ -136,10 +201,14 @@ class ContactForm extends Component {
     })
       .then(() => this.setState({
         message: 'Thank you!',
+        open: true,
+        loading: false,
         success: true,
       }))
       .catch(error => this.setState({
         message: `Oops, there's been a error: ${error}`,
+        open: true,
+        loading: false,
         success: false,
       }));
   }
