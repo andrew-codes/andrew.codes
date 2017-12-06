@@ -12,22 +12,30 @@ const createSection = (heading, body) => ({
 export default [
   createSection('Profile Summary', (
     <div>
-      <Typography paragraph type="body1">As a craftsman, I am passionate about creating quality software and therefore am a strong subscriber to TDD and
+      <Typography paragraph type="body1">As a craftsman, I am passionate about creating quality software and therefore
+        am a strong subscriber to TDD and
         firmly believe in the emergent design of software architectures. Development is truly evolutionary; with its
         architecture reflecting less about the tools and more of the expression to its intent and usage.</Typography>
-      <Typography paragraph type="body1">Although a student at heart, I also mentor others to aid them on their journey. I do this via presentations and
+      <Typography paragraph type="body1">Although a student at heart, I also mentor others to aid them on their journey.
+        I do this via presentations and
         workshops at various conferences and participate in mentoring programs, such as Pluralsight, one-one-one
         mentoring, and remote code pairing sessions.</Typography>
-      <Typography paragraph type="body1">I am an active member of the OSS community and value OSS software projects. As a member and previous
+      <Typography paragraph type="body1">I am an active member of the OSS community and value OSS software projects. As
+        a member and previous
         co-organizer of ReactATL, I encourage others to participate and aim to make software development more accessible
         to a larger audience.</Typography>
-      <Typography paragraph type="body1"> Being a lifelong learner, I am in constant pursuit of improvement in all things I do. My goal is to always be
+      <Typography paragraph type="body1"> Being a lifelong learner, I am in constant pursuit of improvement in all
+        things I do. My goal is to always be
         better today than yesterday and rise to challenges of tomorrow.</Typography>
     </div>
   )),
   createSection('Proficiencies Overview', (
     <div>
-      <section>
+      <section
+        style={{
+          marginBottom: '8px',
+        }}
+      >
         <Typography type="title">Technologies</Typography>
         <SimpleList items={[
           'JavaScript, ECMAScript 2015',
@@ -38,7 +46,11 @@ export default [
           'SQL, SQL Server',
         ]}/>
       </section>
-      <section>
+      <section
+        style={{
+          marginBottom: '8px',
+        }}
+      >
         <Typography type="title">Skills</Typography>
         <SimpleList items={[
           'Architectural patterns (IoC, emergent design)',
@@ -48,7 +60,11 @@ export default [
           'Presentation delivery and training',
         ]}/>
       </section>
-      <section>
+      <section
+        style={{
+          marginBottom: '8px',
+        }}
+      >
         <Typography type="title">Frameworks</Typography>
         <SimpleList items={[
           'React, React Native',
