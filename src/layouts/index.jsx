@@ -1,33 +1,20 @@
 import classNames from 'classnames';
 import Collapse from 'material-ui/transitions/Collapse';
+import Drawer from 'material-ui/Drawer';
 import Helmet from "react-helmet";
-import Link from 'gatsby-link';
+import Hidden from 'material-ui/Hidden';
 import List, {ListItem, ListItemText} from 'material-ui/List';
+import Paper from 'material-ui/Paper';
 import PropTypes from 'prop-types';
 import React from "react";
-import Sidebar from "react-sidebar";
 import {MuiThemeProvider, createMuiTheme, withStyles} from 'material-ui/styles';
-import 'typeface-roboto';
+import 'typeface-roboto/index.css';
 import Author from "../components/Author";
 import config from "../../data/SiteConfig";
 import resumeSections from '../resumeSections';
 import './index.css';
 
-const mql = window.matchMedia(`(min-width: 800px)`);
-
 const theme = createMuiTheme();
-
-const styles = theme => ({
-  nested: {
-    paddingLeft: theme.spacing.unit * 4,
-  },
-  listItem: {
-    display: 'flex',
-  },
-  link: {
-    flex: 1,
-  }
-});
 
 const getCurrentPath = (pathname, pathPrefix) => pathname.replace(pathPrefix || "/", "").replace("/", "");
 
@@ -40,13 +27,28 @@ const renderAuthor = ({userAvatar, userDescription, userName, userLinks}) => (
   />
 );
 
+const drawerWidth = 300;
+const sidebarStyles = theme => ({
+  aside: {
+    width: `${drawerWidth}px`,
+  },
+  link: {
+    flex: 1,
+  },
+  listItem: {
+    display: 'flex',
+  },
+  nested: {
+    paddingLeft: theme.spacing.unit * 4,
+  }
+});
 const renderSidebarContent = ({
                                 classes,
                                 currentPath
                               }, {
                                 router,
                               }) => (
-  <aside className="sidebar">
+  <aside className={classes.aside}>
     <header>{renderAuthor(config)}</header>
     <nav>
       <List>
@@ -80,31 +82,29 @@ const renderSidebarContent = ({
 renderSidebarContent.contextTypes = {
   router: PropTypes.object.isRequired,
 };
-const SideBarContent = withStyles(styles)(renderSidebarContent);
+const SideBarContent = withStyles(sidebarStyles)(renderSidebarContent);
 
+const mainLayoutStyles = theme => ({
+  drawerPaper: {
+    border: '1px solid rgba(0, 0, 0, 0.12)',
+  },
+  main: {
+    padding: '1rem',
+    marginLeft: `${drawerWidth}px`,
+  },
+  root: {
+    display: 'flex',
+    position: 'relative',
+    height: '100vh',
+  }
+});
 class MainLayout extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      mql,
-      docked: props.docked,
-      open: props.open
+      open: true,
     };
-    this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
-    this.setSidebarOpen = this.setSidebarOpen.bind(this);
-  }
-
-  componentWillMount() {
-    mql.addListener(this.mediaQueryChanged);
-    this.setState({
-      mql,
-      docked: mql.matches
-    });
-  }
-
-  componentWillUnmount() {
-    this.state.mql.removeListener(this.mediaQueryChanged);
   }
 
   getLocalTitle(currentPath) {
@@ -139,47 +139,49 @@ class MainLayout extends React.Component {
     return title;
   }
 
-  setSidebarOpen(open) {
-    this.setState({
-      open
-    });
-  }
-
-  mediaQueryChanged() {
-    this.setState({
-      docked: this.state.mql.matches
-    });
-  }
-
   render() {
-    const {children} = this.props;
-    const {open, docked} = this.state;
+    const {
+      children,
+      classes
+    } = this.props;
+    const {open} = this.state;
     const currentPath = getCurrentPath(
       this.props.location.pathname,
       config.pathPrefix
     );
     return (
-      <MuiThemeProvider theme={theme}>
-        <div>
-          <Helmet>
-            <title>{`${config.siteTitle} |  ${this.getLocalTitle(currentPath)}`}</title>
-            <meta name="description" content={config.siteDescription} />
-          </Helmet>
-          <Sidebar
-            sidebar={<SideBarContent currentPath={currentPath} />}
-            open={open}
-            docked={docked}
-            onSetOpen={this.onSetSidebarOpen}
+      <div className={classes.root}>
+        <Helmet>
+          <title>{`${config.siteTitle} |  ${this.getLocalTitle(currentPath)}`}</title>
+          <meta name="description" content={config.siteDescription} />
+        </Helmet>
+        <Hidden mdDown implementation="css">
+          <Drawer
+            open
+            anchor="left"
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+            type="permanent"
           >
-            <main>
-              {!docked && renderAuthor(config)}
-              {children()}
-            </main>
-          </Sidebar>
-        </div>
-      </MuiThemeProvider>
+            <SideBarContent currentPath={currentPath} />
+          </Drawer>
+        </Hidden>
+        <main className={classes.main}>
+          <Hidden mdUp implementation="css">
+            {renderAuthor(config)}
+          </Hidden>
+          {children()}
+        </main>
+      </div>
     );
   }
 }
 
-export default MainLayout;
+const MainLayoutWithStyles = withStyles(mainLayoutStyles)(MainLayout);
+
+export default (props) => (
+  <MuiThemeProvider theme={theme}>
+    <MainLayoutWithStyles {...props} />
+  </MuiThemeProvider>
+);

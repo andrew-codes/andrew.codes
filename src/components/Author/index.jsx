@@ -1,10 +1,32 @@
+import classNames from 'classnames';
 import PropTypes from "prop-types";
 import React from "react";
+import Typography from 'material-ui/Typography';
 import {withStyles} from 'material-ui/styles';
 import UserLinks from "../UserLinks/UserLinks";
-import "./index.css";
 
-const styles = theme => ({});
+const styles = theme => ({
+  links: {
+    flexDirection: 'row',
+    fontSize: '2.5rem',
+    width: '100%',
+  },
+  name: {
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'column-reverse',
+  },
+  note: {
+    fontSize: '0.9rem',
+    marginTop: 0,
+    textAlign: 'center',
+  },
+  vcard: {
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+  }
+});
 
 const Author = ({
                   avatarUrl,
@@ -13,14 +35,14 @@ const Author = ({
                   fullName,
                   links
                 }) => (
-  <div className="vcard">
-    <div>
-      <h1 className="fn">{fullName}</h1>
+  <div className={classNames('vcard', classes.vcard)}>
+    <div className={classes.name}>
+      <Typography className="fn" type="headline">{fullName}</Typography>
       <img className="photo" src={`${avatarUrl}?s=120`} alt="Avatar" />
     </div>
-    <p className="note">{bio}</p>
+    <Typography paragraph type="body1" className={classNames('note', classes.note)}>{bio}</Typography>
     {links.length > 0 && (
-      <div className="links">
+      <div className={classes.links}>
         <UserLinks links={links} />
       </div>
     )}

@@ -11,9 +11,6 @@ const styles = theme => ({
   section: {
     minHeight: '100vh',
   },
-  sectionLast: {
-    minHeight: 'calc(100vh - 2rem)',
-  },
 });
 
 class Resume extends Component {
@@ -26,9 +23,9 @@ class Resume extends Component {
     return (
       <div className="resume">
         <article>
-          {sections.map((section, index) => (
+          {sections.map((section) => (
             <section
-              className={classNames(classes.section, index === (sections.length - 1) && classes.sectionLast)}
+              className={classes.section}
               key={`body-${section.slug}`}
             >
               <header>

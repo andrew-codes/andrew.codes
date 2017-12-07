@@ -10,34 +10,4 @@ body {
   font-family: Lato, sans-serif;
   height: 100%;
   margin: 0;
-  padding: 20px;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: Lustria, serif;
-}
-
-h1 {
-  font-size: 2rem;
-}
-h2 {
-  font-size: 1.65rem;
-}
-
-main {
-  margin: -20px 0 0;
-}
-
-.sidebar {
-  margin: 1rem;
-  width: 350px;
-}
-
-.container {
-  margin: calc(1rem + 20px) 1rem 1rem;
 }
