@@ -8,6 +8,9 @@ const styles = theme => ({
     display: 'inline-flex',
     flexDirection: 'row-reverse',
     marginBottom: 3 * theme.spacing.unit,
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column-reverse',
+    }
   },
   main: {
     flex: 1,
@@ -15,11 +18,6 @@ const styles = theme => ({
   aside: {
     minWidth: '125px',
   },
-  [theme.breakpoints.down('md')]: {
-    section: {
-      flexDirection: 'column-reverse',
-    }
-  }
 });
 
 const DatedResumeEntry = ({

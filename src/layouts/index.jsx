@@ -97,6 +97,7 @@ const mainLayoutStyles = theme => ({
   },
   main: {
     padding: '1rem',
+    width: '100%',
     [theme.breakpoints.up('md')]: {
       marginLeft: `${drawerWidth}px`
     },
