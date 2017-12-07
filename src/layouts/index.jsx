@@ -57,7 +57,7 @@ const renderSidebarContent = ({
     <nav>
       <List>
         <ListItem button className={classes.listItem} onClick={() => router.history.push('/')}>
-          <ListItemText primary="Home" />
+          <ListItemText primary="Articles" />
         </ListItem>
         <ListItem button className={classes.listItem} onClick={() => router.history.push('/resume')}>
           <ListItemText primary="Resume" />
@@ -126,7 +126,7 @@ class MainLayout extends React.Component {
 
     let title = "";
     if (currentPath === "") {
-      title = "Home";
+      title = "Articles";
     } else if (currentPath === "tags/") {
       title = "Tags";
     } else if (currentPath === "categories/") {

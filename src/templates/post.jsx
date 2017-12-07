@@ -1,5 +1,8 @@
 import React from "react";
 import Helmet from "react-helmet";
+import Paper from 'material-ui/Paper';
+import Typography from "material-ui/Typography";
+import {withStyles} from 'material-ui/styles';
 import UserInfo from "../components/UserInfo/UserInfo";
 import Disqus from "../components/Disqus/Disqus";
 import PostTags from "../components/PostTags/PostTags";
@@ -9,9 +12,25 @@ import config from "../../data/SiteConfig";
 import "./b16-tomorrow-dark.css";
 import "./post.css";
 
-export default class PostTemplate extends React.Component {
+const styles = theme => ({
+  paper: {
+    margin: `-1rem`,
+    padding: `${theme.spacing.unit * 2}px`,
+  },
+  footer: {
+    marginTop: `1.5rem`,
+  },
+  title: {
+    borderBottom: `1px solid ${theme.palette.primary[600]}`,
+  },
+});
+
+class PostTemplate extends React.Component {
   render() {
-    const { slug } = this.props.pathContext;
+    const {
+      classes
+    } = this.props;
+    const {slug} = this.props.pathContext;
     const postNode = this.props.data.markdownRemark;
     const post = postNode.frontmatter;
     if (!post.id) {
@@ -26,20 +45,31 @@ export default class PostTemplate extends React.Component {
           <title>{`${post.title} | ${config.siteTitle}`}</title>
         </Helmet>
         <SEO postPath={slug} postNode={postNode} postSEO />
-        <div>
-          <h1>{post.title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: postNode.html }} />
-          <div className="post-meta">
-            <PostTags tags={post.tags} />
-            <SocialLinks postPath={slug} postNode={postNode} />
-          </div>
-          <UserInfo config={config} />
-          <Disqus postNode={postNode} />
-        </div>
+        <article>
+          <Paper className={classes.paper}>
+            <Typography
+              className={classes.title}
+              type="display1"
+            >
+              {post.title}
+            </Typography>
+            <div dangerouslySetInnerHTML={{__html: postNode.html}} />
+            <div className="post-meta">
+              <PostTags tags={post.tags} />
+              <SocialLinks postPath={slug} postNode={postNode} />
+            </div>
+            <UserInfo config={config} />
+          </Paper>
+          <footer className={classes.footer}>
+            <Disqus postNode={postNode} />
+          </footer>
+        </article>
       </div>
     );
   }
 }
+
+export default withStyles(styles)(PostTemplate);
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
