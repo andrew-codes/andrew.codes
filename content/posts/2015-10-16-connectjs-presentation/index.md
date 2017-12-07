@@ -4,7 +4,9 @@ cover: "https://unsplash.it/1152/300/?random?BirchintheRoses"
 date: "10/16/2015"
 category: "tech"
 tags:
-    - craftsmanship
+    - flux
+    - react
+    - presentation
 ---
 
 [Download the slides](https://drive.google.com/drive/folders/0B94tN3-JlxyVNmNwb0FTWWZKYnc?usp=sharing) for my talk presented at ConnectJS 2015. Hope you enjoy! As always, feel free to contact me for any questions or to just chat about React and/or Flux. Finally, I am looking to cultivate mentor/student relationships. With that said, there is an open invitation from me to pair program, chat and generally share experiences on programming. Tweet me on [Twitter](https://twitter.com/andrew_codes) or leave a comment.

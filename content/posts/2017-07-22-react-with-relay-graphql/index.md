@@ -4,7 +4,9 @@ cover: "https://unsplash.it/1152/300/?random?BirchintheRoses"
 date: "07/22/2017"
 category: "tech"
 tags:
-    - craftsmanship
+    - react
+    - graphql
+    - presentation
 ---
 
 [Presentation](https://www.meetup.com/Developers-of-Athens/events/219666306/) given to [Developers of Athens](https://www.meetup.com/Developers-of-Athens) in late 2015; exploring React, Relay and GraphQL. Enjoy!
