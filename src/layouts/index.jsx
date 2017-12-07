@@ -4,7 +4,6 @@ import Drawer from 'material-ui/Drawer';
 import Helmet from "react-helmet";
 import Hidden from 'material-ui/Hidden';
 import List, {ListItem, ListItemText} from 'material-ui/List';
-import Paper from 'material-ui/Paper';
 import PropTypes from 'prop-types';
 import React from "react";
 import {MuiThemeProvider, createMuiTheme, withStyles} from 'material-ui/styles';
@@ -90,7 +89,9 @@ const mainLayoutStyles = theme => ({
   },
   main: {
     padding: '1rem',
-    marginLeft: `${drawerWidth}px`,
+    [theme.breakpoints.up('md')]: {
+      marginLeft: `${drawerWidth}px`
+    },
   },
   root: {
     display: 'flex',
@@ -98,6 +99,7 @@ const mainLayoutStyles = theme => ({
     height: '100vh',
   }
 });
+
 class MainLayout extends React.Component {
   constructor(props) {
     super(props);
