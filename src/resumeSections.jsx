@@ -44,7 +44,7 @@ export default [
           'C#, .NET',
           'git, bash, CLI',
           'SQL, SQL Server',
-        ]}/>
+        ]} />
       </section>
       <section
         style={{
@@ -58,7 +58,7 @@ export default [
           'Flux and FRP patterns, MVC, MVP, MVVM',
           'XP, Scrum and Kanban agile environments',
           'Presentation delivery and training',
-        ]}/>
+        ]} />
       </section>
       <section
         style={{
@@ -73,7 +73,7 @@ export default [
           'Webpack, babel, gulp',
           'nUnit, machine.specifications',
           'StructureMap',
-        ]}/>
+        ]} />
       </section>
     </div>
   )),
@@ -98,7 +98,7 @@ export default [
           'CSS, LESS',
           'Nodejs',
           'XP (pair programming), kanban',
-        ]}/>
+        ]} />
       <DatedResumeEntry
         name="Pluralsight hack.hands()"
         from="2017"
@@ -244,7 +244,7 @@ export default [
         timespan={false}
         name="Building Redux Workshop"
         from="2017"
-        description="Full day workshop at Connect.Tech 2017 on learning Redux by building the library itself. Focus on building Redux, middleware application mechanism, redux-thunk middleware, and react-redux package."/>
+        description="Full day workshop at Connect.Tech 2017 on learning Redux by building the library itself. Focus on building Redux, middleware application mechanism, redux-thunk middleware, and react-redux package." />
       <DatedResumeEntry
         name="ReactATL Co-organizer"
         from="2015"
@@ -289,7 +289,7 @@ export default [
     </div>
   )),
   createSection('Contact', (
-    <ContactForm/>
+    <ContactForm />
   ))
 ].map(section => ({
   ...section,

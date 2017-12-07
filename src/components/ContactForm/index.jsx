@@ -135,9 +135,9 @@ class ContactForm extends Component {
         <div className={classNames(classes.rowContainer, classes.containerToRight)}>
           <div className={classes.wrapper}>
             <Button fab color="primary" className={buttonClassname} onClick={this.handleSend}>
-              {success ? <CheckIcon/> : <SendIcon className={classes.iconToRight}/>}
+              {success ? <CheckIcon /> : <SendIcon className={classes.iconToRight} />}
             </Button>
-            {loading && <CircularProgress size={68} className={classes.fabProgress}/>}
+            {loading && <CircularProgress size={68} className={classes.fabProgress} />}
           </div>
         </div>
         <Snackbar
@@ -149,7 +149,7 @@ class ContactForm extends Component {
               className={classes.close}
               onClick={this.handleClose}
             >
-              <CloseIcon/>
+              <CloseIcon />
             </IconButton>
           ]}
           anchorOrigin={{

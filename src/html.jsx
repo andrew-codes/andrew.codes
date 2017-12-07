@@ -23,48 +23,48 @@ export default class HTML extends React.Component {
       css = (
         <style
           id="gatsby-inlined-css"
-          dangerouslySetInnerHTML={{ __html: inlinedStyles }}
+          dangerouslySetInnerHTML={{__html: inlinedStyles}}
         />
       );
     }
     return (
       <html lang="en">
-        <head>
-          <meta charSet="UTF-8" content="text/html" httpEquiv="Content-Type" />
-          <meta
-            content="width=device-width, initial-scale=1.0"
-            name="viewport"
-          />
-          <meta content="IE=edge,chrome=1" httpEquiv="X-UA-Compatible" />
-          {this.props.headComponents}
-          <link href={favicon} rel="shortcut icon" />
-          <link
-            href="http://fonts.googleapis.com/css?family=Lustria"
-            rel="stylesheet"
-            type="text/css"
-          />
-          <link
-            href="http://fonts.googleapis.com/css?family=Lato:300"
-            rel="stylesheet"
-            type="text/css"
-          />
-          <link
-            href="/css/font-awesome.min.css"
-            rel="stylesheet"
-            type="text/css"
-          />
-          {css}
-          <meta name="HandheldFriendly" content="True" />
-          <meta name="MobileOptimized" content="320" />
-        </head>
-        <body>
-          <div
-            id="___gatsby"
-            dangerouslySetInnerHTML={{ __html: this.props.body }}
-          />
-          {this.props.postBodyComponents}
-          <script>{`fbq('track', 'ViewContent');`}</script>
-        </body>
+      <head>
+        <meta charSet="UTF-8" content="text/html" httpEquiv="Content-Type" />
+        <meta
+          content="width=device-width, initial-scale=1.0"
+          name="viewport"
+        />
+        <meta content="IE=edge,chrome=1" httpEquiv="X-UA-Compatible" />
+        {this.props.headComponents}
+        <link href={favicon} rel="shortcut icon" />
+        <link
+          href="http://fonts.googleapis.com/css?family=Lustria"
+          rel="stylesheet"
+          type="text/css"
+        />
+        <link
+          href="http://fonts.googleapis.com/css?family=Lato:300"
+          rel="stylesheet"
+          type="text/css"
+        />
+        <link
+          href="/css/font-awesome.min.css"
+          rel="stylesheet"
+          type="text/css"
+        />
+        {css}
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="MobileOptimized" content="320" />
+      </head>
+      <body>
+      <div
+        id="___gatsby"
+        dangerouslySetInnerHTML={{__html: this.props.body}}
+      />
+      {this.props.postBodyComponents}
+      <script>{`fbq('track', 'ViewContent');`}</script>
+      </body>
       </html>
     );
   }

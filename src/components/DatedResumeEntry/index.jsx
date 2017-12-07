@@ -36,13 +36,13 @@ const DatedResumeEntry = ({
       {details.length > 0 && (
         <div>
           <Typography type="subheading">Role Details</Typography>
-          <SimpleList items={details}/>
+          <SimpleList items={details} />
         </div>
       )}
       {environment.length > 0 && (
         <div>
           <Typography type="subheading">Environment</Typography>
-          <SimpleList items={environment}/>
+          <SimpleList items={environment} />
         </div>
       )}
     </div>

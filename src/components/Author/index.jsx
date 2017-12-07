@@ -4,9 +4,7 @@ import {withStyles} from 'material-ui/styles';
 import UserLinks from "../UserLinks/UserLinks";
 import "./index.css";
 
-const styles = theme => ({
-
-});
+const styles = theme => ({});
 
 const Author = ({
                   avatarUrl,
@@ -18,12 +16,12 @@ const Author = ({
   <div className="vcard">
     <div>
       <h1 className="fn">{fullName}</h1>
-      <img className="photo" src={`${avatarUrl}?s=120`} alt="Avatar"/>
+      <img className="photo" src={`${avatarUrl}?s=120`} alt="Avatar" />
     </div>
     <p className="note">{bio}</p>
     {links.length > 0 && (
       <div className="links">
-        <UserLinks links={links}/>
+        <UserLinks links={links} />
       </div>
     )}
   </div>

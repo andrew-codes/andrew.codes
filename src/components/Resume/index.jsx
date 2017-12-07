@@ -28,7 +28,7 @@ class Resume extends Component {
         <article>
           {sections.map((section, index) => (
             <section
-              className={classNames(classes.section, index === (sections.length-1) && classes.sectionLast)}
+              className={classNames(classes.section, index === (sections.length - 1) && classes.sectionLast)}
               key={`body-${section.slug}`}
             >
               <header>

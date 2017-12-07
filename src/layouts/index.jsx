@@ -51,10 +51,10 @@ const renderSidebarContent = ({
     <nav>
       <List>
         <ListItem button className={classes.listItem} onClick={() => router.history.push('/')}>
-          <ListItemText primary="Home"/>
+          <ListItemText primary="Home" />
         </ListItem>
         <ListItem button className={classes.listItem} onClick={() => router.history.push('/resume')}>
-          <ListItemText primary="Resume"/>
+          <ListItemText primary="Resume" />
         </ListItem>
         {currentPath === 'resume' && (
           <Collapse component="li" in={true} timeout="auto">
@@ -62,7 +62,7 @@ const renderSidebarContent = ({
               {resumeSections.map((section, index) => (
                 <ListItem button className={classNames(classes.listItem, classes.nested)}
                           onClick={() => router.history.push(`/resume/#${section.slug}`)}>
-                  <ListItemText primary={section.heading}/>
+                  <ListItemText primary={section.heading} />
                 </ListItem>
               ))}
             </List>
@@ -70,7 +70,7 @@ const renderSidebarContent = ({
         )}
         {currentPath !== 'resume' && (
           <ListItem button className={classes.listItem} onClick={() => router.history.push('/resume/#Contact')}>
-            <ListItemText primary="Contact"/>
+            <ListItemText primary="Contact" />
           </ListItem>
         )}
       </List>
@@ -163,10 +163,10 @@ class MainLayout extends React.Component {
         <div>
           <Helmet>
             <title>{`${config.siteTitle} |  ${this.getLocalTitle(currentPath)}`}</title>
-            <meta name="description" content={config.siteDescription}/>
+            <meta name="description" content={config.siteDescription} />
           </Helmet>
           <Sidebar
-            sidebar={<SideBarContent currentPath={currentPath}/>}
+            sidebar={<SideBarContent currentPath={currentPath} />}
             open={open}
             docked={docked}
             onSetOpen={this.onSetSidebarOpen}

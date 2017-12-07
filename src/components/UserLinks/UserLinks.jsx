@@ -47,7 +47,7 @@ const UserLinks = ({
               href={link.url}
               title={link.label}
             >
-              <i className={classNames(link.iconClassName, classes.icon)}/>
+              <i className={classNames(link.iconClassName, classes.icon)} />
             </a>
           </IconButton>
         )
