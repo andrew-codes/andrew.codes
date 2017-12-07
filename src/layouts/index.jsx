@@ -1,11 +1,16 @@
+import AppBar from 'material-ui/AppBar';
 import classNames from 'classnames';
+import CloseIcon from 'material-ui-icons/Close';
 import Collapse from 'material-ui/transitions/Collapse';
 import Drawer from 'material-ui/Drawer';
 import Helmet from "react-helmet";
 import Hidden from 'material-ui/Hidden';
+import IconButton from 'material-ui/IconButton';
 import List, {ListItem, ListItemText} from 'material-ui/List';
+import MenuIcon from 'material-ui-icons/Menu';
 import PropTypes from 'prop-types';
 import React from "react";
+import Toolbar from 'material-ui/Toolbar';
 import {MuiThemeProvider, createMuiTheme, withStyles} from 'material-ui/styles';
 import 'typeface-roboto/index.css';
 import Author from "../components/Author";
@@ -84,6 +89,9 @@ renderSidebarContent.contextTypes = {
 const SideBarContent = withStyles(sidebarStyles)(renderSidebarContent);
 
 const mainLayoutStyles = theme => ({
+  authorContainer: {
+    marginTop: `${theme.mixins.toolbar.minHeight}px`,
+  },
   drawerPaper: {
     border: '1px solid rgba(0, 0, 0, 0.12)',
   },
@@ -103,10 +111,11 @@ const mainLayoutStyles = theme => ({
 class MainLayout extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      open: true,
+      open: false,
     };
+
+    this.handleDrawerToggle = this.handleDrawerToggle.bind(this);
   }
 
   getLocalTitle(currentPath) {
@@ -141,6 +150,12 @@ class MainLayout extends React.Component {
     return title;
   }
 
+  handleDrawerToggle() {
+    this.setState({
+      open: !this.state.open,
+    });
+  }
+
   render() {
     const {
       children,
@@ -169,9 +184,41 @@ class MainLayout extends React.Component {
             <SideBarContent currentPath={currentPath} />
           </Drawer>
         </Hidden>
+        <Hidden mdUp implementation="css">
+          <Drawer
+            open={open}
+            anchor="left"
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+            onRequestClose={this.handleDrawerToggle}
+            type="temporary"
+          >
+            <IconButton
+              aria-label="close drawer"
+              onClick={this.handleDrawerToggle}
+            >
+              <CloseIcon />
+            </IconButton>
+            <SideBarContent currentPath={currentPath} />
+          </Drawer>
+        </Hidden>
         <main className={classes.main}>
           <Hidden mdUp implementation="css">
-            {renderAuthor(config)}
+            <AppBar>
+              <Toolbar>
+                <IconButton
+                  color="contrast"
+                  aria-label="open drawer"
+                  onClick={this.handleDrawerToggle}
+                >
+                  <MenuIcon />
+                </IconButton>
+              </Toolbar>
+            </AppBar>
+            <div className={classes.authorContainer}>
+              {renderAuthor(config)}
+            </div>
           </Hidden>
           {children()}
         </main>
