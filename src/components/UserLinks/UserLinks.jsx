@@ -1,13 +1,56 @@
+import Button from 'material-ui/Button';
+import classNames from 'classnames';
+import IconButton from 'material-ui/IconButton';
 import PropTypes from "prop-types";
 import React from "react";
+import {withStyles} from 'material-ui/styles';
 import "./UserLinks.css";
 
-const UserLinks = ({ labeled, links }) => (
-  <div className="user-links">
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    maxWidth: '100%',
+    textAlign: 'center',
+    width: '100%',
+  },
+  icon: {
+    color: theme.palette.primary[500],
+    fontSize: '2rem',
+  }
+});
+
+const UserLinks = ({
+                     classes,
+                     labeled,
+                     links
+                   }) => (
+  <div className={classes.container}>
     {links.map(link => (
-      <a key={link.url} href={link.url} title={link.label}>
-        {labeled ? link.label : <i className={link.iconClassName} />}
-      </a>
+      labeled ? (
+          <Button>
+            <a
+              key={link.url}
+              href={link.url}
+              title={link.label}
+            >
+              {link.label}
+            </a>
+          </Button>
+        )
+        : (
+          <IconButton>
+            <a
+              key={link.url}
+              href={link.url}
+              title={link.label}
+            >
+              <i className={classNames(link.iconClassName, classes.icon)}/>
+            </a>
+          </IconButton>
+        )
     ))}
   </div>
 );
@@ -27,4 +70,4 @@ UserLinks.defaultProps = {
   links: []
 };
 
-export default UserLinks;
+export default withStyles(styles)(UserLinks);

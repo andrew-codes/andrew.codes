@@ -1,18 +1,29 @@
 import PropTypes from "prop-types";
 import React from "react";
+import {withStyles} from 'material-ui/styles';
 import UserLinks from "../UserLinks/UserLinks";
 import "./index.css";
 
-const Author = ({ avatarUrl, bio, fullName, links }) => (
+const styles = theme => ({
+
+});
+
+const Author = ({
+                  avatarUrl,
+                  classes,
+                  bio,
+                  fullName,
+                  links
+                }) => (
   <div className="vcard">
     <div>
       <h1 className="fn">{fullName}</h1>
-      <img className="photo" src={`${avatarUrl}?s=120`} alt="Avatar" />
+      <img className="photo" src={`${avatarUrl}?s=120`} alt="Avatar"/>
     </div>
     <p className="note">{bio}</p>
     {links.length > 0 && (
       <div className="links">
-        <UserLinks links={links} />
+        <UserLinks links={links}/>
       </div>
     )}
   </div>
@@ -35,4 +46,4 @@ Author.defaultProps = {
   links: []
 };
 
-export default Author;
+export default withStyles(styles)(Author);

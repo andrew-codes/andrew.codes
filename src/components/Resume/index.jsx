@@ -1,12 +1,18 @@
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, {Component} from "react";
 import Typography from 'material-ui/Typography';
 import {withStyles} from 'material-ui/styles';
-import './index.css';
 
 const styles = theme => ({
   sectionTitle: {
     borderBottom: `1px solid ${theme.palette.primary[600]}`,
+  },
+  section: {
+    minHeight: '100vh',
+  },
+  sectionLast: {
+    minHeight: 'calc(100vh - 2rem)',
   },
 });
 
@@ -20,8 +26,11 @@ class Resume extends Component {
     return (
       <div className="resume">
         <article>
-          {sections.map(section => (
-            <section key={`body-${section.slug}`}>
+          {sections.map((section, index) => (
+            <section
+              className={classNames(classes.section, index === (sections.length-1) && classes.sectionLast)}
+              key={`body-${section.slug}`}
+            >
               <header>
                 <Typography
                   gutterBottom
