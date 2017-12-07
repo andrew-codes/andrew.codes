@@ -1,18 +1,33 @@
-import Link from 'gatsby-link';
+import classNames from 'classnames';
+import Collapse from 'material-ui/transitions/Collapse';
 import Helmet from "react-helmet";
+import Link from 'gatsby-link';
+import List, {ListItem, ListItemText} from 'material-ui/List';
+import PropTypes from 'prop-types';
 import React from "react";
 import Sidebar from "react-sidebar";
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import {MuiThemeProvider, createMuiTheme, withStyles} from 'material-ui/styles';
 import 'typeface-roboto';
 import Author from "../components/Author";
 import config from "../../data/SiteConfig";
 import resumeSections from '../resumeSections';
 import './index.css';
-import './filepicker.css';
 
 const mql = window.matchMedia(`(min-width: 800px)`);
 
 const theme = createMuiTheme();
+
+const styles = theme => ({
+  nested: {
+    paddingLeft: theme.spacing.unit * 4,
+  },
+  listItem: {
+    display: 'flex',
+  },
+  link: {
+    flex: 1,
+  }
+});
 
 const getCurrentPath = (pathname, pathPrefix) => pathname.replace(pathPrefix || "/", "").replace("/", "");
 
@@ -25,29 +40,49 @@ const renderAuthor = ({userAvatar, userDescription, userName, userLinks}) => (
   />
 );
 
-const renderSidebarContent = (currentPath) => (
+const renderSidebarContent = ({
+                                classes,
+                                currentPath
+                              }, {
+                                router,
+                              }) => (
   <aside className="sidebar">
     <header>{renderAuthor(config)}</header>
     <nav>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/resume">Resume</Link>
-          {currentPath === 'resume' && (
-            <ul>
+      <List>
+        <ListItem button className={classes.listItem} onClick={() => router.history.push('/')}>
+          <ListItemText primary="Home"/>
+        </ListItem>
+        <ListItem button className={classes.listItem} onClick={() => router.history.push('/resume')}>
+          <ListItemText primary="Resume"/>
+        </ListItem>
+        {currentPath === 'resume' && (
+          <Collapse component="li" in={true} timeout="auto">
+            <List disablePadding>
               {resumeSections.map((section, index) => (
-                <li>
-                  <Link to={`/resume/#${index === 0 ? '' : section.slug}`}>{section.heading}</Link>
-                </li>
+                <ListItem button className={classNames(classes.listItem, classes.nested)}
+                          onClick={() => router.history.push(`/resume/#${section.slug}`)}>
+                  <ListItemText primary={section.heading}/>
+                </ListItem>
               ))}
-            </ul>
-          )}
-        </li>
-      </ul>
+            </List>
+          </Collapse>
+        )}
+        {currentPath !== 'resume' && (
+          <ListItem button className={classes.listItem} onClick={() => router.history.push('/resume/#Contact')}>
+            <ListItemText primary="Contact"/>
+          </ListItem>
+        )}
+      </List>
     </nav>
   </aside>
 );
+renderSidebarContent.contextTypes = {
+  router: PropTypes.object.isRequired,
+};
+const SideBarContent = withStyles(styles)(renderSidebarContent);
 
-export default class MainLayout extends React.Component {
+class MainLayout extends React.Component {
   constructor(props) {
     super(props);
 
@@ -125,24 +160,26 @@ export default class MainLayout extends React.Component {
     );
     return (
       <MuiThemeProvider theme={theme}>
-      <div>
-        <Helmet>
-          <title>{`${config.siteTitle} |  ${this.getLocalTitle(currentPath)}`}</title>
-          <meta name="description" content={config.siteDescription}/>
-        </Helmet>
-        <Sidebar
-          sidebar={renderSidebarContent(currentPath)}
-          open={open}
-          docked={docked}
-          onSetOpen={this.onSetSidebarOpen}
-        >
-          <main>
-            {!docked && renderAuthor(config)}
-            {children()}
-          </main>
-        </Sidebar>
-      </div>
+        <div>
+          <Helmet>
+            <title>{`${config.siteTitle} |  ${this.getLocalTitle(currentPath)}`}</title>
+            <meta name="description" content={config.siteDescription}/>
+          </Helmet>
+          <Sidebar
+            sidebar={<SideBarContent currentPath={currentPath}/>}
+            open={open}
+            docked={docked}
+            onSetOpen={this.onSetSidebarOpen}
+          >
+            <main>
+              {!docked && renderAuthor(config)}
+              {children()}
+            </main>
+          </Sidebar>
+        </div>
       </MuiThemeProvider>
     );
   }
 }
+
+export default MainLayout;
