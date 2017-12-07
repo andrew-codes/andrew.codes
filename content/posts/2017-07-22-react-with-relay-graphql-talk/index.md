@@ -1,5 +1,5 @@
 ---
-title: "React with Relay and GraphQL Talk at Developer of Athens Meetup"
+title: "React with Relay and GraphQL Talk"
 cover: "https://unsplash.it/1152/300/?random?BirchintheRoses"
 date: "07/22/2017"
 category: "tech"
