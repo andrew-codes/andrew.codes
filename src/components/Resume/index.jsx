@@ -11,6 +11,11 @@ const styles = theme => ({
   section: {
     minHeight: '100vh',
   },
+  [theme.breakpoints.down('md')]: {
+    section: {
+      minHeight: 'auto',
+    }
+  }
 });
 
 class Resume extends Component {

@@ -15,6 +15,11 @@ const styles = theme => ({
   aside: {
     minWidth: '125px',
   },
+  [theme.breakpoints.down('md')]: {
+    section: {
+      flexDirection: 'column-reverse',
+    }
+  }
 });
 
 const DatedResumeEntry = ({
