@@ -114,19 +114,19 @@ const styles = theme => ({
 
 class PostListing extends React.Component {
   getPostList() {
-    const postList = [];
-    this.props.postEdges.forEach(postEdge => {
-      postList.push({
-        path: postEdge.node.fields.slug,
-        tags: postEdge.node.frontmatter.tags,
-        cover: postEdge.node.frontmatter.cover,
-        title: postEdge.node.frontmatter.title,
-        date: postEdge.node.frontmatter.date,
-        excerpt: postEdge.node.excerpt,
-        timeToRead: postEdge.node.timeToRead
+    return this.props.postEdges
+      .map(postEdge => {
+        const pathParts = postEdge.node.fileAbsolutePath.split('/');
+        return ({
+          path: postEdge.node.fields.slug,
+          tags: postEdge.node.frontmatter.tags,
+          cover: postEdge.node.frontmatter.cover ? postEdge.node.frontmatter.cover : `/images/posts/${pathParts[pathParts.length - 2]}/cover.jpg`,
+          title: postEdge.node.frontmatter.title,
+          date: postEdge.node.frontmatter.date,
+          excerpt: postEdge.node.excerpt,
+          timeToRead: postEdge.node.timeToRead,
+        });
       });
-    });
-    return postList;
   }
 
   render() {
@@ -183,7 +183,7 @@ class PostListing extends React.Component {
                 focusRipple
                 className={classes.readMoreButton}
                 key={`${post.title}-readMore`}
-                onClick={() => history.push(toSlug(post.title))}
+                onClick={() => history.push(post.path)}
               >
                 <div
                   className={classes.imageSrc}

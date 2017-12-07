@@ -1,10 +1,10 @@
 ---
 title: "Jest vs. Mocha: Why Jest Wins"
-cover: "https://unsplash.it/1152/300/?random?BirchintheRoses"
 date: "09/10/2014"
 category: "tech"
 tags:
     - tdd
+    - javascript
     - jest
 ---
 

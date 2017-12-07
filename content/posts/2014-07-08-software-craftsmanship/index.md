@@ -1,6 +1,6 @@
 ---
 title: "Software Craftsmanship"
-cover: "https://unsplash.it/1152/300/?random?BirchintheRoses"
+cover: "/images/posts/2014-07-08-software-craftsmanship/cover.jpg"
 date: "07/08/2014"
 category: "tech"
 tags:

@@ -1,6 +1,5 @@
 ---
 title: "Eventual Consistency of Design and the Impact of TDD"
-cover: "https://unsplash.it/1152/300/?random?BirchintheRoses"
 date: "07/04/2016"
 category: "tech"
 tags:

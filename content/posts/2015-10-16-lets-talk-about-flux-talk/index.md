@@ -1,11 +1,11 @@
 ---
 title: "Let's Talk about Flux"
-cover: "https://unsplash.it/1152/300/?random?BirchintheRoses"
 date: "10/16/2015"
 category: "tech"
 tags:
     - flux
     - react
+    - javascript
     - presentation
 ---
 
