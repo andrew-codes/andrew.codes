@@ -8,17 +8,17 @@ import Hidden from 'material-ui/Hidden';
 import IconButton from 'material-ui/IconButton';
 import List, {ListItem, ListItemText} from 'material-ui/List';
 import MenuIcon from 'material-ui-icons/Menu';
+import Paper from 'material-ui/Paper';
 import PropTypes from 'prop-types';
 import React from "react";
 import Toolbar from 'material-ui/Toolbar';
-import {MuiThemeProvider, createMuiTheme, withStyles} from 'material-ui/styles';
+import {MuiThemeProvider, withStyles} from 'material-ui/styles';
 import 'typeface-roboto/index.css';
 import Author from "../components/Author";
 import config from "../../data/SiteConfig";
 import resumeSections from '../resumeSections';
+import theme from '../theme';
 import './index.css';
-
-const theme = createMuiTheme();
 
 const getCurrentPath = (pathname, pathPrefix) => pathname.replace(pathPrefix || "/", "").replace("/", "");
 
@@ -93,9 +93,11 @@ const mainLayoutStyles = theme => ({
     marginTop: `${theme.mixins.toolbar.minHeight}px`,
   },
   drawerPaper: {
+    backgroundColor: '#f7f7f7',
     border: '1px solid rgba(0, 0, 0, 0.12)',
   },
   main: {
+    backgroundColor: 'gainsboro',
     padding: '1rem',
     width: '100%',
     [theme.breakpoints.up('md')]: {
@@ -217,9 +219,9 @@ class MainLayout extends React.Component {
                 </IconButton>
               </Toolbar>
             </AppBar>
-            <div className={classes.authorContainer}>
+            <Paper className={classes.authorContainer}>
               {renderAuthor(config)}
-            </div>
+            </Paper>
           </Hidden>
           {children()}
         </main>

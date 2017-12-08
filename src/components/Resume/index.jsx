@@ -1,15 +1,21 @@
 import classNames from 'classnames';
+import Paper from 'material-ui/Paper';
 import PropTypes from 'prop-types';
 import React, {Component} from "react";
 import Typography from 'material-ui/Typography';
 import {withStyles} from 'material-ui/styles';
 
 const styles = theme => ({
+  resume: {
+    backgroundColor: 'gainsboro',
+  },
   sectionTitle: {
     borderBottom: `1px solid ${theme.palette.primary[600]}`,
   },
   section: {
-    minHeight: '100vh',
+    padding: '1rem',
+    minHeight: 'calc(100vh - 2rem)',
+    marginBottom: '1rem',
     [theme.breakpoints.down('md')]: {
       minHeight: 'auto',
     }
@@ -24,26 +30,27 @@ class Resume extends Component {
     } = this.props;
 
     return (
-      <div className="resume">
+      <div className={classes.resume}>
         <article>
           {sections.map((section) => (
-            <section
-              className={classes.section}
-              key={`body-${section.slug}`}
-            >
-              <header>
-                <Typography
-                  gutterBottom
-                  className={classes.sectionTitle}
-                  type="display1"
-                >
-                  <a name={section.slug} id={section.slug}>{section.heading}</a>
-                </Typography>
-              </header>
-              <div>
-                {section.body}
-              </div>
-            </section>
+            <Paper className={classes.section}>
+              <section
+                key={`body-${section.slug}`}
+              >
+                <header>
+                  <Typography
+                    gutterBottom
+                    className={classes.sectionTitle}
+                    type="display1"
+                  >
+                    <span data-name={section.slug}>{section.heading}</span>
+                  </Typography>
+                </header>
+                <div>
+                  {section.body}
+                </div>
+              </section>
+            </Paper>
           ))}
         </article>
       </div>

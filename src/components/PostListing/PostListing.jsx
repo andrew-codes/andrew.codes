@@ -53,11 +53,11 @@ const styles = theme => ({
     transition: theme.transitions.create('opacity'),
   },
   oddPosts: {
-    backgroundColor: '#f7f7f7',
   },
   post: {
     display: 'flex',
     flexFlow: 'row wrap',
+    marginBottom: '1rem',
     minHeight: '250px',
   },
   postArticle: {
@@ -90,7 +90,6 @@ const styles = theme => ({
     order: -1,
   },
   root: {
-    margin: '-1rem',
   },
   tag: {
     display: 'inline-block',

@@ -26,7 +26,7 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     [theme.breakpoints.down('md')]: {
-      marginBottom: `${theme.mixins.toolbar.minHeight / 2}px`,
+      marginBottom: '1rem',
     }
   }
 });
