@@ -1,14 +1,21 @@
 import React from "react";
-import Helmet from "react-helmet";
+import {withStyles} from 'material-ui/styles';
 import PostListing from "../components/PostListing/PostListing";
 import SEO from "../components/SEO/SEO";
-import config from "../../data/SiteConfig";
+
+const styles = theme => ({
+  container: {
+  },
+});
 
 class Index extends React.Component {
   render() {
+    const {
+      classes,
+    } = this.props;
     const postEdges = this.props.data.allMarkdownRemark.edges;
     return (
-      <div className="index-container">
+      <div className={classes.container}>
         <SEO postEdges={postEdges} />
         <PostListing postEdges={postEdges} />
       </div>
@@ -16,7 +23,7 @@ class Index extends React.Component {
   }
 }
 
-export default Index;
+export default withStyles(styles)(Index);
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`

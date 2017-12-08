@@ -71,7 +71,7 @@ const styles = theme => ({
     flex: 1,
     order: 2,
     [theme.breakpoints.down('md')]: {
-      flex: 0,
+      display: 'none',
     }
   },
   postHeader: {

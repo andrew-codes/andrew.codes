@@ -25,6 +25,9 @@ const styles = theme => ({
     alignItems: 'center',
     display: 'flex',
     flexDirection: 'column',
+    [theme.breakpoints.down('md')]: {
+      marginBottom: `${theme.mixins.toolbar.minHeight / 2}px`,
+    }
   }
 });
 
