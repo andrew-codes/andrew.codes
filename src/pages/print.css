@@ -1,0 +1,20 @@
+@media print {
+  .print-hidden {
+    display: none !important;
+  }
+
+  .print-no-spacing {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .print-no-decoration {
+    border: none !important;
+    background-color: unset !important;
+    box-shadow: none !important;
+  }
+
+  .print-no-pagebreak {
+    page-break-inside: avoid;
+  }
+}

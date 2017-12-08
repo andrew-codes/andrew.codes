@@ -11,3 +11,26 @@
 .user-links a {
   flex: 1;
 }
+
+@media print {
+  .user-links {
+    display: block !important;
+    padding: 1rem !important;
+  }
+
+  .user-links button {
+    display: block !important;
+    font-size: 0.9rem !important;
+    height: unset !important;
+    width: unset !important;
+  }
+
+  .user-links a:before {
+    display: block !important;
+    content: attr(href);
+  }
+
+  .user-links a i {
+    display: none !important;
+  }
+}

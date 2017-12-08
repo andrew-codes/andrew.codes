@@ -30,10 +30,10 @@ class Resume extends Component {
     } = this.props;
 
     return (
-      <div className={classes.resume}>
+      <div className={classNames(classes.resume, 'print-no-decoration')}>
         <article>
           {sections.map((section) => (
-            <Paper className={classes.section}>
+            <Paper className={classNames(classes.section, 'print-no-decoration', 'print-no-pagebreak', section.heading === 'Contact' && 'print-hidden')}>
               <section
                 key={`body-${section.slug}`}
               >

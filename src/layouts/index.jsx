@@ -206,9 +206,9 @@ class MainLayout extends React.Component {
             <SideBarContent currentPath={currentPath} />
           </Drawer>
         </Hidden>
-        <main className={classes.main}>
+        <main className={classNames(classes.main, 'print-no-spacing', 'print-no-decoration')}>
           <Hidden mdUp implementation="css">
-            <AppBar>
+            <AppBar className="print-hidden">
               <Toolbar>
                 <IconButton
                   color="contrast"
@@ -219,7 +219,7 @@ class MainLayout extends React.Component {
                 </IconButton>
               </Toolbar>
             </AppBar>
-            <Paper className={classes.authorContainer}>
+            <Paper className={classNames(classes.authorContainer, 'print-no-spacing', 'print-no-decoration')}>
               {renderAuthor(config)}
             </Paper>
           </Hidden>

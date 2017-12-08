@@ -38,7 +38,7 @@ const Author = ({
                   fullName,
                   links
                 }) => (
-  <div className={classNames('vcard', classes.vcard)}>
+  <div className={classNames('vcard', classes.vcard, 'print-no-spacing', 'print-no-decoration')}>
     <div className={classes.name}>
       <Typography className="fn" type="headline">{fullName}</Typography>
       <img className="photo" src={`${avatarUrl}?s=120`} alt="Avatar" />

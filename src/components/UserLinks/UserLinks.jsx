@@ -27,7 +27,7 @@ const UserLinks = ({
                      labeled,
                      links
                    }) => (
-  <div className={classes.container}>
+  <div className={classNames(classes.container, 'user-links')}>
     {links.map(link => (
       labeled ? (
           <Button>
