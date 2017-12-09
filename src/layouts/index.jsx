@@ -19,6 +19,7 @@ import config from "../../data/SiteConfig";
 import resumeSections from '../resumeSections';
 import theme from '../theme';
 import './index.css';
+import './print.css';
 
 const getCurrentPath = (pathname, pathPrefix) => pathname.replace(pathPrefix || "/", "").replace("/", "");
 
@@ -66,19 +67,20 @@ const renderSidebarContent = ({
           <Collapse component="li" in={true} timeout="auto">
             <List disablePadding>
               {resumeSections.map((section, index) => (
-                <ListItem button className={classNames(classes.listItem, classes.nested)}
-                          onClick={() => router.history.push(`/resume/#${section.slug}`)}>
+                <ListItem
+                  button
+                  className={classNames(classes.listItem, classes.nested)}
+                  onClick={() => router.history.push(`/resume/#${section.slug}`)}
+                >
                   <ListItemText primary={section.heading} />
                 </ListItem>
               ))}
             </List>
           </Collapse>
         )}
-        {currentPath !== 'resume' && (
-          <ListItem button className={classes.listItem} onClick={() => router.history.push('/resume/#Contact')}>
-            <ListItemText primary="Contact" />
-          </ListItem>
-        )}
+        <ListItem button className={classes.listItem} onClick={() => router.history.push('/contact')}>
+          <ListItemText primary="Contact" />
+        </ListItem>
       </List>
     </nav>
   </aside>
