@@ -1,6 +1,5 @@
 import React from 'react';
 import Typography from 'material-ui/Typography';
-import ContactForm from './components/ContactForm/index';
 import DatedResumeEntry from './components/DatedResumeEntry/index';
 import SimpleList from './components/SimpleList/index';
 
@@ -288,9 +287,6 @@ export default [
       />
     </div>
   )),
-  createSection('Contact', (
-    <ContactForm />
-  ))
 ].map(section => ({
   ...section,
   slug: section.heading.replace(' ', '-'),
