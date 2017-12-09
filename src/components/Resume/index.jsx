@@ -7,7 +7,6 @@ import {withStyles} from 'material-ui/styles';
 
 const styles = theme => ({
   resume: {
-    backgroundColor: 'gainsboro',
   },
   sectionTitle: {
     borderBottom: `1px solid ${theme.palette.primary[600]}`,
@@ -15,7 +14,7 @@ const styles = theme => ({
   section: {
     padding: '1rem',
     minHeight: 'calc(100vh - 2rem)',
-    marginBottom: '1rem',
+    marginBottom: `${theme.spacing.unit * 2}px`,
     [theme.breakpoints.down('md')]: {
       minHeight: 'auto',
     }

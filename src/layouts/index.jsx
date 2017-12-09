@@ -97,8 +97,6 @@ const mainLayoutStyles = theme => ({
     border: '1px solid rgba(0, 0, 0, 0.12)',
   },
   main: {
-    backgroundColor: 'gainsboro',
-    padding: '1rem',
     width: '100%',
     [theme.breakpoints.up('md')]: {
       marginLeft: `${drawerWidth}px`

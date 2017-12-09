@@ -5,6 +5,9 @@ import SEO from "../components/SEO/SEO";
 
 const styles = theme => ({
   container: {
+    backgroundColor: 'gainsboro',
+    minHeight: '100vh',
+    padding: `${theme.spacing.unit * 2}px`,
   },
 });
 

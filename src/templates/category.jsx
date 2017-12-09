@@ -32,6 +32,7 @@ export const pageQuery = graphql`
           fields {
             slug
           }
+          fileAbsolutePath
           excerpt
           timeToRead
           frontmatter {

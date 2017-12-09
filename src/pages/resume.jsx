@@ -10,9 +10,9 @@ import './print.css';
 const styles = theme => ({
   container: {
     backgroundColor: 'gainsboro',
-    margin: '-1rem',
-    padding: '1rem',
-  }
+    minHeight: '100vh',
+    padding: `${theme.spacing.unit * 2}px`,
+  },
 });
 class ResumePage extends Component {
   render() {

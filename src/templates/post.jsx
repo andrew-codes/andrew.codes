@@ -13,17 +13,28 @@ import "./b16-tomorrow-dark.css";
 import "./post.css";
 
 const styles = theme => ({
-  paper: {
-    margin: `-1rem`,
-    padding: `${theme.spacing.unit * 2}px`,
-  },
-  footer: {
-    marginTop: `1.5rem`,
-  },
-  title: {
-    borderBottom: `1px solid ${theme.palette.primary[600]}`,
-  },
-});
+    container: {
+      backgroundColor: 'gainsboro',
+      minHeight: '100vh',
+      padding: `${theme.spacing.unit * 2}px`,
+    },
+    paper: {
+      padding: `${theme.spacing.unit * 2}px`,
+    },
+    footer: {
+      marginTop: `${theme.spacing.unit * 2}px`,
+    },
+    footerPaper:
+      {
+        padding: `${theme.spacing.unit * 2}px`,
+      }
+    ,
+    title: {
+      borderBottom: `1px solid ${theme.palette.primary[600]}`,
+    }
+    ,
+  })
+;
 
 class PostTemplate extends React.Component {
   render() {
@@ -40,7 +51,7 @@ class PostTemplate extends React.Component {
       post.category_id = config.postDefaultCategoryID;
     }
     return (
-      <div>
+      <div className={classes.container}>
         <Helmet>
           <title>{`${post.title} | ${config.siteTitle}`}</title>
         </Helmet>
@@ -61,7 +72,9 @@ class PostTemplate extends React.Component {
             <UserInfo config={config} />
           </Paper>
           <footer className={classes.footer}>
-            <Disqus postNode={postNode} />
+            <Paper className={classes.footerPaper}>
+              <Disqus postNode={postNode} />
+            </Paper>
           </footer>
         </article>
       </div>

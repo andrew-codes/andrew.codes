@@ -52,12 +52,11 @@ const styles = theme => ({
     left: 'calc(50% - 9px)',
     transition: theme.transitions.create('opacity'),
   },
-  oddPosts: {
-  },
+  oddPosts: {},
   post: {
     display: 'flex',
     flexFlow: 'row wrap',
-    marginBottom: '1rem',
+    marginBottom: `${theme.spacing.unit * 2}px`,
     minHeight: '250px',
   },
   postArticle: {
@@ -84,13 +83,15 @@ const styles = theme => ({
   postHeaderAndArticleContainer: {
     flex: 3,
   },
+  postLast: {
+    marginBottom: 0,
+  },
   postMeta: {
     display: 'flex',
     flexDirection: 'row',
     order: -1,
   },
-  root: {
-  },
+  root: {},
   tag: {
     display: 'inline-block',
     paddingRight: '0.25rem',
@@ -137,7 +138,7 @@ class PostListing extends React.Component {
     return (
       <div className={classes.root}>
         {postList.map((post, postIndex) => (
-          <Paper className={classNames(classes.post, postIndex % 2 === 1 && classes.oddPosts)}>
+          <Paper className={classNames(classes.post, postIndex % 2 === 1 && classes.oddPosts, postIndex === postList.length - 1 && classes.postLast)}>
             <div className={classes.postHeaderAndArticleContainer}>
               <header className={classes.postHeader}>
                 <Typography type="headline">
@@ -175,9 +176,7 @@ class PostListing extends React.Component {
                 </Typography>
               </article>
             </div>
-            <footer
-              className={classes.postFooter}
-            >
+            <footer className={classes.postFooter}>
               <ButtonBase
                 focusRipple
                 className={classes.readMoreButton}
@@ -205,7 +204,6 @@ class PostListing extends React.Component {
                 </div>
               </ButtonBase>
             </footer>
-
           </Paper>
         ))}
       </div>
