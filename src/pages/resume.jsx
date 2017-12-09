@@ -9,8 +9,6 @@ import resumeSections from '../resumeSections';
 const styles = theme => ({
   container: {
     backgroundColor: 'gainsboro',
-    minHeight: '100vh',
-    padding: `${theme.spacing.unit * 2}px`,
   },
 });
 class ResumePage extends Component {

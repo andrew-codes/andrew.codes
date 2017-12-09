@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from "react";
 import Typography from 'material-ui/Typography';
 import {withStyles} from 'material-ui/styles';
+import FullHeightPaper from '../FullHeightPaper';
 
 const styles = theme => ({
   resume: {
@@ -12,9 +13,6 @@ const styles = theme => ({
     borderBottom: `1px solid ${theme.palette.primary[600]}`,
   },
   section: {
-    padding: '1rem',
-    minHeight: 'calc(100vh - 2rem)',
-    marginBottom: `${theme.spacing.unit * 2}px`,
     [theme.breakpoints.down('md')]: {
       minHeight: 'auto',
     }
@@ -32,7 +30,7 @@ class Resume extends Component {
       <div className={classNames(classes.resume, 'print-no-decoration')}>
         <article>
           {sections.map((section) => (
-            <Paper className={classNames(classes.section, 'print-no-decoration', 'print-no-pagebreak', section.heading === 'Contact' && 'print-hidden')}>
+            <FullHeightPaper className={classNames(classes.section, 'print-no-pagebreak')}>
               <section
                 key={`body-${section.slug}`}
               >
@@ -49,7 +47,7 @@ class Resume extends Component {
                   {section.body}
                 </div>
               </section>
-            </Paper>
+            </FullHeightPaper>
           ))}
         </article>
       </div>

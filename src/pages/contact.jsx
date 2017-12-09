@@ -6,16 +6,9 @@ import Typography from 'material-ui/Typography';
 import {withStyles} from 'material-ui/styles';
 import config from "../../data/SiteConfig";
 import ContactForm from '../components/ContactForm/index';
+import FullHeightPaper from '../components/FullHeightPaper';
 
 const styles = theme => ({
-  container: {
-    backgroundColor: 'gainsboro',
-    minHeight: '100vh',
-    padding: `${theme.spacing.unit * 2}px`,
-  },
-  paper: {
-    padding: `${theme.spacing.unit * 2}px`,
-  },
   heading: {
     borderBottom: `1px solid ${theme.palette.primary[600]}`,
   },
@@ -27,19 +20,17 @@ class ResumePage extends Component {
       classes,
     } = this.props;
     return (
-      <div className={classNames(classes.container, 'print-no-spacing', 'print-no-decoration')}>
+      <FullHeightPaper>
         <Helmet title={`Resume | ${config.siteTitle}`} />
-        <Paper className={classes.paper}>
-          <Typography
-            gutterBottom
-            className={classes.heading}
-            type="display1"
-          >
-            Contact
-          </Typography>
-          <ContactForm />
-        </Paper>
-      </div>
+        <Typography
+          gutterBottom
+          className={classes.heading}
+          type="display1"
+        >
+          Contact
+        </Typography>
+        <ContactForm />
+      </FullHeightPaper>
     );
   }
 }
