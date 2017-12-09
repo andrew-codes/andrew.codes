@@ -8,6 +8,9 @@ exports.onRouteUpdate = ({location}) => {
   let scrollToValue = 0;
   if (location.hash !== '') {
     const hashElement = document.querySelector(`[data-name=${location.hash.replace('#', '')}]`);
+    if (!hashElement){
+      return;
+    }
     scrollToValue = hashElement.offsetTop - 32;
     if (window.innerWidth < theme.breakpoints.values.md) {
       scrollToValue -= theme.mixins.toolbar.minHeight;
