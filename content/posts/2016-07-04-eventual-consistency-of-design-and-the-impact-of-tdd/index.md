@@ -54,13 +54,13 @@ What is eventual consistency of design? It is the notion that by implementing in
 
 > eventual consistency of design is the notion that by developing in small, iterative steps, a software's design will stabilize over a period of time
 
-Software is developed over time; it is not static. That is common sense. Upfront architecture produces an end result of the design for the software. However, we just stated that software is not static. There is no defined "end result." Software exists through a continuum of iterations, refactoring, and developers. It is a very dynamic and, ultimately, evolutionary progression of code and features through time. This is where the notion of eventual consistency of design becomes incredibly important and where TDD is quite successful.
+Software is developed over time; it is not static. That is common sense. Upfront architecture produces an end result of the design for the software. We stated that software is not static; no defined "end result." Software exists through a continuum of iterations, refactoring, and developers; a dynamic and, ultimately, evolutionary progression of code and features through time. This is where the notion of eventual consistency of design becomes incredibly important and where TDD is successful.
 
 > software is a dynamic evolution of code and features through time
 
-TDD affords iterative, rapid feedback and forces smaller increments of development. In addition to this, it provides a higher level of confidence to refactor and make further, small improvements to the software's codebase. Ultimately, it allows developers to be adaptive enough to evolve the codebase with the changing of features, direction, and design.
+TDD affords iterative, rapid feedback and forces smaller increments of development. It provides a higher level of confidence to refactor and make further, small improvements to the software's codebase. Ultimately, it allows developers to be adaptive enough to evolve the codebase with the changing of features, direction, and design.
 
 > TDD allows developers to **refactor with confidence!**
 
 ## Is TDD right for me, my team, and my organization?
-Has software ever been developed with TDD that "ended" with horrible design? Yes. Has software ever been architected upfront that "ended" with horrible design? Yes. If these are your questions, know they are not the right ones to be asking. Instead ask this: "Is your design approach adaptive enough to effectively and quickly support fast paced changes in design, direction, and features?" If your answer is not a resounding "Yes!", then TDD is one approach enabling you to develop with greater agility.
+Has TDD ever produced software with horrible design? Yes. Has upfront design ever produced software with a horrible design? Yes. If these are your questions, know they are not the right ones to be asking. Instead ask this: "Is your design approach adaptive enough to effectively support fast paced changes in design, direction, and features?" If your answer is not a resounding "Yes!", then TDD is one approach enabling you to develop with greater agility.

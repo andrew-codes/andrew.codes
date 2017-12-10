@@ -9,7 +9,7 @@ tags:
 
 ## What is Software Craftsmanship?
 
-Software craftsmanship is a movement in the development community embracing the individual and focusing on a developer's quality and skill. It draws heavy influence from the apprenticeship model of feudal Europe and Asia; providing a path to mastery where a developer progresses through various mentoring levels to eventually achieve better proficiency in their craft; writing good code.
+Software craftsmanship is a movement in the development community embracing the individual and focusing on a developer's quality and skill. It draws heavy influence from the apprenticeship model of feudal Europe and Asia; providing a path to mastery where a developer progresses through mentoring levels to eventually achieve better proficiency in their craft; writing good code.
 
 While craftsmanship places an emphasis on the skill level of the developer and the quality of the code they produce, this increased focus on the individual can sometimes make us forget the true purpose of what we are trying to achieve. In order to deliver working software that yields continuing value to the customer, it is critically important to maintain proper perspective of our end goal while still preserving the highest degree of excellence in the quality of our work.
 
@@ -33,8 +33,8 @@ Software craftsmanship is not simply shifting the focus from the software's valu
 
 ## Becoming a Software Craftsman
 
-Craftsmanship is an arduous journey without a final destination. However, there are a few regular exercises to get you started. First, practice by doing daily code katas. Each kata should take no more than 30 minutes to 45 minutes of your time. [Dave Thomas](http://pragdave.me) has a great place to start with code katas at [codekata.com](http://codekata.com).
+Craftsmanship is an arduous journey without a final destination. However, there are regular exercises to get you started. First, practice by doing a code kata every day. Each kata should take no more than 30 minutes to 45 minutes of your time. [Dave Thomas](http://pragdave.me) has a great place to start with code katas at [codekata.com](http://codekata.com).
 
 Empty your cup, or, in other words, be willing to begin again. Regardless of the years of experience accumulated, craftsmanship teaches the pursuit of improvement and that mastery is not static; rather a continual work in progress. You cannot refill your cup until you have emptied it of its contents.
 
-Do not be afraid to fail. Failure is nothing more than an opportunity to improve. Embrace failures as learning experiences instead. If you cannot fail, it is likely not worth doing.
+Do not be afraid to fail. Failure is nothing more than an opportunity to improve. Embrace failures as learning experiences instead. If you cannot fail, it isn't worth doing.
