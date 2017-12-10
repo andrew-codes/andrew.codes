@@ -16,6 +16,7 @@ import {MuiThemeProvider, withStyles} from 'material-ui/styles';
 import 'typeface-roboto/index.css';
 import Author from "../components/Author";
 import config from "../../data/SiteConfig";
+import FullHeightPaper from '../components/FullHeightPaper';
 import resumeSections from '../resumeSections';
 import theme from '../theme';
 import './index.css';
@@ -35,6 +36,7 @@ const renderAuthor = ({userAvatar, userDescription, userName, userLinks}) => (
 const drawerWidth = 300;
 const sidebarStyles = theme => ({
   aside: {
+    backgroundColor: '#f7f7f7',
     width: `${drawerWidth}px`,
   },
   link: {
@@ -45,7 +47,7 @@ const sidebarStyles = theme => ({
   },
   nested: {
     paddingLeft: theme.spacing.unit * 4,
-  }
+  },
 });
 const renderSidebarContent = ({
                                 classes,
@@ -92,17 +94,21 @@ const SideBarContent = withStyles(sidebarStyles)(renderSidebarContent);
 
 const mainLayoutStyles = theme => ({
   authorContainer: {
-    marginTop: `${theme.mixins.toolbar.minHeight}px`,
-  },
-  drawerPaper: {
-    backgroundColor: '#f7f7f7',
-    border: '1px solid rgba(0, 0, 0, 0.12)',
+    margin: `${theme.mixins.toolbar.minHeight + theme.spacing.unit * 4}px ${theme.spacing.unit * 2}px ${theme.spacing.unit * 2}px ${theme.spacing.unit * 2}px`,
+    padding: `${theme.spacing.unit * 2}px`,
   },
   main: {
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      marginLeft: `${drawerWidth}px`
+      marginLeft: `${drawerWidth + theme.spacing.unit * 6}px`
     },
+  },
+  mobilePaper: {
+    backgroundColor: '#f7f7f7',
+    padding: `${theme.spacing.unit}px`,
+  },
+  paper: {
+    paddingRight: 0,
   },
   root: {
     display: 'flex',
@@ -180,11 +186,16 @@ class MainLayout extends React.Component {
             open
             anchor="left"
             classes={{
-              paper: classes.drawerPaper,
+
             }}
             type="permanent"
           >
-            <SideBarContent currentPath={currentPath} />
+            <FullHeightPaper
+              backgroundColor="#f7f7f7"
+              className={classes.paper}
+            >
+              <SideBarContent currentPath={currentPath} />
+            </FullHeightPaper>
           </Drawer>
         </Hidden>
         <Hidden mdUp implementation="css">
@@ -192,7 +203,7 @@ class MainLayout extends React.Component {
             open={open}
             anchor="left"
             classes={{
-              paper: classes.drawerPaper,
+              paper: classes.mobilePaper,
             }}
             onRequestClose={this.handleDrawerToggle}
             type="temporary"
@@ -223,7 +234,7 @@ class MainLayout extends React.Component {
               {renderAuthor(config)}
             </Paper>
           </Hidden>
-          {children()}
+            {children()}
         </main>
       </div>
     );

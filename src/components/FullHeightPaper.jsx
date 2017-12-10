@@ -6,25 +6,34 @@ import {withStyles} from 'material-ui/styles';
 const styles = theme => ({
   container: {
     backgroundColor: 'gainsboro',
-    minHeight: '100vh',
     padding: `${theme.spacing.unit * 2}px`,
+    minHeight: '100vh',
   },
   paper: {
-    padding: `${theme.spacing.unit * 2}px`,
     minHeight: `calc(100vh - ${theme.spacing.unit * 4}px)`,
+    padding: `${theme.spacing.unit * 2}px`,
   },
 });
 
 const FullHeightPage = ({
+                          backgroundColor,
                           classes,
                           className,
                           children,
                         }) => (
   <div className={classNames(classes.container, 'print-no-spacing', 'print-no-decoration', className)}>
-    <Paper className={classes.paper}>
+    <Paper
+      className={classes.paper}
+      style={{
+        backgroundColor,
+      }}
+    >
       {children}
     </Paper>
   </div>
 );
+FullHeightPage.defaultProps = {
+  backgroundColor: '#fff',
+};
 
 export default withStyles(styles)(FullHeightPage);

@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import Helmet from "react-helmet";
 import React, {Component} from "react";
-import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import {withStyles} from 'material-ui/styles';
 import config from "../../data/SiteConfig";

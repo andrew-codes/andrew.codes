@@ -25,9 +25,6 @@ const styles = theme => ({
     alignItems: 'center',
     display: 'flex',
     flexDirection: 'column',
-    [theme.breakpoints.down('md')]: {
-      marginBottom: '1rem',
-    }
   }
 });
 

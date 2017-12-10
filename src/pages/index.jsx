@@ -8,6 +8,9 @@ const styles = theme => ({
     backgroundColor: 'gainsboro',
     minHeight: '100vh',
     padding: `${theme.spacing.unit * 2}px`,
+    [theme.breakpoints.down('md')]: {
+      paddingTop: 0,
+    },
   },
 });
 
