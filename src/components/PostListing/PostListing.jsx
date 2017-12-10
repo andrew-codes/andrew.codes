@@ -151,7 +151,7 @@ class PostListing extends React.Component {
                   >
                     {post.date}
                   </time>
-                  <time className={classes.readTime}>{post.timeToRead}{post.timeToRead > 1 ? 'mins' : 'min'}</time>
+                  <time className={classes.readTime}>{post.timeToRead} {post.timeToRead > 1 ? 'mins' : 'min'}</time>
                 </div>
                 <div className={classes.tagsContainer}>
                   <span>- </span>
