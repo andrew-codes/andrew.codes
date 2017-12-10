@@ -1,0 +1,7 @@
+{
+  "plugins": [
+    "remark-frontmatter",
+    "preset-lint-markdown-style-guide",
+    ["lint-maximum-line-length", false]
+  ]
+}
