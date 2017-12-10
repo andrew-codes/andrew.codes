@@ -11,6 +11,16 @@ import TextField from 'material-ui/TextField';
 import {CircularProgress} from 'material-ui/Progress';
 import {withStyles} from 'material-ui/styles';
 
+const hasInvalidFields = fields => {
+  const requiredFields = [
+    'name',
+    'email',
+    'message',
+  ];
+  return !fields.filter(field => requiredFields.indexOf(field.name) >= 0)
+    .reduce((prev, field) => prev && !!field.value, true)
+};
+
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
@@ -132,12 +142,21 @@ class ContactForm extends Component {
           name="message"
           rows={4}
         />
-        <div className={classNames(classes.rowContainer, classes.containerToRight)}>
+        <div
+          className={classNames(classes.rowContainer, classes.containerToRight)}>
           <div className={classes.wrapper}>
-            <Button fab color="primary" className={buttonClassname} onClick={this.handleSend}>
-              {success ? <CheckIcon /> : <SendIcon className={classes.iconToRight} />}
+            <Button
+              fab
+              color="primary" className={buttonClassname}
+              onClick={this.handleSend}
+            >
+              {success
+                ? <CheckIcon />
+                : <SendIcon className={classes.iconToRight} />
+              }
             </Button>
-            {loading && <CircularProgress size={68} className={classes.fabProgress} />}
+            {loading &&
+            <CircularProgress size={68} className={classes.fabProgress} />}
           </div>
         </div>
         <Snackbar
@@ -176,15 +195,23 @@ class ContactForm extends Component {
     if (alreadySent) {
       return;
     }
+    const fields = Array.from(this.form.querySelectorAll('input').values())
+      .concat([
+        this.form.querySelector('textarea'),
+      ]);
+    if (hasInvalidFields(fields)) {
+      this.setState({
+        open: true,
+        message: 'Please enter all required fields',
+        success: false,
+      });
+      return;
+    }
     this.setState({
       loading: true,
       success: false,
     }, () => {
-      const fields = Array.from(this.form.querySelectorAll('input').values())
-        .concat([
-          this.form.querySelector('textarea'),
-        ]);
-      this.send(fields)
+      this.send(fields);
     });
   }
 
