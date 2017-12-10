@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import ButtonBase from 'material-ui/ButtonBase';
-import Link from 'gatsby-link';
+import Link from '../Link';
 import Paper from 'material-ui/Paper';
 import React from "react";
 import Typography from 'material-ui/Typography';
@@ -138,11 +138,13 @@ class PostListing extends React.Component {
     return (
       <div className={classes.root}>
         {postList.map((post, postIndex) => (
-          <Paper className={classNames(classes.post, postIndex % 2 === 1 && classes.oddPosts, postIndex === postList.length - 1 && classes.postLast)}>
+          <Paper
+            className={classNames(classes.post, postIndex % 2 === 1 && classes.oddPosts, postIndex === postList.length - 1 && classes.postLast)}>
             <div className={classes.postHeaderAndArticleContainer}>
               <header className={classes.postHeader}>
                 <Typography type="headline">
-                  <Link to={post.path} key={post.title}>{post.title}
+                  <Link to={post.path} key={post.title}>
+                    {post.title}
                   </Link></Typography>
                 <div className={classes.postMeta}>
                   <time

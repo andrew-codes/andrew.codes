@@ -1,4 +1,3 @@
-import Link from 'gatsby-link';
 import React from "react";
 import Helmet from "react-helmet";
 import Paper from 'material-ui/Paper';
@@ -6,7 +5,7 @@ import Typography from "material-ui/Typography";
 import {withStyles} from 'material-ui/styles';
 import UserInfo from "../components/UserInfo/UserInfo";
 import Disqus from "../components/Disqus/Disqus";
-import PostTags from "../components/PostTags/PostTags";
+import Link from '../components/Link';
 import SocialLinks from "../components/SocialLinks/SocialLinks";
 import SEO from "../components/SEO/SEO";
 import config from "../../data/SiteConfig";
@@ -125,7 +124,6 @@ class PostTemplate extends React.Component {
             </header>
             <div dangerouslySetInnerHTML={{__html: postNode.html}} />
             <div className="post-meta">
-              <PostTags tags={post.tags} />
               <SocialLinks postPath={slug} postNode={postNode} />
             </div>
             <UserInfo config={config} />
