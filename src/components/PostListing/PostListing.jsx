@@ -57,7 +57,7 @@ const styles = theme => ({
     display: 'flex',
     flexFlow: 'row wrap',
     marginBottom: `${theme.spacing.unit * 2}px`,
-    minHeight: '250px',
+    minHeight: '246px',
   },
   postArticle: {
     padding: `${theme.spacing.unit * 2}px`,
