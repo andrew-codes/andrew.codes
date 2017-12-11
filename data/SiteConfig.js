@@ -21,17 +21,17 @@ module.exports = {
   userLinks: [
     {
       label: "Twitter",
-      url: "https://twitter.com/andrew_codes",
+      url: "http://jas.link/twitter",
       iconClassName: "fa fa-twitter"
     },
     {
       label: "GitHub",
-      url: "https://github.com/andrew-codes",
+      url: "http://jas.link/github",
       iconClassName: "fa fa-github"
     },
     {
       label: "LinkedIn",
-      url: "https://linkedin.com/in/jamesandrewsmith",
+      url: "http://jas.link/linkedin",
       iconClassName: "fa fa-linkedin"
     }
   ],
