@@ -23,7 +23,7 @@ const FullHeightPage = ({
                         }) => (
   <div className={classNames(classes.container, 'print-no-spacing', 'print-no-decoration', className)}>
     <Paper
-      className={classes.paper}
+      className={classNames(classes.container, 'print-no-spacing', 'print-no-decoration', classes.paper)}
       style={{
         backgroundColor,
       }}

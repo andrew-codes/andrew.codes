@@ -1,4 +1,7 @@
 @media print {
+  * {
+    background-color: unset !important;
+  }
   .print-hidden {
     display: none !important;
   }
@@ -6,11 +9,12 @@
   .print-no-spacing {
     margin: 0 !important;
     padding: 0 !important;
+    height: unset !important;
+    min-height: unset !important;
   }
 
   .print-no-decoration {
     border: none !important;
-    background-color: unset !important;
     box-shadow: none !important;
   }
 
