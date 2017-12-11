@@ -5,6 +5,11 @@ import {withStyles} from 'material-ui/styles';
 import Link from './Link';
 import toSlug from "../toSlug";
 
+const formatToDate = value => {
+  const date = new Date(value);
+  return `${date.getMonth() + 1}/${date.getDate() + 1}/${date.getFullYear()}`
+};
+
 const styles = () => ({
   postDate: {
     flex: 1,
@@ -63,7 +68,7 @@ const PostHeading = ({
         className={classes.postDate}
         dateTime={new Date(date).toISOString()}
       >
-        {date}
+        {formatToDate(date)}
       </time>
       <time
         className={classes.readTime}
