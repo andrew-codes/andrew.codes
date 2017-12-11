@@ -113,7 +113,7 @@ class PostListing extends React.Component {
       <div className={classes.root}>
         {postList.map((post, postIndex) => (
           <Paper
-            className={classNames(classes.post, postIndex % 2 === 1 && classes.oddPosts, postIndex === postList.length - 1 && classes.postLast)}
+            className={classNames(classes.post, postIndex % 2 === 1 && classes.oddPosts, postIndex === postList.length - 1 && classes.postLast, 'print-no-spacing print-no-decoration')}
             key={post.url}
           >
             <div className={classes.postHeaderAndArticleContainer}>

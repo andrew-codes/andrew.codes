@@ -33,7 +33,7 @@ class SocialLinks extends Component {
     const filter = count => (count > 0 ? count : "");
 
     return (
-      <div className="social-links">
+      <div className="social-links print-hidden">
         <RedditShareButton url={url} title={post.title}>
           <RedditIcon round size={iconSize} />
           <RedditShareCount url={url}>

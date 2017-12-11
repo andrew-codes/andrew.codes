@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React from "react";
 import Helmet from "react-helmet";
 import Paper from 'material-ui/Paper';
@@ -56,7 +57,8 @@ class PostTemplate extends React.Component {
         </Helmet>
         <SEO postPath={slug} postNode={postNode} postSEO />
         <article>
-          <Paper className={classes.paper}>
+          <Paper
+            className={classNames(classes.paper, 'print-no-spacing', ' print-no-decoration')}>
             <PostHeading
               {...post}
               timeToRead={postNode.timeToRead}
@@ -65,9 +67,11 @@ class PostTemplate extends React.Component {
             <div className="post-meta">
               <SocialLinks postPath={slug} postNode={postNode} />
             </div>
-            <UserInfo config={config} />
+            <div className="print-hidden">
+              <UserInfo config={config} />
+            </div>
           </Paper>
-          <footer className={classes.footer}>
+          <footer className={classNames(classes.footer, 'print-hidden')}>
             <Paper className={classes.footerPaper}>
               <Disqus postNode={postNode} />
             </Paper>
