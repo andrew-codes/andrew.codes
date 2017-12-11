@@ -1,4 +1,4 @@
-* text=auto
+* text=auto crlf=input eol=lf
 
 ## SOURCE CODE
 *.bat      text eol=crlf
