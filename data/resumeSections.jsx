@@ -26,9 +26,8 @@ export default [
         such as Pluralsight, one-one-one
         mentoring, and remote code pairing sessions.</Typography>
       <Typography paragraph type="body1">I am an active member of the OSS
-        community and value OSS software projects. As
-        a member and previous
-        co-organizer of ReactATL, I encourage others to participate and aim to
+        community and value OSS software projects. As a member and previous
+        co-organizer of <Link to="https://www.meetup.com/React-ATL">ReactATL</Link>, I encourage others to participate and aim to
         make software development more accessible
         to a larger audience.</Typography>
       <Typography paragraph type="body1"> Being a lifelong learner, I am in
@@ -250,16 +249,15 @@ export default [
   createSection('Community Involvement', (
     <div>
       <DatedResumeEntry
+        name="ReactATL Co-organizer"
+        from="2015"
+        description="Co-organize the ReactATL meetup group in Atlanta, GA and am an active community leader."
+      />
+      <DatedResumeEntry
         timespan={false}
         name="Building Redux Workshop"
         from="2017"
         description="Full day workshop at Connect.Tech 2017 on learning Redux by building the library itself. Focus on building Redux, middleware application mechanism, redux-thunk middleware, and react-redux package." />
-      <DatedResumeEntry
-        name="ReactATL Co-organizer"
-        from="2015"
-        to="2017"
-        description="Co-organize the ReactATL meetup group in Atlanta, GA and am an active community leader."
-      />
       <DatedResumeEntry
         timespan={false}
         name="Hands-on React Workshop"
