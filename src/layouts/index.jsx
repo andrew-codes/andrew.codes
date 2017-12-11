@@ -14,7 +14,7 @@ import React from "react";
 import Toolbar from 'material-ui/Toolbar';
 import {MuiThemeProvider, withStyles} from 'material-ui/styles';
 import 'typeface-roboto/index.css';
-import Author from "../components/Author";
+import SiteOwner from "../components/Author/SiteOwner";
 import config from "../../data/SiteConfig";
 import FullHeightPaper from '../components/FullHeightPaper';
 import resumeSections from '../../data/resumeSections';
@@ -24,17 +24,8 @@ import './print.css';
 
 const getCurrentPath = (pathname, pathPrefix) => pathname.replace(pathPrefix || "/", "").replace("/", "");
 
-const renderAuthor = ({userAvatar, userDescription, userName, userLinks}) => (
-  <Author
-    avatarUrl={userAvatar}
-    bio={userDescription}
-    fullName={userName}
-    links={userLinks}
-  />
-);
-
 const drawerWidth = 300;
-const sidebarStyles = theme => ({
+const sidebarStyles = () => ({
   aside: {
     backgroundColor: '#f7f7f7',
     width: `${drawerWidth}px`,
@@ -56,7 +47,9 @@ const renderSidebarContent = ({
                                 router,
                               }) => (
   <aside className={classes.aside}>
-    <header>{renderAuthor(config)}</header>
+    <header>
+      <SiteOwner  />
+    </header>
     <nav>
       <List>
         <ListItem button className={classes.listItem} onClick={() => router.history.push('/')}>
@@ -72,9 +65,9 @@ const renderSidebarContent = ({
           <ListItemText primary="Resume" />
         </ListItem>
         {currentPath === 'resume' && (
-          <Collapse component="li" in={true} timeout="auto">
+          <Collapse in component="li" timeout="auto">
             <List disablePadding>
-              {resumeSections.map((section, index) => (
+              {resumeSections.map(section => (
                 <ListItem
                   button
                   className={classNames(classes.listItem, classes.nested)}
@@ -98,7 +91,7 @@ renderSidebarContent.contextTypes = {
 };
 const SideBarContent = withStyles(sidebarStyles)(renderSidebarContent);
 
-const mainLayoutStyles = theme => ({
+const mainLayoutStyles = () => ({
   authorContainer: {
     margin: `${theme.mixins.toolbar.minHeight + theme.spacing.unit * 4}px ${theme.spacing.unit * 2}px ${theme.spacing.unit * 2}px ${theme.spacing.unit * 2}px`,
     padding: `${theme.spacing.unit * 2}px`,
@@ -237,7 +230,7 @@ class MainLayout extends React.Component {
               </Toolbar>
             </AppBar>
             <Paper className={classNames(classes.authorContainer, 'print-no-spacing', 'print-no-decoration')}>
-              {renderAuthor(config)}
+              <SiteOwner  />
             </Paper>
           </Hidden>
             {children()}

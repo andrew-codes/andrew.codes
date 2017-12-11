@@ -13,7 +13,9 @@ const Link = ({
                 classes,
                 to,
               }) => (
-  <GatsbyLink className={classes.link} to={to}>{children}</GatsbyLink>
+                to.indexOf('http' === 0)
+                  ? <a href={to} className={classes.link}>{children}</a>
+                  :  <GatsbyLink className={classes.link} to={to}>{children}</GatsbyLink>
 );
 
 export default withStyles(styles)(Link);
