@@ -30,7 +30,7 @@ const UserLinks = ({
   <div className={classNames(classes.container, 'user-links')}>
     {links.map(link => (
       labeled ? (
-          <Button>
+          <Button key={link.url}>
             <a
               key={link.url}
               href={link.url}
@@ -41,7 +41,7 @@ const UserLinks = ({
           </Button>
         )
         : (
-          <IconButton>
+          <IconButton key={link.url}>
             <a
               key={link.url}
               href={link.url}
