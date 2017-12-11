@@ -1,6 +1,7 @@
 import React from 'react';
 import Typography from 'material-ui/Typography';
 import DatedResumeEntry from '../src/components/DatedResumeEntry/index';
+import Link from '../src/components/Link';
 import SimpleList from '../src/components/SimpleList/index';
 
 const createSection = (heading, body) => ({
@@ -11,21 +12,30 @@ const createSection = (heading, body) => ({
 export default [
   createSection('Profile Summary', (
     <div>
-      <Typography paragraph type="body1">As a craftsman, I am passionate about creating quality software and therefore
+      <Typography paragraph type="body1">As a craftsman, I am passionate about
+        creating quality software and therefore
         am a strong subscriber to TDD and
-        firmly believe in the emergent design of software architectures. Development is truly evolutionary; with its
-        architecture reflecting less about the tools and more of the expression to its intent and usage.</Typography>
-      <Typography paragraph type="body1">Although a student at heart, I also mentor others to aid them on their journey.
+        firmly believe in the emergent design of software architectures.
+        Development is truly evolutionary; with its
+        architecture reflecting less about the tools and more of the expression
+        to its intent and usage.</Typography>
+      <Typography paragraph type="body1">Although a student at heart, I also
+        mentor others to aid them on their journey.
         I do this via presentations and
-        workshops at various conferences and participate in mentoring programs, such as Pluralsight, one-one-one
+        workshops at various conferences and participate in mentoring programs,
+        such as Pluralsight, one-one-one
         mentoring, and remote code pairing sessions.</Typography>
-      <Typography paragraph type="body1">I am an active member of the OSS community and value OSS software projects. As
+      <Typography paragraph type="body1">I am an active member of the OSS
+        community and value OSS software projects. As
         a member and previous
-        co-organizer of ReactATL, I encourage others to participate and aim to make software development more accessible
+        co-organizer of ReactATL, I encourage others to participate and aim to
+        make software development more accessible
         to a larger audience.</Typography>
-      <Typography paragraph type="body1"> Being a lifelong learner, I am in constant pursuit of improvement in all
+      <Typography paragraph type="body1"> Being a lifelong learner, I am in
+        constant pursuit of improvement in all
         things I do. My goal is to always be
-        better today than yesterday and rise to challenges of tomorrow.</Typography>
+        better today than yesterday and rise to challenges of
+        tomorrow.</Typography>
     </div>
   )),
   createSection('Proficiencies Overview', (
@@ -278,6 +288,14 @@ export default [
   )),
   createSection('Education', (
     <div>
+      <DatedResumeEntry
+        timespan={false}
+        name="Develop with Passion"
+        from="2012"
+        title="Software Craftsmanship"
+        description={
+          <span>Week long boot camp on software craftsmanship with <Link to="https://github.com/developwithpassion">Jean-Paul Boodhoo</Link></span>}
+      />
       <DatedResumeEntry
         timespan={false}
         name="Columbus State University"

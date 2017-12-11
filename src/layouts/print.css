@@ -2,6 +2,25 @@
   * {
     background-color: unset !important;
   }
+
+  a {
+    color: black !important;
+    text-decoration: underline !important;
+  }
+  a[href^="/"] {
+    text-decoration: none !important;
+  }
+
+  a[href^="http"]:before {
+    content: attr(title) !important;
+    display: inline !important;
+  }
+
+  a[href^="http"]:after {
+    content: ' [' attr(href) ']' !important;
+    display: inline !important;
+  }
+
   .print-hidden {
     display: none !important;
   }

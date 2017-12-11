@@ -25,11 +25,6 @@
     width: unset !important;
   }
 
-  .user-links a:before {
-    display: block !important;
-    content: attr(href);
-  }
-
   .user-links a i {
     display: none !important;
   }
