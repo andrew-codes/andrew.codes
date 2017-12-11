@@ -1,11 +1,11 @@
 import classNames from 'classnames';
 import ButtonBase from 'material-ui/ButtonBase';
-import Link from '../Link';
 import Paper from 'material-ui/Paper';
 import React from "react";
 import Typography from 'material-ui/Typography';
 import {withRouter} from 'react-router';
 import {withStyles} from 'material-ui/styles';
+import Link from '../Link';
 import toSlug from '../../toSlug';
 
 const styles = theme => ({
