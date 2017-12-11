@@ -1,12 +1,12 @@
 ---
 title: "Jest vs. Mocha: Why Jest Wins"
-date: 2014-09-10
+date: "2014-09-10"
 cover: "/images/posts/2014-09-10-jest-vs-mocha-why-jest-wins/cover.png"
 category: "tech"
 tags:
-    - tdd
-    - javascript
-    - jest
+    - "tdd"
+    - "javascript"
+    - "jest"
 ---
 
 When developing front-end applications, my TDD tool belt consists of karma, mocha, sinon, and chai. When I first learned of [Jest](http://facebook.github.io/jest), I was skeptical of the new JavaScript unit testing framework and was not convinced I should make the switch. After a bit of research and a sample [project on Github](https://github.com/andrew-codes/react-jest-browserify-gulp-bootstrap), I will tell you why I have made the decision to switch and why you should, too.

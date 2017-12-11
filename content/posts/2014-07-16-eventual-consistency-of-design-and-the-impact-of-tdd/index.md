@@ -1,9 +1,10 @@
 ---
 title: "Eventual Consistency of Design and the Impact of TDD"
-date: 2014-07-16
+date: "2014-07-16"
 category: "tech"
+cover: "/images/posts/2014-07-16-eventual-consistency-of-design-and-the-impact-of-tdd/cover.jpg"
 tags:
-    - tdd
+    - "tdd"
 ---
 
 There is no shortage of opinions on the subject of test driven development (TDD) circulating the development community. I would like to share my experiences driving design and development via unit tests and how eventual consistency of design can prove to be a powerful quality mechanism. I will also discuss the implications of what "it actually means" to be developing with a TDD approach.

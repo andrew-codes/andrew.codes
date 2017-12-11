@@ -1,10 +1,10 @@
 ---
 title: "Software Craftsmanship"
 cover: "/images/posts/2014-07-08-software-craftsmanship/cover.jpg"
-date: 2014-07-08
+date: "2014-07-08"
 category: "tech"
 tags:
-    - craftsmanship
+    - "craftsmanship"
 ---
 
 ## What is Software Craftsmanship?

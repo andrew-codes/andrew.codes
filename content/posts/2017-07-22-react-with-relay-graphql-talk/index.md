@@ -1,12 +1,12 @@
 ---
 title: "React with Relay and GraphQL Talk"
-date: 2017-07-22
+date: "2017-07-22"
 category: "tech"
 tags:
-    - react
-    - graphql
-    - javascript
-    - presentation
+    - "react"
+    - "graphql"
+    - "javascript"
+    - "presentation"
 ---
 
 [Presentation](https://www.meetup.com/Developers-of-Athens/events/219666306/) given to [Developers of Athens](https://www.meetup.com/Developers-of-Athens) in late 2015; exploring React, Relay and GraphQL. Enjoy!
