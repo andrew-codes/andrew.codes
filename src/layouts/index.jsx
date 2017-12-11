@@ -62,6 +62,12 @@ const renderSidebarContent = ({
         <ListItem button className={classes.listItem} onClick={() => router.history.push('/')}>
           <ListItemText primary="Articles" />
         </ListItem>
+        <ListItem button className={classes.listItem} onClick={() => router.history.push('/tags/presentation')}>
+          <ListItemText primary="Talks" />
+        </ListItem>
+        <ListItem button className={classes.listItem} onClick={() => router.history.push('/tags/workshop')}>
+          <ListItemText primary="Workshops" />
+        </ListItem>
         <ListItem button className={classes.listItem} onClick={() => router.history.push('/resume')}>
           <ListItemText primary="Resume" />
         </ListItem>
