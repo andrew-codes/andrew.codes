@@ -1,7 +1,7 @@
 import Button from 'material-ui/Button';
 import CheckIcon from 'material-ui-icons/Check';
 import CloseIcon from 'material-ui-icons/Close';
-import green from 'material-ui/colors/green';
+import teal from 'material-ui/colors/teal';
 import IconButton from 'material-ui/IconButton';
 import classNames from 'classnames';
 import React, {Component} from 'react';
@@ -38,6 +38,9 @@ const styles = theme => ({
   containerToRight: {
     justifyContent: 'flex-end',
   },
+  icon: {
+    color: theme.palette.common.white,
+  },
   iconToRight: {
     marginLeft: theme.spacing.unit,
   },
@@ -54,20 +57,20 @@ const styles = theme => ({
     position: 'relative',
   },
   buttonSuccess: {
-    backgroundColor: green[500],
+    backgroundColor: teal[500],
     '&:hover': {
-      backgroundColor: green[700],
+      backgroundColor: teal[700],
     },
   },
   fabProgress: {
-    color: green[500],
+    color: theme.palette.secondary[500],
     position: 'absolute',
     top: -6,
     left: -6,
     zIndex: 1,
   },
   buttonProgress: {
-    color: green[500],
+    color: teal[500],
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -147,12 +150,13 @@ class ContactForm extends Component {
           <div className={classes.wrapper}>
             <Button
               fab
-              color="primary" className={buttonClassname}
+              className={buttonClassname}
+              color="primary"
               onClick={this.handleSend}
             >
               {success
-                ? <CheckIcon />
-                : <SendIcon className={classes.iconToRight} />
+                ? <CheckIcon className={classes.icon} />
+                : <SendIcon className={classNames(classes.icon, classes.iconToRight)} />
               }
             </Button>
             {loading &&

@@ -1,9 +1,8 @@
-.post-meta {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+a {
+  color: #039be5;
 }
 
-a {
-  color: #3949ab;
+h2 {
+  font-size: 1.4rem;
+  font-weight: 400;
 }
