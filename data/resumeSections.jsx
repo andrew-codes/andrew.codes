@@ -249,13 +249,13 @@ export default [
   createSection('Community Involvement', (
     <div>
       <DatedResumeEntry
-        name="ReactATL Co-organizer"
+        name={<span><Link to="https://www.meetup.com/React-ATL">ReactATL</Link> Co-organizer</span>}
         from="2015"
         description="Co-organize the ReactATL meetup group in Atlanta, GA and am an active community leader."
       />
       <DatedResumeEntry
         timespan={false}
-        name="Building Redux Workshop"
+        name={<Link to="jas.link/building-redux-connecttech-2017">Building Redux Workshop</Link>}
         from="2017"
         description="Full day workshop at Connect.Tech 2017 on learning Redux by building the library itself. Focus on building Redux, middleware application mechanism, redux-thunk middleware, and react-redux package." />
       <DatedResumeEntry
@@ -266,19 +266,19 @@ export default [
       />
       <DatedResumeEntry
         timespan={false}
-        name="Let's Talk about Flux"
+        name={<Link to="jas.link/lets-talk-flux">Let's Talk about Flux</Link>}
         from="2015"
         description="Presentation at Connect.Tech 2015 on motivations behind Facebook’s released Flux pattern and comparing/contrasting against MV* patterns."
       />
       <DatedResumeEntry
         timespan={false}
-        name="GraphQL, Relay and React"
+        name={<Link to="jas.link/react-relay-graphql-talk">GraphQL, Relay and React</Link>}
         from="2015"
         description="Currently in the top 5 search results on Youtube when searching 'graphql relay', this presentation is an introduction to GraphQL and Relay and also discusses the motivations behind the technologies. Presented at the meetup, Developers of Athens."
       />
       <DatedResumeEntry
         timespan={false}
-        name="Let's Talk about Flux"
+        name={<Link to="jas.link/lets-talk-flux">Let's Talk about Flux</Link>}
         from="2015"
         description="Presentation given to local JavaScript ATL meetup group."
       />
