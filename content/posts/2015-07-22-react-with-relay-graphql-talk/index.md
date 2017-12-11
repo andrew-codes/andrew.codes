@@ -1,6 +1,7 @@
 ---
 title: "React with Relay and GraphQL Talk"
 date: "2015-07-22"
+cover: "/images/posts/2015-07-22-react-with-relay-graphql-talk/cover.jpg"
 category: "tech"
 tags:
     - "react"
