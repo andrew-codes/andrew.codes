@@ -51,7 +51,7 @@ const Author = ({
 
 Author.propTypes = {
   avatarUrl: PropTypes.string.isRequired,
-  bio: PropTypes.string.isRequired,
+  bio: PropTypes.node.isRequired,
   fullName: PropTypes.string.isRequired,
   links: PropTypes.arrayOf(
     PropTypes.shape({

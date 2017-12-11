@@ -71,6 +71,7 @@ const renderSidebarContent = ({
                 <ListItem
                   button
                   className={classNames(classes.listItem, classes.nested)}
+                  key={section.slug}
                   onClick={() => router.history.push(`/resume/#${section.slug}`)}
                 >
                   <ListItemText primary={section.heading} />

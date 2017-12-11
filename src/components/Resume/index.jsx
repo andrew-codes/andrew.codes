@@ -29,8 +29,11 @@ class Resume extends Component {
     return (
       <div className={classNames(classes.resume, 'print-no-decoration')}>
         <article>
-          {sections.map((section) => (
-            <FullHeightPaper className={classNames(classes.section, 'print-no-pagebreak')}>
+          {sections.map(section => (
+            <FullHeightPaper
+              className={classNames(classes.section, 'print-no-pagebreak')}
+              key={section.slug}
+            >
               <section
                 key={`body-${section.slug}`}
               >
