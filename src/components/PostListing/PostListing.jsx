@@ -6,6 +6,7 @@ import Typography from 'material-ui/Typography';
 import {withRouter} from 'react-router';
 import {withStyles} from 'material-ui/styles';
 import Link from '../Link';
+import PostHeading from '../PostHeading';
 import toSlug from '../../toSlug';
 
 const styles = theme => ({
@@ -62,9 +63,6 @@ const styles = theme => ({
   postArticle: {
     padding: `${theme.spacing.unit * 2}px`,
   },
-  postDate: {
-    flex: 1,
-  },
   postFooter: {
     display: 'flex',
     flex: 1,
@@ -73,40 +71,16 @@ const styles = theme => ({
       display: 'none',
     }
   },
-  postHeader: {
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'column',
-    order: 1,
-    padding: `${theme.spacing.unit * 4}px ${theme.spacing.unit * 2}px 0 ${theme.spacing.unit * 2}px`,
-  },
   postHeaderAndArticleContainer: {
     flex: 3,
+  },
+  postHeading: {
+    padding: `${theme.spacing.unit * 2}px`,
   },
   postLast: {
     marginBottom: 0,
   },
-  postMeta: {
-    display: 'flex',
-    flexDirection: 'row',
-    order: -1,
-  },
   root: {},
-  tag: {
-    display: 'inline-block',
-    paddingRight: '0.25rem',
-  },
-  tagsContainer: {
-    flex: 1,
-  },
-  tagList: {
-    display: 'inline',
-    margin: 0,
-    padding: 0,
-  },
-  readTime: {
-    fontStyle: 'italic',
-  },
   readMoreButton: {
     flex: 1,
   },
@@ -118,7 +92,7 @@ class PostListing extends React.Component {
       .map(postEdge => {
         const pathParts = postEdge.node.fileAbsolutePath.split('/');
         return ({
-          path: postEdge.node.fields.slug,
+          url: postEdge.node.fields.slug,
           tags: postEdge.node.frontmatter.tags,
           cover: postEdge.node.frontmatter.cover ? postEdge.node.frontmatter.cover : `/images/posts/${pathParts[pathParts.length - 2]}/cover.jpg`,
           title: postEdge.node.frontmatter.title,
@@ -141,37 +115,7 @@ class PostListing extends React.Component {
           <Paper
             className={classNames(classes.post, postIndex % 2 === 1 && classes.oddPosts, postIndex === postList.length - 1 && classes.postLast)}>
             <div className={classes.postHeaderAndArticleContainer}>
-              <header className={classes.postHeader}>
-                <Typography type="headline">
-                  <Link to={post.path} key={post.title}>
-                    {post.title}
-                  </Link></Typography>
-                <div className={classes.postMeta}>
-                  <time
-                    className={classes.postDate}
-                    dateTime={new Date(post.date).toISOString()}
-                  >
-                    {post.date}
-                  </time>
-                  <time className={classes.readTime}>{post.timeToRead} {post.timeToRead > 1 ? 'mins' : 'min'}</time>
-                </div>
-                <div className={classes.tagsContainer}>
-                  <span>- </span>
-                  <ul className={classes.tagList}>
-                    {post.tags.map((tag, tagIndex) => (
-                      <li className={classes.tag} key={tag}>
-                        <Typography component="span" type="body1"><Link
-                          to={`/tags/${toSlug(tag)}`}
-                        >
-                          {tag}
-                        </Link>{tagIndex !== post.tags.length - 1 && (
-                          <span>,</span>)}</Typography>
-                      </li>
-                    ))}
-                  </ul>
-                  <span> -</span>
-                </div>
-              </header>
+              <PostHeading {...post} className={classes.postHeading} />
               <article className={classes.postArticle}>
                 <Typography paragraph type="body1">
                   {post.excerpt}
@@ -183,7 +127,7 @@ class PostListing extends React.Component {
                 focusRipple
                 className={classes.readMoreButton}
                 key={`${post.title}-readMore`}
-                onClick={() => history.push(post.path)}
+                onClick={() => history.push(post.url)}
               >
                 <div
                   className={classes.imageSrc}

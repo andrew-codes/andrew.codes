@@ -1,17 +1,15 @@
 import React from "react";
 import Helmet from "react-helmet";
 import Paper from 'material-ui/Paper';
-import Typography from "material-ui/Typography";
 import {withStyles} from 'material-ui/styles';
-import UserInfo from "../components/UserInfo/UserInfo";
-import Disqus from "../components/Disqus/Disqus";
-import Link from '../components/Link';
-import SocialLinks from "../components/SocialLinks/SocialLinks";
-import SEO from "../components/SEO/SEO";
 import config from "../../data/SiteConfig";
+import Disqus from "../components/Disqus/Disqus";
+import SEO from "../components/SEO/SEO";
+import SocialLinks from "../components/SocialLinks/SocialLinks";
+import PostHeading from '../components/PostHeading';
+import UserInfo from "../components/UserInfo/UserInfo";
 import "./b16-tomorrow-dark.css";
 import "./post.css";
-import toSlug from "../toSlug";
 
 const styles = theme => ({
     container: {
@@ -21,38 +19,6 @@ const styles = theme => ({
     },
     paper: {
       padding: `${theme.spacing.unit * 2}px`,
-    },
-    postDate: {
-      flex: 1,
-    },
-    postHeader: {
-      display: 'flex',
-      flex: 1,
-      flexDirection: 'column',
-      order: 1,
-    },
-    postMeta: {
-      display: 'flex',
-      flexDirection: 'row',
-      order: -1,
-    },
-    tag: {
-      display: 'inline-block',
-      paddingRight: '0.25rem',
-    },
-    tagsContainer: {
-      flex: 1,
-    },
-    tagList: {
-      display: 'inline',
-      margin: 0,
-      padding: 0,
-    },
-    readTime: {
-      fontStyle: 'italic',
-    },
-    readMoreButton: {
-      flex: 1,
     },
     footer: {
       marginTop: `${theme.spacing.unit * 2}px`,
@@ -91,37 +57,10 @@ class PostTemplate extends React.Component {
         <SEO postPath={slug} postNode={postNode} postSEO />
         <article>
           <Paper className={classes.paper}>
-            <header className={classes.postHeader}>
-              <Typography type="headline">
-                {post.title}
-              </Typography>
-              <div className={classes.postMeta}>
-                <time
-                  className={classes.postDate}
-                  dateTime={new Date(post.date).toISOString()}
-                >
-                  {post.date}
-                </time>
-                <time className={classes.readTime}>{postNode.timeToRead} {postNode.timeToRead > 1 ? 'mins' : 'min'}</time>
-              </div>
-              <div className={classes.tagsContainer}>
-                <span>- </span>
-                <ul className={classes.tagList}>
-                  {post.tags.map((tag, tagIndex) => (
-                    <li className={classes.tag} key={tag}>
-                      <Typography component="span" type="body1">
-                        <Link
-                          to={`/tags/${toSlug(tag)}`}
-                        >
-                          {tag}
-                        </Link>{tagIndex !== post.tags.length - 1 && (
-                        <span>,</span>)}</Typography>
-                    </li>
-                  ))}
-                </ul>
-                <span> -</span>
-              </div>
-            </header>
+            <PostHeading
+              {...post}
+              timeToRead={postNode.timeToRead}
+            />
             <div dangerouslySetInnerHTML={{__html: postNode.html}} />
             <div className="post-meta">
               <SocialLinks postPath={slug} postNode={postNode} />
