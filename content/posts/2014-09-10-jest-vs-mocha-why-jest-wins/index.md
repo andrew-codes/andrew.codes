@@ -9,7 +9,7 @@ tags:
     - "jest"
 ---
 
-When developing front-end applications, my TDD tool belt consists of karma, mocha, sinon, and chai. When I first learned of [Jest](http://facebook.github.io/jest), I was skeptical of the new JavaScript unit testing framework and was not convinced I should make the switch. After a bit of research and a sample [project on Github](https://github.com/andrew-codes/react-jest-browserify-gulp-bootstrap), I will tell you why I have made the decision to switch and why you should, too.
+When developing front-end applications, my TDD tool belt consists of karma, mocha, sinon, and chai. When I first learned of [Jest](http://facebook.github.io/jest), I was skeptical of the new JavaScript unit testing framework and was not convinced I should make the switch. After a bit of research and a sample [project on Github](http://jas.link/jest-vs-mocha-repo), I will tell you why I have made the decision to switch and why you should, too.
 
 ## Key Motivations for Jest
 
@@ -65,4 +65,4 @@ If you use mocha/karma with CommonJS modules, then you know that module paths ca
 
 Overall, I am quite impressed with Jest. I am impressed enough to adopt it as my personal standard for client-side unit testing and recommend it to any one else working with TDD for front-end development. However, there was one noticeable drawback: it is a little slow to run your tests. Compared to mocha/karma, it takes longer to run your tests. How much longer? Noticeable. Too long? Up for debate. Honestly, with all the benefits it brings to the table, I am ok sacrificing a little bit of test runner speed.
 
-Check out my [project](https://github.com/andrew-codes/react-jest-browserify-gulp-bootstrap) for using **Jest + React + Browserify + Gulp** on Github. It provides a starting point for new projects wanting to integrate Jest, React, Browserify, and Gulp. In the meantime, learn more about [Jest](http://facebook.github.io/jest) and take it for a spin. You may be pleasantly surprised.
+Check out my [project](http://jas.link/jest-vs-mocha-repo) for using **Jest + React + Browserify + Gulp** on Github. It provides a starting point for new projects wanting to integrate Jest, React, Browserify, and Gulp. In the meantime, learn more about [Jest](http://facebook.github.io/jest) and take it for a spin. You may be pleasantly surprised.
