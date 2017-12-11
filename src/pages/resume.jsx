@@ -4,7 +4,7 @@ import React, {Component} from "react";
 import {withStyles} from 'material-ui/styles';
 import config from "../../data/SiteConfig";
 import Resume from '../components/Resume';
-import resumeSections from '../resumeSections';
+import resumeSections from '../../data/resumeSections';
 
 const styles = theme => ({
   container: {

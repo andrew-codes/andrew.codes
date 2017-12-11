@@ -1,7 +1,7 @@
 import React from 'react';
 import Typography from 'material-ui/Typography';
-import DatedResumeEntry from './components/DatedResumeEntry/index';
-import SimpleList from './components/SimpleList/index';
+import DatedResumeEntry from '../src/components/DatedResumeEntry/index';
+import SimpleList from '../src/components/SimpleList/index';
 
 const createSection = (heading, body) => ({
   body,

@@ -17,7 +17,7 @@ import 'typeface-roboto/index.css';
 import Author from "../components/Author";
 import config from "../../data/SiteConfig";
 import FullHeightPaper from '../components/FullHeightPaper';
-import resumeSections from '../resumeSections';
+import resumeSections from '../../data/resumeSections';
 import theme from '../theme';
 import './index.css';
 import './print.css';
