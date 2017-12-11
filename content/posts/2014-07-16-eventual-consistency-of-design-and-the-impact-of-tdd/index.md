@@ -1,6 +1,6 @@
 ---
 title: "Eventual Consistency of Design and the Impact of TDD"
-date: "07/04/2016"
+date: 2014-07-16
 category: "tech"
 tags:
     - tdd

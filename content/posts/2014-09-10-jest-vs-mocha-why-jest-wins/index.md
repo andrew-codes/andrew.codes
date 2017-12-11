@@ -1,6 +1,6 @@
 ---
 title: "Jest vs. Mocha: Why Jest Wins"
-date: "09/10/2014"
+date: 2014-09-10
 cover: "/images/posts/2014-09-10-jest-vs-mocha-why-jest-wins/cover.png"
 category: "tech"
 tags:

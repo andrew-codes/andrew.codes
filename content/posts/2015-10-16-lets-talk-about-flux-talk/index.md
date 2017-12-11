@@ -1,6 +1,6 @@
 ---
 title: "Let's Talk about Flux"
-date: "10/16/2015"
+date: 2015-10-16
 category: "tech"
 tags:
     - flux

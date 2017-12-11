@@ -1,6 +1,6 @@
 ---
 title: "React with Relay and GraphQL Talk"
-date: "07/22/2017"
+date: 2017-07-22
 category: "tech"
 tags:
     - react
