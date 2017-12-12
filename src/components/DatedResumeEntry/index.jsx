@@ -5,8 +5,9 @@ import SimpleList from "../SimpleList";
 
 const styles = theme => ({
   section: {
-    display: 'inline-flex',
+    display: 'flex',
     flexDirection: 'row-reverse',
+    justifyContent: 'flex-end',
     marginBottom: 3 * theme.spacing.unit,
     [theme.breakpoints.down('md')]: {
       flexDirection: 'column-reverse',
