@@ -84,12 +84,16 @@ const renderSidebarContent = ({
             </List>
           </Collapse>
         )}
-        <ListItem button className={classes.listItem}
-                  onClick={() => router.history.push('/contact')}>
+        <ListItem button
+                  className={classes.listItem}
+                  onClick={() => router.history.push('/contact')}
+        >
           <ListItemText primary="Contact" />
         </ListItem>
-        <ListItem button className={classes.listItem}
-                  onClick={() => router.history.push('/rss.xml')}>
+        <ListItem button
+                  className={classes.listItem}
+                  onClick={() => window.location ='http://andrew.codes/rss.xml'}
+        >
           <ListItemText primary="Subscribe" />
         </ListItem>
       </List>
