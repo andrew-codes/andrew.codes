@@ -160,6 +160,12 @@ module.exports = {
           }
         ]
       }
-    }
+    },
+    {
+      resolve: 'gatsby-plugin-material-ui',
+      options: {
+        pathToTheme: 'src/theme.js',
+      },
+    },
   ]
 };
