@@ -31,7 +31,7 @@ class Resume extends Component {
         <article>
           {sections.map(section => (
             <FullHeightPaper
-              className={classNames(classes.section, 'print-no-pagebreak')}
+              className={classes.section}
               key={section.slug}
             >
               <section

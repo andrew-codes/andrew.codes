@@ -37,7 +37,7 @@
     box-shadow: none !important;
   }
 
-  .print-no-pagebreak {
-    page-break-inside: avoid;
+  .dated-resume-section {
+    display: block !important;
   }
 }

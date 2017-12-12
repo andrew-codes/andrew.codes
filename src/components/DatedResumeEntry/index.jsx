@@ -1,3 +1,5 @@
+import classNames from 'classnames';
+import Print from 'react-print';
 import React from 'react';
 import Typography from 'material-ui/Typography';
 import {withStyles} from 'material-ui/styles';
@@ -32,8 +34,19 @@ const DatedResumeEntry = ({
                             title,
                             to,
                           }) => (
-  <section className={classes.section}>
+  <section className={classNames('dated-resume-section', classes.section)}>
     <div className="main">
+      <Print>
+        <Typography
+          className={classes.aside}
+          type="body2"
+        >
+          <time>{from}</time>
+          {timespan && (
+            <span> - <time>{to || 'present'}</time></span>
+          )}
+        </Typography>
+      </Print>
       <Typography type="headline">{name}</Typography>
       {title && <Typography type="subheading">{title}</Typography>}
       <Typography type="body1" gutterBottom>{description}</Typography>
@@ -51,7 +64,7 @@ const DatedResumeEntry = ({
       )}
     </div>
     <Typography
-      className={classes.aside}
+      className={classNames(classes.aside, 'print-hidden')}
       type="body2"
     >
       <time>{from}</time>
