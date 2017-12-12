@@ -1,6 +1,7 @@
 ---
 title: "Redux with React Workshop"
 date: "2017-09-20"
+cover: "/images/posts/2017-09-20-building-redux-workshop/cover.jpg"
 category: "tech"
 tags:
     - "flux"
