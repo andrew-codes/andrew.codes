@@ -39,7 +39,13 @@ module.exports = {
             resolve: "gatsby-remark-responsive-iframe"
           },
           "gatsby-remark-prismjs",
-          "gatsby-remark-copy-linked-files",
+          {
+            resolve: "gatsby-remark-copy-linked-files",
+            options: {
+              destinationDir: 'static',
+              ignoreFileExtensions: [],
+            }
+          },
           "gatsby-remark-autolink-headers"
         ]
       }
