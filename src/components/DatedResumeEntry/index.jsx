@@ -35,7 +35,7 @@ const DatedResumeEntry = ({
                           }) => (
   <section className={classNames('dated-resume-section', classes.section)}>
     <div className="main">
-      <div className="print-visible">
+      <div className="print-only">
         <Typography
           className={classes.aside}
           type="body2"
