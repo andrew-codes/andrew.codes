@@ -83,6 +83,9 @@ const renderSidebarContent = ({
         <ListItem button className={classes.listItem} onClick={() => router.history.push('/contact')}>
           <ListItemText primary="Contact" />
         </ListItem>
+        <ListItem button className={classes.listItem} onClick={() => router.history.push('/rss.xml')}>
+          <ListItemText primary="Subscribe" />
+        </ListItem>
       </List>
     </nav>
   </aside>
