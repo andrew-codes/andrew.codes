@@ -48,20 +48,24 @@ const renderSidebarContent = ({
                               }) => (
   <aside className={classes.aside}>
     <header>
-      <SiteOwner  />
+      <SiteOwner />
     </header>
     <nav>
       <List>
-        <ListItem button className={classes.listItem} onClick={() => router.history.push('/')}>
+        <ListItem button className={classes.listItem}
+                  onClick={() => router.history.push('/')}>
           <ListItemText primary="Articles" />
         </ListItem>
-        <ListItem button className={classes.listItem} onClick={() => router.history.push('/tags/presentation')}>
+        <ListItem button className={classes.listItem}
+                  onClick={() => router.history.push('/tags/presentation')}>
           <ListItemText primary="Talks" />
         </ListItem>
-        <ListItem button className={classes.listItem} onClick={() => router.history.push('/tags/workshop')}>
+        <ListItem button className={classes.listItem}
+                  onClick={() => router.history.push('/tags/workshop')}>
           <ListItemText primary="Workshops" />
         </ListItem>
-        <ListItem button className={classes.listItem} onClick={() => router.history.push('/resume')}>
+        <ListItem button className={classes.listItem}
+                  onClick={() => router.history.push('/resume')}>
           <ListItemText primary="Resume" />
         </ListItem>
         {currentPath === 'resume' && (
@@ -80,10 +84,12 @@ const renderSidebarContent = ({
             </List>
           </Collapse>
         )}
-        <ListItem button className={classes.listItem} onClick={() => router.history.push('/contact')}>
+        <ListItem button className={classes.listItem}
+                  onClick={() => router.history.push('/contact')}>
           <ListItemText primary="Contact" />
         </ListItem>
-        <ListItem button className={classes.listItem} onClick={() => router.history.push('/rss.xml')}>
+        <ListItem button className={classes.listItem}
+                  onClick={() => router.history.push('/rss.xml')}>
           <ListItemText primary="Subscribe" />
         </ListItem>
       </List>
@@ -188,9 +194,6 @@ class MainLayout extends React.Component {
           <Drawer
             open
             anchor="left"
-            classes={{
-
-            }}
             type="permanent"
           >
             <FullHeightPaper
@@ -220,7 +223,8 @@ class MainLayout extends React.Component {
             <SideBarContent currentPath={currentPath} />
           </Drawer>
         </Hidden>
-        <main className={classNames(classes.main, 'print-no-spacing', 'print-no-decoration')}>
+        <main
+          className={classNames(classes.main, 'print-no-spacing', 'print-no-decoration')}>
           <Hidden mdUp implementation="css">
             <AppBar className="print-hidden">
               <Toolbar>
@@ -233,11 +237,12 @@ class MainLayout extends React.Component {
                 </IconButton>
               </Toolbar>
             </AppBar>
-            <Paper className={classNames(classes.authorContainer, 'print-no-spacing', 'print-no-decoration')}>
-              <SiteOwner  />
+            <Paper
+              className={classNames(classes.authorContainer, 'print-no-spacing', 'print-no-decoration')}>
+              <SiteOwner resume={currentPath === 'resume'} />
             </Paper>
           </Hidden>
-            {children()}
+          {children()}
         </main>
       </div>
     );
