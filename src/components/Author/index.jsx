@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import Print from 'react-print';
 import PropTypes from "prop-types";
 import React from "react";
 import Typography from 'material-ui/Typography';
@@ -33,19 +32,15 @@ const styles = theme => ({
 });
 
 const Author = ({
-                  address,
                   avatarUrl,
                   classes,
-                  email,
                   bio,
                   fullName,
                   links,
-                  phone,
-                  resume,
                 }) => (
   <div>
     <div
-      className={classNames('vcard', classes.vcard, 'print-no-spacing', 'print-no-decoration', resume && 'print-hidden')}
+      className={classNames('vcard', classes.vcard, 'print-no-spacing', 'print-no-decoration', 'print-hidden')}
     >
       <div className={classes.name}>
         <Typography className="fn" type="headline">{fullName}</Typography>
@@ -63,30 +58,20 @@ const Author = ({
         </div>
       )}
     </div>
-    {resume && (
-      <Print>
-        <div className={classes.contactInfo}>
-          <Typography type="display2">{fullName}</Typography>
-          {Boolean(address) &&
-          <Typography component="address" type="body1">{address}</Typography>}
-          {Boolean(phone) && <Typography type="body1">{phone}</Typography>}
-          {Boolean(email) && <Typography type="body1">{email}</Typography>}
-          {links.length > 0 && (
-            <div className={classes.links}>
-              <UserLinks links={links} />
-            </div>
-          )}
+    <div className={classNames(classes.contactInfo, 'print-only')}>
+      <Typography type="display2">{fullName}</Typography>
+      {links.length > 0 && (
+        <div className={classes.links}>
+          <UserLinks links={links} />
         </div>
-      </Print>
-    )}
+      )}
+    </div>
   </div>
 );
 
 Author.propTypes = {
-  address: PropTypes.string,
   avatarUrl: PropTypes.string.isRequired,
   bio: PropTypes.node.isRequired,
-  email: PropTypes.string,
   fullName: PropTypes.string.isRequired,
   links: PropTypes.arrayOf(
     PropTypes.shape({
@@ -95,16 +80,10 @@ Author.propTypes = {
       url: PropTypes.string.isRequired
     })
   ),
-  phone: PropTypes.string,
-  resume: PropTypes.bool,
 };
 
 Author.defaultProps = {
-  address: '',
-  email: '',
   links: [],
-  phone: '',
-  resume: false,
 };
 
 export default withStyles(styles)(Author);

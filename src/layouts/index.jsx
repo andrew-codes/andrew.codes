@@ -239,7 +239,7 @@ class MainLayout extends React.Component {
             </AppBar>
             <Paper
               className={classNames(classes.authorContainer, 'print-no-spacing', 'print-no-decoration')}>
-              <SiteOwner resume={currentPath === 'resume'} />
+              <SiteOwner />
             </Paper>
           </Hidden>
           {children()}
