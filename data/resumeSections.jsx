@@ -6,112 +6,146 @@ import SimpleList from '../src/components/SimpleList/index';
 
 const createSection = (heading, body) => ({
   body,
-  heading,
+  heading
 });
 
 export default [
-  createSection('Profile Summary', (
+  createSection(
+    'Profile Summary',
     <div>
-      <Typography paragraph type="body1">As a craftsman, I am passionate about
-        creating quality software and therefore
-        am a strong subscriber to TDD and
-        firmly believe in the emergent design of software architectures.
-        Development is truly evolutionary; with its
-        architecture reflecting less about the tools and more of the expression
-        to its intent and usage.</Typography>
-      <Typography paragraph type="body1">Although a student at heart, I also
-        mentor others to aid them on their journey.
-        I do this via presentations and
-        workshops at various conferences and participate in mentoring programs,
-        such as Pluralsight, one-one-one
-        mentoring, and remote code pairing sessions.</Typography>
-      <Typography paragraph type="body1">I am an active member of the OSS
-        community and value OSS software projects. As a member and previous
-        co-organizer of <Link to="https://www.meetup.com/React-ATL">ReactATL</Link>, I encourage others to participate and aim to
-        make software development more accessible
-        to a larger audience.</Typography>
-      <Typography paragraph type="body1"> Being a lifelong learner, I am in
-        constant pursuit of improvement in all
-        things I do. My goal is to always be
-        better today than yesterday and rise to challenges of
-        tomorrow.</Typography>
+      <Typography paragraph type="body1">
+        As a craftsman, I am passionate about creating quality software and
+        therefore am a strong subscriber to TDD and firmly believe in the
+        emergent design of software architectures. Development is truly
+        evolutionary; with its architecture reflecting less about the tools and
+        more of the expression to its intent and usage.
+      </Typography>
+      <Typography paragraph type="body1">
+        Although a student at heart, I also mentor others to aid them on their
+        journey. I do this via presentations and workshops at various
+        conferences and participate in mentoring programs, such as Pluralsight,
+        one-one-one mentoring, and remote code pairing sessions.
+      </Typography>
+      <Typography paragraph type="body1">
+        I am an active member of the OSS community and value OSS software
+        projects. As a member and previous co-organizer of{' '}
+        <Link to="https://www.meetup.com/React-ATL">ReactATL</Link>, I encourage
+        others to participate and aim to make software development more
+        accessible to a larger audience.
+      </Typography>
+      <Typography paragraph type="body1">
+        {' '}
+        Being a lifelong learner, I am in constant pursuit of improvement in all
+        things I do. My goal is to always be better today than yesterday and
+        rise to challenges of tomorrow.
+      </Typography>
     </div>
-  )),
-  createSection('Proficiencies Overview', (
+  ),
+  createSection(
+    'Proficiencies Overview',
     <div>
       <section
         style={{
-          marginBottom: '8px',
+          marginBottom: '8px'
         }}
       >
         <Typography type="title">Technologies</Typography>
-        <SimpleList items={[
-          'JavaScript, ECMAScript 2015',
-          'React ecosystem and jsx',
-          'nodejs, npm, yarn',
-          'C#, .NET',
-          'git, bash, CLI',
-          'SQL, SQL Server',
-        ]} />
+        <SimpleList
+          items={[
+            'JavaScript, ECMAScript 2015',
+            'React ecosystem and jsx',
+            'nodejs, npm, yarn',
+            'C#, .NET',
+            'git, bash, CLI',
+
+            'SQL, SQL Server'
+          ]}
+        />
       </section>
       <section
         style={{
-          marginBottom: '8px',
+          marginBottom: '8px'
         }}
       >
         <Typography type="title">Skills</Typography>
-        <SimpleList items={[
-          'Architectural patterns (IoC, emergent design)',
-          'TDD, BDD, test automation, complex test setup configurations',
-          'Flux and FRP patterns, MVC, MVP, MVVM',
-          'XP, Scrum and Kanban agile environments',
-          'Presentation delivery and training',
-        ]} />
+        <SimpleList
+          items={[
+            'Architectural patterns (IoC, emergent design)',
+            'TDD, BDD, test automation, complex test setup configurations',
+            'Flux and FRP patterns, MVC, MVP, MVVM',
+            'XP, Scrum and Kanban agile environments',
+            'Presentation delivery and training'
+          ]}
+        />
       </section>
       <section
         style={{
-          marginBottom: '8px',
+          marginBottom: '8px'
         }}
       >
         <Typography type="title">Frameworks</Typography>
-        <SimpleList items={[
-          'React, React Native',
-          'Redux, sagas, scaling redux',
-          'Jest, mocha, chai, sinon',
-          'Webpack, babel, gulp',
-          'nUnit, machine.specifications',
-          'StructureMap',
-        ]} />
+        <SimpleList
+          items={[
+            'React, React Native',
+            'Redux, sagas, scaling redux',
+            'Jest, mocha, chai, sinon',
+            'Webpack, babel, gulp',
+            'nUnit, machine.specifications',
+            'StructureMap'
+          ]}
+        />
       </section>
     </div>
-  )),
-  createSection('Experience', (
+  ),
+  createSection(
+    'Experience',
     <div>
+      <DatedResumeEntry
+        name="smash.gg"
+        from="2018"
+        title="Senior Software Engineer"
+        description="Work with teams to enable and deliver features for smash.gg; primary focus while there was enabling unit testing on the front-end and nodejs back-end."
+        details={[
+          'Introduced unit testing for front-end and back-end nodejs via Jest'
+        ]}
+        environment={[
+          'React, Redux, GraphQL, Apollo',
+          'Jest, mocha, Enzyme',
+          'git, GitHub, bash',
+          'PHP, Google Cloud Computing',
+          'Scrum'
+        ]}
+      />
       <DatedResumeEntry
         name="VersionOne"
         from="2014"
+        to="2018"
         title="Senior Software Engineer"
-        description="Work within team to deliver new features for flagship product, LifeCycle; developing both C# backend and ECMAScript 2015 front-end."
+        description="Work within team to deliver new features for flagship product, LifeCycle; developing both C# back-end and ECMAScript 2015 front-end."
         details={[
-          'Introduced React, Redux, Reselect stack',
-          'Lead on effort to migrate all JavaScript from custom modules to ES2015 modules',
+          'Introduced React and Redux stack; now used across all dev teams for every new feature',
+          'Provided on-going guidance for best practices with React / Redux features',
+          'Spearheaded effort to migrate all JavaScript from custom modules to ES2015 modules',
+          'Introduced and configured webpack, babel, and component level testing',
           'Enabled WallabyJS test runner',
-          'Enabled component level unit testing',
-          'Provided on-going guidance for best practices with React, Redux features',
+          "Creator of VersionOne's component library",
+          "Integral player in creation of VersionOne's design language"
         ]}
         environment={[
-          'C#, .NET, MVC.NET',
-          'React, Redux, ECMAScript 2015, Backbone, jQuery',
-          'Git, GitHub, bash',
+          'React, Redux, ECMAScript 2015, mocha, Enzyme, Storybook, webpack',
+          'C#, .NET, MVC.NET, nUnit',
+          'git, GitHub, bash',
           'CSS, LESS',
-          'Nodejs',
+          'nodejs',
           'XP (pair programming), kanban',
-        ]} />
+          'SQL Server'
+        ]}
+      />
       <DatedResumeEntry
         name="Pluralsight hack.hands()"
         from="2017"
         title="Mentor"
-        description="One-on-one remote mentoring and code-pairing sessions on various JavaScript and C# topics."
+        description="One-on-one remote mentoring and code-pairing sessions on various JavaScript, React, Redux and C# topics."
       />
       <DatedResumeEntry
         name="MATRIX Resources, Professional Services"
@@ -123,15 +157,15 @@ export default [
           'Pioneered craftsmanship fellowship program',
           'Mentored apprentice developers',
           'Provided training on TDD and BDD',
-          'Integral role in developing UI standards between UX and dev',
+          'Integral role in developing UI standards between UX and dev'
         ]}
         environment={[
           'C#, .NET, MVC.NET, Web API',
-          'JavaScript, Durandal, React, jQuery',
+          'React, JavaScript, Durandal, jQuery',
           'CSS, LESS, SASS',
-          'Git, git-tfs',
+          'git, git-tfs',
           'SQL Server',
-          'Scrum',
+          'Scrum'
         ]}
       />
       <DatedResumeEntry
@@ -140,15 +174,13 @@ export default [
         to="2013"
         title="Software Engineer"
         description="Worked with team of developers on Fluency for Coding; a medical billing web application."
-        details={[
-          'Pioneered unit testing',
-        ]}
+        details={['Pioneered unit testing']}
         environment={[
           'C#, .NET, MVC.NET, WCF',
           'JavaScript, Knockout, KendoUI, jQuery',
           'CSS, LESS',
           'Mercurial',
-          'SQL Server',
+          'SQL Server'
         ]}
       />
       <DatedResumeEntry
@@ -162,7 +194,7 @@ export default [
           'JavaScript, jQuery, jQuery mobile',
           'CSS, LESS',
           'Subversion, git-svn',
-          'SQL Server',
+          'SQL Server'
         ]}
       />
       <DatedResumeEntry
@@ -171,9 +203,7 @@ export default [
         to="2012"
         title="Senior .Net Engineer"
         description="Worked with a cross-functional team to deliver operational and membership management software for progressive nonprofits."
-        details={[
-          'Enabled MVC.NET with existing legacy ASP.NET Webforms',
-        ]}
+        details={['Enabled MVC.NET with existing legacy ASP.NET Webforms']}
         environment={[
           'C#, .NET, MVC.NET, Webforms',
           'JavaScript, jQuery',
@@ -181,6 +211,7 @@ export default [
           'git, GitHub',
           'SQL Server',
           'Scrum',
+          'Ruby'
         ]}
       />
       <DatedResumeEntry
@@ -189,16 +220,14 @@ export default [
         to="2011"
         title="Software Engineer"
         description="Worked with team to deliver Coldstone; an e-healthcare platform and ecosystem."
-        details={[
-          'Integral role in developing UI standards',
-        ]}
+        details={['Integral role in developing UI standards']}
         environment={[
           'C#, .NET',
           'JavaScript, jQuery',
           'CSS',
           'Subversion',
           'SQL Server',
-          'Scrum',
+          'Scrum'
         ]}
       />
       <DatedResumeEntry
@@ -207,16 +236,14 @@ export default [
         to="2011"
         title="Software Engineer 3"
         description="Worked with team on BuyAToyota.com; a nationally recognized website handling Toyota’s 3rd tier marketing and online presence."
-        details={[
-          'Integral role in developing UI standards',
-        ]}
+        details={['Integral role in developing UI standards']}
         environment={[
           'C#, .NET, MVP',
           'JavaScript, jQuery',
           'CSS',
           'Subversion',
           'SQL Server',
-          'Scrum',
+          'Scrum'
         ]}
       />
       <DatedResumeEntry
@@ -225,11 +252,7 @@ export default [
         to="2010"
         title="Adjunct Faculty"
         description="Taught web development and general computing courses, as well as work closely with local businesses to aid in the development of the curriculum."
-        environment={[
-          'HTML, CSS',
-          'JavaScript',
-          'Computer hardware',
-        ]}
+        environment={['HTML, CSS', 'JavaScript', 'Computer hardware']}
       />
       <DatedResumeEntry
         name="Meranko"
@@ -241,50 +264,70 @@ export default [
           'C#, .NET, MVP',
           'JavaScript, jQuery',
           'Subversion',
-          'SQL Server',
+          'SQL Server'
         ]}
       />
     </div>
-  )),
-  createSection('Community Involvement', (
+  ),
+  createSection(
+    'Community Involvement',
     <div>
       <DatedResumeEntry
-        name={<span><Link to="https://www.meetup.com/React-ATL">ReactATL</Link> Co-organizer</span>}
+        name={
+          <span>
+            <Link to="https://www.meetup.com/React-ATL">ReactATL</Link> Meetup
+            Co-organizer
+          </span>
+        }
         from="2015"
-        description="Co-organize the ReactATL meetup group in Atlanta, GA and am an active community leader."
+        description="Co-organize the ReactATL meetup group in Atlanta and am an active community leader."
       />
       <DatedResumeEntry
         timespan={false}
-        name={<Link to="http://jas.link/building-redux-connecttech-2017">Building Redux Workshop</Link>}
+        name={
+          <Link to="http://jas.link/building-redux-connecttech-2017">
+            Building Redux Workshop
+          </Link>
+        }
         from="2017"
-        description="Full day workshop at Connect.Tech 2017 on learning Redux by building the library itself. Focus on building Redux, middleware application mechanism, redux-thunk middleware, and react-redux package." />
+        description="Full day workshop at Connect.Tech 2017 on learning Redux by building the library itself. Focus on building Redux, middleware application mechanism, redux-thunk middleware, and react-redux package."
+      />
       <DatedResumeEntry
         timespan={false}
         name="Hands-on React Workshop"
         from="2016"
-        description="Full day workshop given at Connect.Tech 2016 on React."
+        description="Full day workshop given at Connect.Tech 2016 on React; ranging from beginner to advanced topics."
       />
       <DatedResumeEntry
         timespan={false}
-        name={<Link to="http://jas.link/lets-talk-flux">Let's Talk about Flux</Link>}
+        name={
+          <Link to="http://jas.link/lets-talk-flux">Let's Talk about Flux</Link>
+        }
         from="2015"
-        description="Presentation at Connect.Tech 2015 on motivations behind Facebook’s released Flux pattern and comparing/contrasting against MV* patterns."
+        description="Presentation at Connect.Tech 2015 on motivations behind Flux pattern and comparing/contrasting against MV* patterns."
       />
       <DatedResumeEntry
         timespan={false}
-        name={<Link to="http://jas.link/react-relay-graphql-talk">GraphQL, Relay and React</Link>}
+        name={
+          <Link to="http://jas.link/react-relay-graphql-talk">
+            GraphQL, Relay and React
+          </Link>
+        }
         from="2015"
         description="Currently in the top 5 search results on Youtube when searching 'graphql relay', this presentation is an introduction to GraphQL and Relay and also discusses the motivations behind the technologies. Presented at the meetup, Developers of Athens."
       />
       <DatedResumeEntry
         timespan={false}
-        name={<Link to="http://jas.link/lets-talk-flux">Let's Talk about Flux</Link>}
+        name={
+          <Link to="http://jas.link/lets-talk-flux">Let's Talk about Flux</Link>
+        }
         from="2015"
         description="Presentation given to local JavaScript ATL meetup group."
       />
     </div>
-  )),
-  createSection('Education', (
+  ),
+  createSection(
+    'Education',
     <div>
       <DatedResumeEntry
         timespan={false}
@@ -292,7 +335,13 @@ export default [
         from="2012"
         title="Software Craftsmanship"
         description={
-          <span>Week long boot camp on software craftsmanship with <Link to="https://github.com/developwithpassion">Jean-Paul Boodhoo</Link></span>}
+          <span>
+            Week long boot camp on software craftsmanship with{' '}
+            <Link to="https://github.com/developwithpassion">
+              Jean-Paul Boodhoo
+            </Link>
+          </span>
+        }
       />
       <DatedResumeEntry
         timespan={false}
@@ -302,8 +351,8 @@ export default [
         description="Completion of undergraduate and some graduate degree course work."
       />
     </div>
-  )),
+  )
 ].map(section => ({
   ...section,
-  slug: section.heading.replace(' ', '-'),
+  slug: section.heading.replace(' ', '-')
 }));
