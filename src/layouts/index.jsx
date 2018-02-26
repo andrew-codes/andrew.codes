@@ -67,21 +67,15 @@ const renderSidebarContent = ({ classes, currentPath }, { router }) => (
         >
           <ListItemText primary="Workshops" />
         </ListItem>
-        <ListItem button className={classes.listItem}>
-          <ListItemText
-            primary={
-              <a
-                href="https://docs.google.com/document/d/1KSDvrqhDCJVihee18IDkMxyX7iLcQC5RJMrl8OvLGnI/edit?usp=sharing"
-                style={{
-                  color: 'inherit',
-                  textDecoration: 'none'
-                }}
-                title="Resume"
-              >
-                Resume
-              </a>
-            }
-          />
+        <ListItem
+          button
+          className={classes.listItem}
+          onClick={() => {
+            window.location =
+              'https://docs.google.com/document/d/1KSDvrqhDCJVihee18IDkMxyX7iLcQC5RJMrl8OvLGnI/edit?usp=sharing';
+          }}
+        >
+          <ListItemText primary="Resume" />
         </ListItem>
         <ListItem
           button
