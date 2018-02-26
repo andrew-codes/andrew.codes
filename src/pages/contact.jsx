@@ -1,11 +1,10 @@
-import classNames from "classnames";
-import Helmet from "react-helmet";
-import React, { Component } from "react";
-import Typography from "material-ui/Typography";
-import { withStyles } from "material-ui/styles";
-import config from "../../data/SiteConfig";
-import ContactForm from "../components/ContactForm/index";
-import FullHeightPaper from "../components/FullHeightPaper";
+import Helmet from 'react-helmet';
+import React, { Component } from 'react';
+import Typography from 'material-ui/Typography';
+import { withStyles } from 'material-ui/styles';
+import config from '../../data/SiteConfig';
+import ContactForm from '../components/ContactForm/index';
+import FullHeightPaper from '../components/FullHeightPaper';
 
 const styles = theme => ({
   heading: {

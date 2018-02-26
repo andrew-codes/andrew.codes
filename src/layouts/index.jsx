@@ -1,7 +1,6 @@
 import AppBar from "material-ui/AppBar";
 import classNames from "classnames";
 import CloseIcon from "material-ui-icons/Close";
-import Collapse from "material-ui/transitions/Collapse";
 import Drawer from "material-ui/Drawer";
 import Helmet from "react-helmet";
 import Hidden from "material-ui/Hidden";
@@ -17,7 +16,6 @@ import "typeface-roboto/index.css";
 import SiteOwner from "../components/Author/SiteOwner";
 import config from "../../data/SiteConfig";
 import FullHeightPaper from "../components/FullHeightPaper";
-import resumeSections from "../../data/resumeSections";
 import theme from "../theme";
 import "./index.css";
 import "./print.css";
