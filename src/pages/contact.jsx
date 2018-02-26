@@ -12,12 +12,12 @@ const styles = theme => ({
   }
 });
 
-class ResumePage extends Component {
+class ContactPage extends Component {
   render() {
     const { classes } = this.props;
     return (
       <FullHeightPaper>
-        <Helmet title={`Resume | ${config.siteTitle}`} />
+        <Helmet title={`Contact | ${config.siteTitle}`} />
         <Typography gutterBottom className={classes.heading} type="display1">
           Contact
         </Typography>
@@ -27,4 +27,4 @@ class ResumePage extends Component {
   }
 }
 
-export default withStyles(styles)(ResumePage);
+export default withStyles(styles)(ContactPage);
