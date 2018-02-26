@@ -69,31 +69,22 @@ const renderSidebarContent = ({ classes, currentPath }, { router }) => (
         >
           <ListItemText primary="Workshops" />
         </ListItem>
-        <ListItem
-          button
-          className={classes.listItem}
-          onClick={() => router.history.push("/resume")}
+        <ListItem button className={classes.listItem}>
+          <ListItemText
+            primary={
+              <a
+                href="https://docs.google.com/document/d/1KSDvrqhDCJVihee18IDkMxyX7iLcQC5RJMrl8OvLGnI/edit?usp=sharing"
+                style={{
+                  color: 'inherit',
+                  textDecoration: 'none'
+                }}
+                title="Resume"
         >
-          <ListItemText primary="Resume" />
-        </ListItem>
-        {currentPath === "resume" && (
-          <Collapse in component="li" timeout="auto">
-            <List disablePadding>
-              {resumeSections.map(section => (
-                <ListItem
-                  button
-                  className={classNames(classes.listItem, classes.nested)}
-                  key={section.slug}
-                  onClick={() =>
-                    router.history.push(`/resume/#${section.slug}`)
+                Resume
+              </a>
                   }
-                >
-                  <ListItemText primary={section.heading} />
+          />
                 </ListItem>
-              ))}
-            </List>
-          </Collapse>
-        )}
         <ListItem
           button
           className={classes.listItem}
