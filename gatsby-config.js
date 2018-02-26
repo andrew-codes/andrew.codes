@@ -42,8 +42,8 @@ module.exports = {
           {
             resolve: "gatsby-remark-copy-linked-files",
             options: {
-              destinationDir: 'static',
-              ignoreFileExtensions: [],
+              destinationDir: "static",
+              ignoreFileExtensions: []
             }
           },
           "gatsby-remark-autolink-headers"
@@ -162,10 +162,10 @@ module.exports = {
       }
     },
     {
-      resolve: 'gatsby-plugin-material-ui',
+      resolve: "gatsby-plugin-material-ui",
       options: {
-        pathToTheme: 'src/theme.js',
-      },
-    },
+        pathToTheme: "src/theme.js"
+      }
+    }
   ]
 };

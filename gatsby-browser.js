@@ -1,14 +1,16 @@
-const theme = require('./src/theme');
+const theme = require("./src/theme");
 
-exports.onRouteUpdate = ({location}) => {
-  const mainSelector = document.querySelector('main');
+exports.onRouteUpdate = ({ location }) => {
+  const mainSelector = document.querySelector("main");
   if (!mainSelector) {
     return;
   }
   let scrollToValue = 0;
-  if (location.hash !== '') {
-    const hashElement = document.querySelector(`[data-name=${location.hash.replace('#', '')}]`);
-    if (!hashElement){
+  if (location.hash !== "") {
+    const hashElement = document.querySelector(
+      `[data-name=${location.hash.replace("#", "")}]`
+    );
+    if (!hashElement) {
       return;
     }
     scrollToValue = hashElement.offsetTop - 32;

@@ -1,57 +1,45 @@
-import Button from 'material-ui/Button';
-import classNames from 'classnames';
-import IconButton from 'material-ui/IconButton';
+import Button from "material-ui/Button";
+import classNames from "classnames";
+import IconButton from "material-ui/IconButton";
 import PropTypes from "prop-types";
 import React from "react";
-import {withStyles} from 'material-ui/styles';
+import { withStyles } from "material-ui/styles";
 import "./UserLinks.css";
 
 const styles = theme => ({
   container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    alignItems: 'center',
-    maxWidth: '100%',
-    textAlign: 'center',
-    width: '100%',
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center",
+    maxWidth: "100%",
+    textAlign: "center",
+    width: "100%"
   },
   icon: {
     color: theme.palette.primary[500],
-    fontSize: '2rem',
+    fontSize: "2rem"
   }
 });
 
-const UserLinks = ({
-                     classes,
-                     labeled,
-                     links
-                   }) => (
-  <div className={classNames(classes.container, 'user-links')}>
-    {links.map(link => (
-      labeled ? (
+const UserLinks = ({ classes, labeled, links }) => (
+  <div className={classNames(classes.container, "user-links")}>
+    {links.map(
+      link =>
+        labeled ? (
           <Button key={link.url}>
-            <a
-              key={link.url}
-              href={link.url}
-              title={link.label}
-            >
+            <a key={link.url} href={link.url} title={link.label}>
               {link.label}
             </a>
           </Button>
-        )
-        : (
+        ) : (
           <IconButton key={link.url}>
-            <a
-              key={link.url}
-              href={link.url}
-              title={link.label}
-            >
+            <a key={link.url} href={link.url} title={link.label}>
               <i className={classNames(link.iconClassName, classes.icon)} />
             </a>
           </IconButton>
         )
-    ))}
+    )}
   </div>
 );
 

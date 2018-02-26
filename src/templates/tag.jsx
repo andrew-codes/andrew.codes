@@ -1,21 +1,19 @@
 import React from "react";
 import Helmet from "react-helmet";
 import PostListing from "../components/PostListing/PostListing";
-import {withStyles} from 'material-ui/styles';
+import { withStyles } from "material-ui/styles";
 import config from "../../data/SiteConfig";
 
 const styles = theme => ({
   container: {
-    backgroundColor: 'gainsboro',
-    minHeight: '100vh',
-    padding: `${theme.spacing.unit * 2}px`,
-  },
+    backgroundColor: "gainsboro",
+    minHeight: "100vh",
+    padding: `${theme.spacing.unit * 2}px`
+  }
 });
 class TagTemplate extends React.Component {
   render() {
-    const {
-      classes,
-    } = this.props;
+    const { classes } = this.props;
     const tag = this.props.pathContext.tag;
     const postEdges = this.props.data.allMarkdownRemark.edges;
     return (

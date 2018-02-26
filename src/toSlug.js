@@ -1,2 +1,2 @@
-export default value => value.replace(/[:;.'"!@#$%^&*`~]/g, '')
-  .replace(/[ ]/g, '-');
+export default value =>
+  value.replace(/[:;.'"!@#$%^&*`~]/g, "").replace(/[ ]/g, "-");

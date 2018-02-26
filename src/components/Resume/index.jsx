@@ -1,42 +1,33 @@
-import classNames from 'classnames';
-import Paper from 'material-ui/Paper';
-import PropTypes from 'prop-types';
-import React, {Component} from "react";
-import Typography from 'material-ui/Typography';
-import {withStyles} from 'material-ui/styles';
-import FullHeightPaper from '../FullHeightPaper';
+import classNames from "classnames";
+import Paper from "material-ui/Paper";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import Typography from "material-ui/Typography";
+import { withStyles } from "material-ui/styles";
+import FullHeightPaper from "../FullHeightPaper";
 
 const styles = theme => ({
-  resume: {
-  },
+  resume: {},
   sectionTitle: {
-    borderBottom: `1px solid ${theme.palette.primary[600]}`,
+    borderBottom: `1px solid ${theme.palette.primary[600]}`
   },
   section: {
-    [theme.breakpoints.down('md')]: {
-      minHeight: 'auto',
+    [theme.breakpoints.down("md")]: {
+      minHeight: "auto"
     }
-  },
+  }
 });
 
 class Resume extends Component {
   render() {
-    const {
-      classes,
-      sections
-    } = this.props;
+    const { classes, sections } = this.props;
 
     return (
-      <div className={classNames(classes.resume, 'print-no-decoration')}>
+      <div className={classNames(classes.resume, "print-no-decoration")}>
         <article>
           {sections.map(section => (
-            <FullHeightPaper
-              className={classes.section}
-              key={section.slug}
-            >
-              <section
-                key={`body-${section.slug}`}
-              >
+            <FullHeightPaper className={classes.section} key={section.slug}>
+              <section key={`body-${section.slug}`}>
                 <header>
                   <Typography
                     gutterBottom
@@ -46,9 +37,7 @@ class Resume extends Component {
                     <span data-name={section.slug}>{section.heading}</span>
                   </Typography>
                 </header>
-                <div>
-                  {section.body}
-                </div>
+                <div>{section.body}</div>
               </section>
             </FullHeightPaper>
           ))}
@@ -59,12 +48,14 @@ class Resume extends Component {
 }
 
 Resume.propTypes = {
-  sections: PropTypes.arrayOf(PropTypes.shape({
-    heading: PropTypes.string.isRequired,
-    body: PropTypes.node.isRequired,
-  })),
+  sections: PropTypes.arrayOf(
+    PropTypes.shape({
+      heading: PropTypes.string.isRequired,
+      body: PropTypes.node.isRequired
+    })
+  )
 };
 Resume.defaultProps = {
-  sections: [],
+  sections: []
 };
 export default withStyles(styles)(Resume);

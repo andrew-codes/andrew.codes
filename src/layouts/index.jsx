@@ -1,74 +1,82 @@
-import AppBar from 'material-ui/AppBar';
-import classNames from 'classnames';
-import CloseIcon from 'material-ui-icons/Close';
-import Collapse from 'material-ui/transitions/Collapse';
-import Drawer from 'material-ui/Drawer';
+import AppBar from "material-ui/AppBar";
+import classNames from "classnames";
+import CloseIcon from "material-ui-icons/Close";
+import Collapse from "material-ui/transitions/Collapse";
+import Drawer from "material-ui/Drawer";
 import Helmet from "react-helmet";
-import Hidden from 'material-ui/Hidden';
-import IconButton from 'material-ui/IconButton';
-import List, {ListItem, ListItemText} from 'material-ui/List';
-import MenuIcon from 'material-ui-icons/Menu';
-import Paper from 'material-ui/Paper';
-import PropTypes from 'prop-types';
+import Hidden from "material-ui/Hidden";
+import IconButton from "material-ui/IconButton";
+import List, { ListItem, ListItemText } from "material-ui/List";
+import MenuIcon from "material-ui-icons/Menu";
+import Paper from "material-ui/Paper";
+import PropTypes from "prop-types";
 import React from "react";
-import Toolbar from 'material-ui/Toolbar';
-import {MuiThemeProvider, withStyles} from 'material-ui/styles';
-import 'typeface-roboto/index.css';
+import Toolbar from "material-ui/Toolbar";
+import { MuiThemeProvider, withStyles } from "material-ui/styles";
+import "typeface-roboto/index.css";
 import SiteOwner from "../components/Author/SiteOwner";
 import config from "../../data/SiteConfig";
-import FullHeightPaper from '../components/FullHeightPaper';
-import resumeSections from '../../data/resumeSections';
-import theme from '../theme';
-import './index.css';
-import './print.css';
+import FullHeightPaper from "../components/FullHeightPaper";
+import resumeSections from "../../data/resumeSections";
+import theme from "../theme";
+import "./index.css";
+import "./print.css";
 
-const getCurrentPath = (pathname, pathPrefix) => pathname.replace(pathPrefix || "/", "").replace("/", "");
+const getCurrentPath = (pathname, pathPrefix) =>
+  pathname.replace(pathPrefix || "/", "").replace("/", "");
 
 const drawerWidth = 300;
 const sidebarStyles = () => ({
   aside: {
-    backgroundColor: '#f7f7f7',
-    width: `${drawerWidth}px`,
+    backgroundColor: "#f7f7f7",
+    width: `${drawerWidth}px`
   },
   link: {
-    flex: 1,
+    flex: 1
   },
   listItem: {
-    display: 'flex',
+    display: "flex"
   },
   nested: {
-    paddingLeft: theme.spacing.unit * 4,
-  },
+    paddingLeft: theme.spacing.unit * 4
+  }
 });
-const renderSidebarContent = ({
-                                classes,
-                                currentPath
-                              }, {
-                                router,
-                              }) => (
+const renderSidebarContent = ({ classes, currentPath }, { router }) => (
   <aside className={classes.aside}>
     <header>
       <SiteOwner />
     </header>
     <nav>
       <List>
-        <ListItem button className={classes.listItem}
-                  onClick={() => router.history.push('/')}>
+        <ListItem
+          button
+          className={classes.listItem}
+          onClick={() => router.history.push("/")}
+        >
           <ListItemText primary="Articles" />
         </ListItem>
-        <ListItem button className={classes.listItem}
-                  onClick={() => router.history.push('/tags/presentation')}>
+        <ListItem
+          button
+          className={classes.listItem}
+          onClick={() => router.history.push("/tags/presentation")}
+        >
           <ListItemText primary="Talks" />
         </ListItem>
-        <ListItem button className={classes.listItem}
-                  onClick={() => router.history.push('/tags/workshop')}>
+        <ListItem
+          button
+          className={classes.listItem}
+          onClick={() => router.history.push("/tags/workshop")}
+        >
           <ListItemText primary="Workshops" />
         </ListItem>
-        <ListItem button className={classes.listItem}
-                  onClick={() => router.history.push('/resume')}>
+        <ListItem
+          button
+          className={classes.listItem}
+          onClick={() => router.history.push("/resume")}
+        >
           <ListItemText primary="Resume" />
         </ListItem>
-        {currentPath === 'resume' && (
+        {currentPath === "resume" && (
           <Collapse in component="li" timeout="auto">
             <List disablePadding>
               {resumeSections.map(section => (
@@ -76,7 +84,9 @@ const renderSidebarContent = ({
                   button
                   className={classNames(classes.listItem, classes.nested)}
                   key={section.slug}
-                  onClick={() => router.history.push(`/resume/#${section.slug}`)}
+                  onClick={() =>
+                    router.history.push(`/resume/#${section.slug}`)
+                  }
                 >
                   <ListItemText primary={section.heading} />
                 </ListItem>
@@ -84,15 +94,17 @@ const renderSidebarContent = ({
             </List>
           </Collapse>
         )}
-        <ListItem button
-                  className={classes.listItem}
-                  onClick={() => router.history.push('/contact')}
+        <ListItem
+          button
+          className={classes.listItem}
+          onClick={() => router.history.push("/contact")}
         >
           <ListItemText primary="Contact" />
         </ListItem>
-        <ListItem button
-                  className={classes.listItem}
-                  onClick={() => window.location ='http://andrew.codes/rss.xml'}
+        <ListItem
+          button
+          className={classes.listItem}
+          onClick={() => (window.location = "http://andrew.codes/rss.xml")}
         >
           <ListItemText primary="Subscribe" />
         </ListItem>
@@ -101,32 +113,34 @@ const renderSidebarContent = ({
   </aside>
 );
 renderSidebarContent.contextTypes = {
-  router: PropTypes.object.isRequired,
+  router: PropTypes.object.isRequired
 };
 const SideBarContent = withStyles(sidebarStyles)(renderSidebarContent);
 
 const mainLayoutStyles = () => ({
   authorContainer: {
-    margin: `${theme.mixins.toolbar.minHeight + theme.spacing.unit * 4}px ${theme.spacing.unit * 2}px ${theme.spacing.unit * 2}px ${theme.spacing.unit * 2}px`,
-    padding: `${theme.spacing.unit * 2}px`,
+    margin: `${theme.mixins.toolbar.minHeight +
+      theme.spacing.unit * 4}px ${theme.spacing.unit * 2}px ${theme.spacing
+      .unit * 2}px ${theme.spacing.unit * 2}px`,
+    padding: `${theme.spacing.unit * 2}px`
   },
   main: {
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
       marginLeft: `${drawerWidth + theme.spacing.unit * 6}px`
-    },
+    }
   },
   mobilePaper: {
-    backgroundColor: '#f7f7f7',
-    padding: `${theme.spacing.unit}px`,
+    backgroundColor: "#f7f7f7",
+    padding: `${theme.spacing.unit}px`
   },
   paper: {
-    paddingRight: 0,
+    paddingRight: 0
   },
   root: {
-    display: 'flex',
-    position: 'relative',
-    height: '100vh',
+    display: "flex",
+    position: "relative",
+    height: "100vh"
   }
 });
 
@@ -134,7 +148,7 @@ class MainLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
+      open: false
     };
 
     this.handleDrawerToggle = this.handleDrawerToggle.bind(this);
@@ -174,16 +188,13 @@ class MainLayout extends React.Component {
 
   handleDrawerToggle() {
     this.setState({
-      open: !this.state.open,
+      open: !this.state.open
     });
   }
 
   render() {
-    const {
-      children,
-      classes
-    } = this.props;
-    const {open} = this.state;
+    const { children, classes } = this.props;
+    const { open } = this.state;
     const currentPath = getCurrentPath(
       this.props.location.pathname,
       config.pathPrefix
@@ -191,15 +202,13 @@ class MainLayout extends React.Component {
     return (
       <div className={classes.root}>
         <Helmet>
-          <title>{`${config.siteTitle} |  ${this.getLocalTitle(currentPath)}`}</title>
+          <title>{`${config.siteTitle} |  ${this.getLocalTitle(
+            currentPath
+          )}`}</title>
           <meta name="description" content={config.siteDescription} />
         </Helmet>
         <Hidden mdDown implementation="css">
-          <Drawer
-            open
-            anchor="left"
-            type="permanent"
-          >
+          <Drawer open anchor="left" type="permanent">
             <FullHeightPaper
               backgroundColor="#f7f7f7"
               className={classes.paper}
@@ -213,7 +222,7 @@ class MainLayout extends React.Component {
             open={open}
             anchor="left"
             classes={{
-              paper: classes.mobilePaper,
+              paper: classes.mobilePaper
             }}
             onRequestClose={this.handleDrawerToggle}
             type="temporary"
@@ -228,7 +237,12 @@ class MainLayout extends React.Component {
           </Drawer>
         </Hidden>
         <main
-          className={classNames(classes.main, 'print-no-spacing', 'print-no-decoration')}>
+          className={classNames(
+            classes.main,
+            "print-no-spacing",
+            "print-no-decoration"
+          )}
+        >
           <Hidden mdUp implementation="css">
             <AppBar className="print-hidden">
               <Toolbar>
@@ -242,7 +256,12 @@ class MainLayout extends React.Component {
               </Toolbar>
             </AppBar>
             <Paper
-              className={classNames(classes.authorContainer, 'print-no-spacing', 'print-no-decoration')}>
+              className={classNames(
+                classes.authorContainer,
+                "print-no-spacing",
+                "print-no-decoration"
+              )}
+            >
               <SiteOwner />
             </Paper>
           </Hidden>
@@ -255,7 +274,7 @@ class MainLayout extends React.Component {
 
 const MainLayoutWithStyles = withStyles(mainLayoutStyles)(MainLayout);
 
-export default (props) => (
+export default props => (
   <MuiThemeProvider theme={theme}>
     <MainLayoutWithStyles {...props} />
   </MuiThemeProvider>

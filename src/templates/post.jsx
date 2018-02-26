@@ -1,47 +1,41 @@
-import classNames from 'classnames';
+import classNames from "classnames";
 import React from "react";
 import Helmet from "react-helmet";
-import Paper from 'material-ui/Paper';
-import {withStyles} from 'material-ui/styles';
+import Paper from "material-ui/Paper";
+import { withStyles } from "material-ui/styles";
 import config from "../../data/SiteConfig";
 import Disqus from "../components/Disqus/Disqus";
 import SEO from "../components/SEO/SEO";
 import SocialLinks from "../components/SocialLinks/SocialLinks";
-import PostHeading from '../components/PostHeading';
+import PostHeading from "../components/PostHeading";
 import UserInfo from "../components/UserInfo/UserInfo";
 import "./b16-tomorrow-dark.css";
 import "./post.css";
 
 const styles = theme => ({
-    container: {
-      backgroundColor: 'gainsboro',
-      minHeight: '100vh',
-      padding: `${theme.spacing.unit * 2}px`,
-    },
-    paper: {
-      padding: `${theme.spacing.unit * 2}px`,
-    },
-    footer: {
-      marginTop: `${theme.spacing.unit * 2}px`,
-    },
-    footerPaper:
-      {
-        padding: `${theme.spacing.unit * 2}px`,
-      }
-    ,
-    title: {
-      borderBottom: `1px solid ${theme.palette.primary[600]}`,
-    }
-    ,
-  })
-;
+  container: {
+    backgroundColor: "gainsboro",
+    minHeight: "100vh",
+    padding: `${theme.spacing.unit * 2}px`
+  },
+  paper: {
+    padding: `${theme.spacing.unit * 2}px`
+  },
+  footer: {
+    marginTop: `${theme.spacing.unit * 2}px`
+  },
+  footerPaper: {
+    padding: `${theme.spacing.unit * 2}px`
+  },
+  title: {
+    borderBottom: `1px solid ${theme.palette.primary[600]}`
+  }
+});
 
 class PostTemplate extends React.Component {
   render() {
-    const {
-      classes
-    } = this.props;
-    const {slug} = this.props.pathContext;
+    const { classes } = this.props;
+    const { slug } = this.props.pathContext;
     const postNode = this.props.data.markdownRemark;
     const post = postNode.frontmatter;
     if (!post.id) {
@@ -58,12 +52,14 @@ class PostTemplate extends React.Component {
         <SEO postPath={slug} postNode={postNode} postSEO />
         <article>
           <Paper
-            className={classNames(classes.paper, 'print-no-spacing', ' print-no-decoration')}>
-            <PostHeading
-              {...post}
-              timeToRead={postNode.timeToRead}
-            />
-            <div dangerouslySetInnerHTML={{__html: postNode.html}} />
+            className={classNames(
+              classes.paper,
+              "print-no-spacing",
+              " print-no-decoration"
+            )}
+          >
+            <PostHeading {...post} timeToRead={postNode.timeToRead} />
+            <div dangerouslySetInnerHTML={{ __html: postNode.html }} />
             <div className="post-meta">
               <SocialLinks postPath={slug} postNode={postNode} />
             </div>
@@ -71,7 +67,7 @@ class PostTemplate extends React.Component {
               <UserInfo config={config} />
             </div>
           </Paper>
-          <footer className={classNames(classes.footer, 'print-hidden')}>
+          <footer className={classNames(classes.footer, "print-hidden")}>
             <Paper className={classes.footerPaper}>
               <Disqus postNode={postNode} />
             </Paper>
