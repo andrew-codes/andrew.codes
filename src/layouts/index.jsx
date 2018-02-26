@@ -1,39 +1,39 @@
-import AppBar from "material-ui/AppBar";
-import classNames from "classnames";
-import CloseIcon from "material-ui-icons/Close";
-import Drawer from "material-ui/Drawer";
-import Helmet from "react-helmet";
-import Hidden from "material-ui/Hidden";
-import IconButton from "material-ui/IconButton";
-import List, { ListItem, ListItemText } from "material-ui/List";
-import MenuIcon from "material-ui-icons/Menu";
-import Paper from "material-ui/Paper";
-import PropTypes from "prop-types";
-import React from "react";
-import Toolbar from "material-ui/Toolbar";
-import { MuiThemeProvider, withStyles } from "material-ui/styles";
-import "typeface-roboto/index.css";
-import SiteOwner from "../components/Author/SiteOwner";
-import config from "../../data/SiteConfig";
-import FullHeightPaper from "../components/FullHeightPaper";
-import theme from "../theme";
-import "./index.css";
-import "./print.css";
+import AppBar from 'material-ui/AppBar';
+import classNames from 'classnames';
+import CloseIcon from 'material-ui-icons/Close';
+import Drawer from 'material-ui/Drawer';
+import Helmet from 'react-helmet';
+import Hidden from 'material-ui/Hidden';
+import IconButton from 'material-ui/IconButton';
+import List, { ListItem, ListItemText } from 'material-ui/List';
+import MenuIcon from 'material-ui-icons/Menu';
+import Paper from 'material-ui/Paper';
+import PropTypes from 'prop-types';
+import React from 'react';
+import Toolbar from 'material-ui/Toolbar';
+import { MuiThemeProvider, withStyles } from 'material-ui/styles';
+import 'typeface-roboto/index.css';
+import SiteOwner from '../components/Author/SiteOwner';
+import config from '../../data/SiteConfig';
+import FullHeightPaper from '../components/FullHeightPaper';
+import theme from '../theme';
+import './index.css';
+import './print.css';
 
 const getCurrentPath = (pathname, pathPrefix) =>
-  pathname.replace(pathPrefix || "/", "").replace("/", "");
+  pathname.replace(pathPrefix || '/', '').replace('/', '');
 
 const drawerWidth = 300;
 const sidebarStyles = () => ({
   aside: {
-    backgroundColor: "#f7f7f7",
+    backgroundColor: '#f7f7f7',
     width: `${drawerWidth}px`
   },
   link: {
     flex: 1
   },
   listItem: {
-    display: "flex"
+    display: 'flex'
   },
   nested: {
     paddingLeft: theme.spacing.unit * 4
@@ -49,21 +49,21 @@ const renderSidebarContent = ({ classes, currentPath }, { router }) => (
         <ListItem
           button
           className={classes.listItem}
-          onClick={() => router.history.push("/")}
+          onClick={() => router.history.push('/')}
         >
           <ListItemText primary="Articles" />
         </ListItem>
         <ListItem
           button
           className={classes.listItem}
-          onClick={() => router.history.push("/tags/presentation")}
+          onClick={() => router.history.push('/tags/presentation')}
         >
           <ListItemText primary="Talks" />
         </ListItem>
         <ListItem
           button
           className={classes.listItem}
-          onClick={() => router.history.push("/tags/workshop")}
+          onClick={() => router.history.push('/tags/workshop')}
         >
           <ListItemText primary="Workshops" />
         </ListItem>
@@ -77,23 +77,23 @@ const renderSidebarContent = ({ classes, currentPath }, { router }) => (
                   textDecoration: 'none'
                 }}
                 title="Resume"
-        >
+              >
                 Resume
               </a>
-                  }
+            }
           />
-                </ListItem>
+        </ListItem>
         <ListItem
           button
           className={classes.listItem}
-          onClick={() => router.history.push("/contact")}
+          onClick={() => router.history.push('/contact')}
         >
           <ListItemText primary="Contact" />
         </ListItem>
         <ListItem
           button
           className={classes.listItem}
-          onClick={() => (window.location = "http://andrew.codes/rss.xml")}
+          onClick={() => (window.location = 'http://andrew.codes/rss.xml')}
         >
           <ListItemText primary="Subscribe" />
         </ListItem>
@@ -114,22 +114,22 @@ const mainLayoutStyles = () => ({
     padding: `${theme.spacing.unit * 2}px`
   },
   main: {
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
       marginLeft: `${drawerWidth + theme.spacing.unit * 6}px`
     }
   },
   mobilePaper: {
-    backgroundColor: "#f7f7f7",
+    backgroundColor: '#f7f7f7',
     padding: `${theme.spacing.unit}px`
   },
   paper: {
     paddingRight: 0
   },
   root: {
-    display: "flex",
-    position: "relative",
-    height: "100vh"
+    display: 'flex',
+    position: 'relative',
+    height: '100vh'
   }
 });
 
@@ -148,28 +148,28 @@ class MainLayout extends React.Component {
       return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    let title = "";
-    if (currentPath === "") {
-      title = "Articles";
-    } else if (currentPath === "tags/") {
-      title = "Tags";
-    } else if (currentPath === "categories/") {
-      title = "Categories";
-    } else if (currentPath === "about/") {
-      title = "About";
-    } else if (currentPath.includes("posts")) {
-      title = "Article";
-    } else if (currentPath.includes("tags/")) {
+    let title = '';
+    if (currentPath === '') {
+      title = 'Articles';
+    } else if (currentPath === 'tags/') {
+      title = 'Tags';
+    } else if (currentPath === 'categories/') {
+      title = 'Categories';
+    } else if (currentPath === 'about/') {
+      title = 'About';
+    } else if (currentPath.includes('posts')) {
+      title = 'Article';
+    } else if (currentPath.includes('tags/')) {
       const tag = currentPath
-        .replace("tags/", "")
-        .replace("/", "")
-        .replace("-", " ");
+        .replace('tags/', '')
+        .replace('/', '')
+        .replace('-', ' ');
       title = `Tagged in ${capitalize(tag)}`;
-    } else if (currentPath.includes("categories/")) {
+    } else if (currentPath.includes('categories/')) {
       const category = currentPath
-        .replace("categories/", "")
-        .replace("/", "")
-        .replace("-", " ");
+        .replace('categories/', '')
+        .replace('/', '')
+        .replace('-', ' ');
       title = `${capitalize(category)}`;
     }
     return title;
@@ -228,8 +228,8 @@ class MainLayout extends React.Component {
         <main
           className={classNames(
             classes.main,
-            "print-no-spacing",
-            "print-no-decoration"
+            'print-no-spacing',
+            'print-no-decoration'
           )}
         >
           <Hidden mdUp implementation="css">
@@ -247,8 +247,8 @@ class MainLayout extends React.Component {
             <Paper
               className={classNames(
                 classes.authorContainer,
-                "print-no-spacing",
-                "print-no-decoration"
+                'print-no-spacing',
+                'print-no-decoration'
               )}
             >
               <SiteOwner />
