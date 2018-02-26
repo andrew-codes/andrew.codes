@@ -71,8 +71,7 @@ const renderSidebarContent = ({ classes, currentPath }, { router }) => (
           button
           className={classes.listItem}
           onClick={() => {
-            window.location =
-              'https://docs.google.com/document/d/1KSDvrqhDCJVihee18IDkMxyX7iLcQC5RJMrl8OvLGnI/edit?usp=sharing';
+            window.location = 'http://jas.link/resume';
           }}
         >
           <ListItemText primary="Resume" />
