@@ -109,7 +109,8 @@ class SEO extends Component {
                   s.parentNode.insertBefore(t,s)}(window, document,'script',
               'https://connect.facebook.net/en_US/fbevents.js');
               fbq('init', '${config.siteFBInsightsID}');
-              fbq('track', 'PageView');`}
+              fbq('track', 'PageView');
+              fbq('track', 'ViewContent');`}
           </script>
         )}
         {config.siteFBInsightsID && (
@@ -119,7 +120,7 @@ class SEO extends Component {
               height="1"
               src={`https://www.facebook.com/tr?id=${
                 config.siteFBInsightsID
-              }&ev=PageView&noscript=1`}
+                }&ev=PageView&noscript=1`}
               style={{ display: "none" }}
               width="1"
             />
