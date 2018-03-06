@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import Link from "gatsby-link";
 import PropTypes from "prop-types";
 import React from "react";
 import Typography from "material-ui/Typography";
@@ -46,7 +47,13 @@ const Author = ({ avatarUrl, classes, bio, fullName, links }) => (
         <Typography className="fn" type="headline">
           {fullName}
         </Typography>
-        <img className="photo" src={`${avatarUrl}?s=120`} alt="Avatar" />
+        <Link to="/">
+          <img
+            alt="Avatar"
+            className="photo"
+            src={`${avatarUrl}?s=120`}
+          />
+        </Link>
       </div>
       <Typography
         paragraph
@@ -82,7 +89,7 @@ Author.propTypes = {
       iconClassName: PropTypes.string.isRequired,
       url: PropTypes.string.isRequired
     })
-  )
+  ),
 };
 
 Author.defaultProps = {
