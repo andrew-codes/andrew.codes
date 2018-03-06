@@ -51,9 +51,7 @@ class SocialLinks extends Component {
         </GooglePlusShareButton>
         <FacebookShareButton
           url={url}
-          title={post.title}
-          picture={post.cover}
-          description={postNode.excerpt}
+          quote={post.title}
         >
           <FacebookIcon round size={iconSize} />
           <FacebookShareCount url={url}>
