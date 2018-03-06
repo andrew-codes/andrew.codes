@@ -63,7 +63,6 @@ export default class HTML extends React.Component {
             dangerouslySetInnerHTML={{ __html: this.props.body }}
           />
           {this.props.postBodyComponents}
-          <script>{`fbq('track', 'ViewContent');`}</script>
         </body>
       </html>
     );
