@@ -39,12 +39,12 @@ export default class HTML extends React.Component {
           {this.props.headComponents}
           <link href={favicon} rel="shortcut icon" />
           <link
-            href="http://fonts.googleapis.com/css?family=Lustria"
+            href="https://fonts.googleapis.com/css?family=Lustria"
             rel="stylesheet"
             type="text/css"
           />
           <link
-            href="http://fonts.googleapis.com/css?family=Lato:300"
+            href="https://fonts.googleapis.com/css?family=Lato:300"
             rel="stylesheet"
             type="text/css"
           />
