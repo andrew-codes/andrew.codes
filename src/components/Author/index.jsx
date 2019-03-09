@@ -1,45 +1,45 @@
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import React from "react";
-import Typography from "material-ui/Typography";
-import { withStyles } from "material-ui/styles";
-import UserLinks from "../UserLinks/UserLinks";
+import classNames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
+import Typography from 'material-ui/Typography'
+import { withStyles } from 'material-ui/styles'
+import UserLinks from '../UserLinks/UserLinks'
 
 const styles = theme => ({
   contactInfo: {
-    marginBottom: `${theme.spacing.unit * 2}px`
+    marginBottom: `${theme.spacing.unit * 2}px`,
   },
   links: {
-    flexDirection: "row",
-    fontSize: "2.5rem",
-    width: "100%"
+    flexDirection: 'row',
+    fontSize: '2.5rem',
+    width: '100%',
   },
   name: {
-    alignItems: "center",
-    display: "flex",
-    flexDirection: "column-reverse"
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'column-reverse',
   },
   note: {
-    fontSize: "0.9rem",
+    fontSize: '0.9rem',
     marginTop: 0,
-    textAlign: "center"
+    textAlign: 'center',
   },
   vcard: {
-    alignItems: "center",
-    display: "flex",
-    flexDirection: "column"
-  }
-});
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+})
 
 const Author = ({ avatarUrl, classes, bio, fullName, links }) => (
   <div>
     <div
       className={classNames(
-        "vcard",
+        'vcard',
         classes.vcard,
-        "print-no-spacing",
-        "print-no-decoration",
-        "print-hidden"
+        'print-no-spacing',
+        'print-no-decoration',
+        'print-hidden',
       )}
     >
       <div className={classes.name}>
@@ -51,7 +51,7 @@ const Author = ({ avatarUrl, classes, bio, fullName, links }) => (
       <Typography
         paragraph
         type="body1"
-        className={classNames("note", classes.note)}
+        className={classNames('note', classes.note)}
       >
         {bio}
       </Typography>
@@ -61,7 +61,7 @@ const Author = ({ avatarUrl, classes, bio, fullName, links }) => (
         </div>
       )}
     </div>
-    <div className={classNames(classes.contactInfo, "print-only")}>
+    <div className={classNames(classes.contactInfo, 'print-only')}>
       <Typography type="display2">{fullName}</Typography>
       {links.length > 0 && (
         <div className={classes.links}>
@@ -70,7 +70,7 @@ const Author = ({ avatarUrl, classes, bio, fullName, links }) => (
       )}
     </div>
   </div>
-);
+)
 
 Author.propTypes = {
   avatarUrl: PropTypes.string.isRequired,
@@ -80,13 +80,13 @@ Author.propTypes = {
     PropTypes.shape({
       label: PropTypes.string.isRequired,
       iconClassName: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired
-    })
-  )
-};
+      url: PropTypes.string.isRequired,
+    }),
+  ),
+}
 
 Author.defaultProps = {
-  links: []
-};
+  links: [],
+}
 
-export default withStyles(styles)(Author);
+export default withStyles(styles)(Author)

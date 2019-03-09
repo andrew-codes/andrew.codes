@@ -1,50 +1,65 @@
-const path = require("path");
-const _ = require("lodash");
-const webpackLodashPlugin = require("lodash-webpack-plugin");
+const path = require('path')
+const readingTime = require('reading-time')
+const { isEmpty, kebabCase } = require('lodash')
 
-exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
-  const { createNodeField } = boundActionCreators;
-  let slug;
-  if (node.internal.type === "MarkdownRemark") {
-    const fileNode = getNode(node.parent);
-    const parsedFilePath = path.parse(fileNode.relativePath);
-    if (
-      Object.prototype.hasOwnProperty.call(node, "frontmatter") &&
-      Object.prototype.hasOwnProperty.call(node.frontmatter, "slug")
-    ) {
-      slug = `/${_.kebabCase(node.frontmatter.slug)}`;
+exports.onCreateNode = ({ node, actions }) => {
+  const { createNodeField } = actions
+  if (node.internal.type === 'Mdx') {
+    createNodeField({
+      node,
+      name: `readingTime`,
+      value: readingTime(node.rawBody),
+    })
+    if (node.frontmatter && node.frontmatter.slug) {
+      createNodeField({
+        name: 'slug',
+        node,
+        value: `/${node.frontmatter.slug}`,
+      })
+    } else if (node.frontmatter && node.frontmatter.title) {
+      createNodeField({
+        name: 'slug',
+        node,
+        value: `/${kebabCase(node.frontmatter.title)}`,
+      })
     }
-    if (
-      Object.prototype.hasOwnProperty.call(node, "frontmatter") &&
-      Object.prototype.hasOwnProperty.call(node.frontmatter, "title")
-    ) {
-      slug = `/${_.kebabCase(node.frontmatter.title)}`;
-    } else if (parsedFilePath.name !== "index" && parsedFilePath.dir !== "") {
-      slug = `/${parsedFilePath.dir}/${parsedFilePath.name}/`;
-    } else if (parsedFilePath.dir === "") {
-      slug = `/${parsedFilePath.name}/`;
-    } else {
-      slug = `/${parsedFilePath.dir}/`;
+    if (node.frontmatter && !isEmpty(node.frontmatter.tags)) {
+      const tagSlugs = node.frontmatter.tags.map(
+        tag => `/tag/${kebabCase(tag)}`,
+      )
+      createNodeField({
+        name: 'tagSlugs',
+        node,
+        value: tagSlugs,
+      })
     }
-    createNodeField({ node, name: "slug", value: slug });
+    if (node.frontmatter && !isEmpty(node.frontmatter.category)) {
+      createNodeField({
+        name: 'categorySlug',
+        node,
+        value: `/category/${kebabCase(node.frontmatter.category)}`,
+      })
+    }
   }
-};
+}
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators;
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
 
   return new Promise((resolve, reject) => {
-    const postPage = path.resolve("src/templates/post.jsx");
-    const tagPage = path.resolve("src/templates/tag.jsx");
-    const categoryPage = path.resolve("src/templates/category.jsx");
+    const postPage = path.resolve('src/components/PostPage.js')
+    const tagPage = path.resolve('src/components/TagPage.js')
+    // const categoryPage = path.resolve('src/templates/CategoryPage.js');
     resolve(
       graphql(
         `
           {
-            allMarkdownRemark {
+            allMdx {
               edges {
                 node {
+                  id
                   frontmatter {
+                    title
                     tags
                     category
                   }
@@ -55,64 +70,58 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               }
             }
           }
-        `
+        `,
       ).then(result => {
         if (result.errors) {
           /* eslint no-console: "off" */
-          console.log(result.errors);
-          reject(result.errors);
+          console.log(result.errors)
+          reject(result.errors)
         }
 
-        const tagSet = new Set();
-        const categorySet = new Set();
-        result.data.allMarkdownRemark.edges.forEach(edge => {
+        const tagSet = new Set()
+        const categorySet = new Set()
+        result.data.allMdx.edges.forEach(edge => {
           if (edge.node.frontmatter.tags) {
             edge.node.frontmatter.tags.forEach(tag => {
-              tagSet.add(tag);
-            });
+              tagSet.add(tag)
+            })
           }
 
           if (edge.node.frontmatter.category) {
-            categorySet.add(edge.node.frontmatter.category);
+            categorySet.add(edge.node.frontmatter.category)
           }
 
           createPage({
             path: edge.node.fields.slug,
             component: postPage,
             context: {
-              slug: edge.node.fields.slug
-            }
-          });
-        });
+              id: edge.node.id,
+            },
+          })
+        })
 
-        const tagList = Array.from(tagSet);
+        const tagList = Array.from(tagSet)
         tagList.forEach(tag => {
           createPage({
-            path: `/tags/${_.kebabCase(tag)}/`,
+            path: `/tag/${kebabCase(tag)}/`,
             component: tagPage,
             context: {
-              tag
-            }
-          });
-        });
+              tag,
+            },
+          })
+        })
 
-        const categoryList = Array.from(categorySet);
-        categoryList.forEach(category => {
-          createPage({
-            path: `/categories/${_.kebabCase(category)}/`,
-            component: categoryPage,
-            context: {
-              category
-            }
-          });
-        });
-      })
-    );
-  });
-};
-
-exports.modifyWebpackConfig = ({ config, stage }) => {
-  if (stage === "build-javascript") {
-    config.plugin("Lodash", webpackLodashPlugin, null);
-  }
-};
+        // const categoryList = Array.from(categorySet);
+        // categoryList.forEach(category => {
+        //   createPage({
+        //     path: `/category/${kebabCase(category)}/`,
+        //     component: categoryPage,
+        //     context: {
+        //       category,
+        //     },
+        //   });
+        // });
+      }),
+    )
+  })
+}
