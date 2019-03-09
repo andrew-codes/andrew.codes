@@ -1,7 +1,7 @@
-import React from "react";
-import { graphql } from "gatsby";
-import Layout from "../components/Layout";
-import PostList from "../components/PostList";
+import React from 'react'
+import { graphql } from 'gatsby'
+import Layout from '../components/Layout'
+import PostList from '../components/PostList'
 
 const Index = ({ data }) => (
   <Layout>
@@ -13,15 +13,15 @@ const Index = ({ data }) => (
           slug: node.fields.slug,
           tags: node.frontmatter.tags.map((tag, index) => ({
             name: tag,
-            slug: node.fields.tagSlugs[index]
-          }))
+            slug: node.fields.tagSlugs[index],
+          })),
         }))}
       />
     </div>
   </Layout>
-);
+)
 
-export default Index;
+export default Index
 
 export const pageQuery = graphql`
   query IndexQuery {
@@ -46,4 +46,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`

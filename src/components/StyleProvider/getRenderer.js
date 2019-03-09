@@ -1,13 +1,13 @@
-import createRenderer from "./createRenderer";
+import createRenderer from './createRenderer'
 
-let singletonRenderer;
+let singletonRenderer
 export default ({ dev, renderer }) => {
   if (renderer) {
-    return renderer;
+    return renderer
   }
   if (!singletonRenderer) {
-    singletonRenderer = createRenderer({ dev });
-    singletonRenderer.rendererId = "@versionone/components";
+    singletonRenderer = createRenderer({ dev })
+    singletonRenderer.rendererId = '@versionone/components'
   }
-  return singletonRenderer;
-};
+  return singletonRenderer
+}

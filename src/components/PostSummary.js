@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "gatsby";
+import React from 'react'
+import { Link } from 'gatsby'
 
 const PostSummary = ({ cover, date, readingTime, slug, tags, title }) => (
   <article>
@@ -15,5 +15,5 @@ const PostSummary = ({ cover, date, readingTime, slug, tags, title }) => (
       ))}
     </ul>
   </article>
-);
-export default PostSummary;
+)
+export default PostSummary

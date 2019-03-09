@@ -1,5 +1,5 @@
-import React from "react";
-import PostSummary from "./PostSummary";
+import React from 'react'
+import PostSummary from './PostSummary'
 
 const PostList = ({ posts }) => (
   <ol>
@@ -9,6 +9,6 @@ const PostList = ({ posts }) => (
       </li>
     ))}
   </ol>
-);
+)
 
-export default PostList;
+export default PostList

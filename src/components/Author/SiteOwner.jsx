@@ -1,7 +1,7 @@
-import React from "react";
-import Author from "./";
-import Link from "../Link";
-import config from "../../../data/SiteConfig";
+import React from 'react'
+import Author from './'
+import Link from '../Link'
+import config from '../../../data/SiteConfig'
 
 const SiteOwnerAuthor = props => (
   <Author
@@ -16,8 +16,8 @@ const SiteOwnerAuthor = props => (
     avatarUrl={config.userAvatar}
     bio={
       <span>
-        <Link to="/tags/presentation">speaker</Link>,{" "}
-        <Link to="/tags/workshop">trainer</Link>,{" "}
+        <Link to="/tags/presentation">speaker</Link>,{' '}
+        <Link to="/tags/workshop">trainer</Link>,{' '}
         <Link to="http://jas.link/github">OSS contributor</Link>; lifelong
         learner
       </span>
@@ -27,6 +27,6 @@ const SiteOwnerAuthor = props => (
     links={config.userLinks}
     phone="(470) 535-9093"
   />
-);
+)
 
-export default SiteOwnerAuthor;
+export default SiteOwnerAuthor

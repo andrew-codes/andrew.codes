@@ -1,8 +1,8 @@
-import MDXRenderer from "gatsby-mdx/mdx-renderer";
-import React from "react";
-import { graphql } from "gatsby";
-import Layout from "./Layout";
-import Seo from "./Seo";
+import MDXRenderer from 'gatsby-mdx/mdx-renderer'
+import React from 'react'
+import { graphql } from 'gatsby'
+import Layout from './Layout'
+import Seo from './Seo'
 
 const PostLayout = ({ data: { mdx: post } }) => {
   return (
@@ -16,10 +16,10 @@ const PostLayout = ({ data: { mdx: post } }) => {
         <footer />
       </article>
     </Layout>
-  );
-};
+  )
+}
 
-export default PostLayout;
+export default PostLayout
 
 export const pageQuery = graphql`
   query PostById($id: String!) {
@@ -44,4 +44,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`

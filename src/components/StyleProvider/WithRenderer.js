@@ -1,18 +1,18 @@
-import { Component } from "react";
-import PropTypes from "prop-types";
+import { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class WithRenderer extends Component {
   render() {
-    const { children } = this.props;
-    const { renderer } = this.context;
+    const { children } = this.props
+    const { renderer } = this.context
 
-    return children(renderer);
+    return children(renderer)
   }
 }
 WithRenderer.contextTypes = {
-  renderer: PropTypes.object.isRequired
-};
+  renderer: PropTypes.object.isRequired,
+}
 WithRenderer.propTypes = {
-  children: PropTypes.func.isRequired
-};
-export default WithRenderer;
+  children: PropTypes.func.isRequired,
+}
+export default WithRenderer

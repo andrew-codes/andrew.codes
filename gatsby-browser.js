@@ -1,29 +1,29 @@
-const { getRenderer } = require("./src/components/StyleProvider");
-const { rehydrate } = require("fela-dom");
-require("@babel/polyfill");
+const { getRenderer } = require('./src/components/StyleProvider')
+const { rehydrate } = require('fela-dom')
+require('@babel/polyfill')
 
 exports.onRouteUpdate = ({ location }) => {
-  const mainSelector = document.querySelector("main");
+  const mainSelector = document.querySelector('main')
   if (!mainSelector) {
-    return;
+    return
   }
-  let scrollToValue = 0;
-  if (location.hash !== "") {
+  let scrollToValue = 0
+  if (location.hash !== '') {
     const hashElement = document.querySelector(
-      `#${location.hash.replace("#", "")}`
-    );
+      `#${location.hash.replace('#', '')}`,
+    )
     if (!hashElement) {
-      return;
+      return
     }
-    scrollToValue = hashElement.offsetTop - 32;
+    scrollToValue = hashElement.offsetTop - 32
     setTimeout(() => {
-      window.scrollTo(0, scrollToValue);
-    }, 0);
+      window.scrollTo(0, scrollToValue)
+    }, 0)
   }
-};
+}
 
 module.exports.wrapRootElement = ({ element }) => {
-  const renderer = getRenderer({});
-  rehydrate(renderer);
-  return element;
-};
+  const renderer = getRenderer({})
+  rehydrate(renderer)
+  return element
+}

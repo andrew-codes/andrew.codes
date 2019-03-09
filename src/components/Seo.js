@@ -1,70 +1,70 @@
-import Helmet from "react-helmet";
-import PropTypes from "prop-types";
-import React from "react";
-import { isEmpty } from "lodash";
-import { StaticQuery, graphql } from "gatsby";
-import favicon from "../images/logo-48.png";
+import Helmet from 'react-helmet'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { isEmpty } from 'lodash'
+import { StaticQuery, graphql } from 'gatsby'
+import favicon from '../images/logo-48.png'
 
 const Seo = ({ description, lang, meta, keywords, title, cover, url }) => (
   <StaticQuery
     query={detailsQuery}
     render={({ site }) => {
-      const metaDescription = description || site.siteMetadata.description;
+      const metaDescription = description || site.siteMetadata.description
       const headTitle = title
         ? `${title} | ${site.siteMetadata.title}`
-        : site.siteMetadata.title;
+        : site.siteMetadata.title
       const schemaOrgJSONLD = [
         {
-          "@context": "http://schema.org",
-          "@type": "WebSite",
+          '@context': 'http://schema.org',
+          '@type': 'WebSite',
           url: site.siteMetadata.siteUrl,
           name: headTitle,
-          alternateName: site.siteMetadata.altTitle
-        }
-      ];
+          alternateName: site.siteMetadata.altTitle,
+        },
+      ]
       if (url) {
         schemaOrgJSONLD.push([
           {
-            "@context": "http://schema.org",
-            "@type": "BreadcrumbList",
+            '@context': 'http://schema.org',
+            '@type': 'BreadcrumbList',
             itemListElement: [
               {
-                "@type": "ListItem",
+                '@type': 'ListItem',
                 position: 1,
                 item: {
-                  "@id": url,
+                  '@id': url,
                   name: title,
-                  image: cover
-                }
-              }
-            ]
+                  image: cover,
+                },
+              },
+            ],
           },
           {
-            "@context": "http://schema.org",
-            "@type": "BlogPosting",
+            '@context': 'http://schema.org',
+            '@type': 'BlogPosting',
             url: site.siteMetadata.siteUrl,
             name: site.siteMetadata.title,
             alternateName: site.siteMetadata.altTitle,
             headline: title,
             image: {
-              "@type": "ImageObject",
-              url: cover
+              '@type': 'ImageObject',
+              url: cover,
             },
-            description: metaDescription
-          }
-        ]);
+            description: metaDescription,
+          },
+        ])
       }
 
       return (
         <Helmet
           htmlAttributes={{
-            lang
+            lang,
           }}
         >
           <title>{headTitle}</title>
           <meta name="description" content={metaDescription} />
           {!isEmpty(keywords) && (
-            <meta name="keywords" content={keywords.join(", ")} />
+            <meta name="keywords" content={keywords.join(', ')} />
           )}
           <meta name="og:title" content={headTitle} />
           <meta name="og:description" content={metaDescription} />
@@ -112,21 +112,21 @@ const Seo = ({ description, lang, meta, keywords, title, cover, url }) => (
               src="https://www.facebook.com/tr?id=1488033381245877&ev=PageView&noscript=1"}
               style={{ display: 'none' }}
               width="1"
-            />`
+            />`,
             }}
           />
         </Helmet>
-      );
+      )
     }}
   />
-);
+)
 
 Seo.defaultProps = {
   cover: favicon,
-  lang: "en",
+  lang: 'en',
   keywords: [],
-  meta: []
-};
+  meta: [],
+}
 
 Seo.propTypes = {
   cover: PropTypes.string,
@@ -135,14 +135,14 @@ Seo.propTypes = {
   meta: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired
-    })
+      content: PropTypes.string.isRequired,
+    }),
   ),
   keywords: PropTypes.arrayOf(PropTypes.string),
-  title: PropTypes.string
-};
+  title: PropTypes.string,
+}
 
-export default Seo;
+export default Seo
 
 const detailsQuery = graphql`
   query DefaultSEOQuery {
@@ -156,4 +156,4 @@ const detailsQuery = graphql`
       }
     }
   }
-`;
+`

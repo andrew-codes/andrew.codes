@@ -1,78 +1,78 @@
-const path = require("path");
+const path = require('path')
 
 const siteMetadata = {
-  title: "Andrew Smith",
-  altTitle: "Professional profile of Andrew Smith",
-  author: "Andrew Smith",
-  description: "A professional profile, resume, and blog of Andrew Smith.",
+  title: 'Andrew Smith',
+  altTitle: 'Professional profile of Andrew Smith',
+  author: 'Andrew Smith',
+  description: 'A professional profile, resume, and blog of Andrew Smith.',
   siteUrl:
-    process.env.NODE_ENV === "development"
-      ? "localhost"
-      : "https://andrew.codes",
+    process.env.NODE_ENV === 'development'
+      ? 'localhost'
+      : 'https://andrew.codes',
   rssMetadata: {
-    site_url: "https://andrew.codes",
-    feed_url: "https://andrew.codes/rss.xml",
-    title: "Andrew Smith",
-    description: "A professional profile, resume, and blog of Andrew Smith.",
+    site_url: 'https://andrew.codes',
+    feed_url: 'https://andrew.codes/rss.xml',
+    title: 'Andrew Smith',
+    description: 'A professional profile, resume, and blog of Andrew Smith.',
     image_url: `https://andrew.codes/logo-48.png`,
-    author: "Andrew Smith",
-    copyright: `Copyright © ${new Date().getFullYear()}. Andrew Smith`
-  }
-};
+    author: 'Andrew Smith',
+    copyright: `Copyright © ${new Date().getFullYear()}. Andrew Smith`,
+  },
+}
 
 module.exports = {
   siteMetadata,
   plugins: [
-    "gatsby-plugin-react-helmet",
+    'gatsby-plugin-react-helmet',
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "posts",
-        path: path.join(__dirname, "src", "content", "posts")
-      }
+        name: 'posts',
+        path: path.join(__dirname, 'src', 'content', 'posts'),
+      },
     },
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "images",
-        path: path.join(__dirname, "src", "images")
-      }
+        name: 'images',
+        path: path.join(__dirname, 'src', 'images'),
+      },
     },
     {
       resolve: `gatsby-mdx`,
       options: {
-        extensions: [".mdx", ".md"],
+        extensions: ['.mdx', '.md'],
         gatsbyRemarkPlugins: [
           {
-            resolve: "gatsby-remark-images",
+            resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 690,
-              sizeByPixelDensity: true
-            }
+              sizeByPixelDensity: true,
+            },
           },
-          { resolve: "gatsby-remark-responsive-iframe" },
-          { resolve: "gatsby-remark-autolink-headers" }
-        ]
-      }
+          { resolve: 'gatsby-remark-responsive-iframe' },
+          { resolve: 'gatsby-remark-autolink-headers' },
+        ],
+      },
     },
     {
-      resolve: "gatsby-plugin-nprogress",
+      resolve: 'gatsby-plugin-nprogress',
       options: {
         // color: 'config.themeColor',
-      }
+      },
     },
-    "gatsby-plugin-sharp",
-    "gatsby-plugin-catch-links",
-    "gatsby-plugin-twitter",
-    "gatsby-plugin-sitemap",
+    'gatsby-plugin-sharp',
+    'gatsby-plugin-catch-links',
+    'gatsby-plugin-twitter',
+    'gatsby-plugin-sitemap',
     {
-      resolve: "gatsby-plugin-robots-txt",
+      resolve: 'gatsby-plugin-robots-txt',
       options: {
-        policy: [{ userAgent: "*", allow: "/" }]
-      }
+        policy: [{ userAgent: '*', allow: '/' }],
+      },
     },
     {
-      resolve: "gatsby-plugin-manifest",
+      resolve: 'gatsby-plugin-manifest',
       options: {
         name: siteMetadata.title,
         short_name: siteMetadata.altTile,
@@ -80,22 +80,22 @@ module.exports = {
         start_url: siteMetadata.siteUrl,
         // background_color: config.backgroundColor,
         // theme_color: config.themeColor,
-        display: "minimal-ui",
+        display: 'minimal-ui',
         icons: [
           {
-            src: "/logos/logo-192x192.png",
-            sizes: "192x192",
-            type: "image/png"
+            src: '/logos/logo-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
           },
           {
-            src: "/logos/logo-512x512.png",
-            sizes: "512x512",
-            type: "image/png"
-          }
-        ]
-      }
+            src: '/logos/logo-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+        ],
+      },
     },
-    "gatsby-plugin-offline"
+    'gatsby-plugin-offline',
     // {
     //   resolve: 'gatsby-plugin-feed',
     //   options: {
@@ -166,5 +166,5 @@ module.exports = {
     //     ]
     //   }
     // }
-  ]
-};
+  ],
+}
