@@ -61,7 +61,7 @@
     "serve": "gatsby serve",
     "build": "gatsby build",
     "clean": "rm -rf public",
-    "lint:js": "eslint --print-config .eslintrc.json | eslint-config-prettier-check && eslint .",
+    "lint": "eslint --print-config .eslintrc.json | eslint-config-prettier-check && eslint .",
     "write-good": "write-good $(glob 'content/posts/**/*.md')",
     "write-good/single": "write-good",
     "format": "prettier '**/*.{js,mdx}' --write"
