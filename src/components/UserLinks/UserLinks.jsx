@@ -24,21 +24,20 @@ const styles = theme => ({
 
 const UserLinks = ({ classes, labeled, links }) => (
   <div className={classNames(classes.container, "user-links")}>
-    {links.map(
-      link =>
-        labeled ? (
-          <Button key={link.url}>
-            <a key={link.url} href={link.url} title={link.label}>
-              {link.label}
-            </a>
-          </Button>
-        ) : (
-          <IconButton key={link.url}>
-            <a key={link.url} href={link.url} title={link.label}>
-              <i className={classNames(link.iconClassName, classes.icon)} />
-            </a>
-          </IconButton>
-        )
+    {links.map(link =>
+      labeled ? (
+        <Button key={link.url}>
+          <a key={link.url} href={link.url} title={link.label}>
+            {link.label}
+          </a>
+        </Button>
+      ) : (
+        <IconButton key={link.url}>
+          <a key={link.url} href={link.url} title={link.label}>
+            <i className={classNames(link.iconClassName, classes.icon)} />
+          </a>
+        </IconButton>
+      )
     )}
   </div>
 );

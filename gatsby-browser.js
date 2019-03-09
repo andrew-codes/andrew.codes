@@ -1,4 +1,6 @@
-const theme = require("./src/theme");
+const { getRenderer } = require("./src/components/StyleProvider");
+const { rehydrate } = require("fela-dom");
+require("@babel/polyfill");
 
 exports.onRouteUpdate = ({ location }) => {
   const mainSelector = document.querySelector("main");
@@ -8,17 +10,20 @@ exports.onRouteUpdate = ({ location }) => {
   let scrollToValue = 0;
   if (location.hash !== "") {
     const hashElement = document.querySelector(
-      `[data-name=${location.hash.replace("#", "")}]`
+      `#${location.hash.replace("#", "")}`
     );
     if (!hashElement) {
       return;
     }
     scrollToValue = hashElement.offsetTop - 32;
-    if (window.innerWidth < theme.breakpoints.values.md) {
-      scrollToValue -= theme.mixins.toolbar.minHeight;
-    }
     setTimeout(() => {
       window.scrollTo(0, scrollToValue);
     }, 0);
   }
+};
+
+module.exports.wrapRootElement = ({ element }) => {
+  const renderer = getRenderer({});
+  rehydrate(renderer);
+  return element;
 };

@@ -8,7 +8,9 @@ const SiteOwnerAuthor = props => (
     {...props}
     address={
       <span>
-        915 West Peachtree Street<br />Atlanta, GA 30309
+        915 West Peachtree Street
+        <br />
+        Atlanta, GA 30309
       </span>
     }
     avatarUrl={config.userAvatar}
