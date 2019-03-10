@@ -2,7 +2,6 @@ import MDXRenderer from 'gatsby-mdx/mdx-renderer'
 import React from 'react'
 import Seo from './Seo'
 import { Paper } from './Paper'
-import { SpacedGroup } from './SpacedGroup/index'
 import { kebabCase } from '../../node_modules/change-case/change-case'
 import Code from './Code'
 

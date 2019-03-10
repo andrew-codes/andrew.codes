@@ -20,12 +20,10 @@ const PostPage = ({ data: { mdx } }) => {
         <Reference>
           {({ ref }) => (
             <div ref={ref}>
-              <Box padding="64px 16px">
-                <Post default {...post} />
-                <Box>
-                  <h2 id="comments">Discussion</h2>
-                  <Comments post={post} />
-                </Box>
+              <Post default {...post} />
+              <Box>
+                <h2 id="comments">Discussion</h2>
+                <Comments post={post} />
               </Box>
             </div>
           )}

@@ -24,7 +24,7 @@ const Layout = ({ children }) => (
             <Border radial left right width={width > 1006 ? 16 : 0}>
               <Main>
                 <Paper>
-                  <Box padding={16}>{children}</Box>
+                  <Box padding="64px 16px">{children}</Box>
                 </Paper>
               </Main>
             </Border>
