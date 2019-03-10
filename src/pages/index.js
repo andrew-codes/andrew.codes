@@ -2,21 +2,12 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import PostList from '../components/PostList'
+import nodeToPost from '../nodeToPost'
 
 const Index = ({ data }) => (
   <Layout>
     <div>
-      <PostList
-        posts={data.allMdx.edges.map(({ node }) => ({
-          ...node.frontmatter,
-          readingTime: node.fields.readingTime.text,
-          slug: node.fields.slug,
-          tags: node.frontmatter.tags.map((tag, index) => ({
-            name: tag,
-            slug: node.fields.tagSlugs[index],
-          })),
-        }))}
-      />
+      <PostList posts={data.allMdx.edges.map(nodeToPost)} />
     </div>
   </Layout>
 )
@@ -28,6 +19,7 @@ export const pageQuery = graphql`
     allMdx(limit: 2000, sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
+          excerpt
           fields {
             categorySlug
             readingTime {

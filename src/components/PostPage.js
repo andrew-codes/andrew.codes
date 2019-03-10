@@ -1,20 +1,13 @@
-import MDXRenderer from 'gatsby-mdx/mdx-renderer'
 import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from './Layout'
-import Seo from './Seo'
+import nodeToPost from '../nodeToPost'
+import Post from './Post'
 
-const PostLayout = ({ data: { mdx: post } }) => {
+const PostLayout = ({ data: { mdx } }) => {
   return (
     <Layout>
-      <Seo title={post.frontmatter.title} />
-      <article>
-        <header>
-          <h1>{post.frontmatter.title}</h1>
-        </header>
-        <MDXRenderer>{post.code.body}</MDXRenderer>
-        <footer />
-      </article>
+      <Post {...nodeToPost({ node: mdx })} />
     </Layout>
   )
 }
@@ -28,13 +21,11 @@ export const pageQuery = graphql`
         title
         cover
         date
-        category
         tags
       }
       fields {
         slug
         tagSlugs
-        categorySlug
         readingTime {
           text
         }

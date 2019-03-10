@@ -1,6 +1,6 @@
 const { createElement } = require('react')
 const { renderToString } = require('react-dom/server')
-const { getRenderer } = require('@src/components/StyleProvider')
+const { getRenderer } = require('./src/components/StyleProvider')
 const { renderToMarkup } = require('fela-dom')
 
 const hydrationExp = /data-fela-rehydration="\d+"/

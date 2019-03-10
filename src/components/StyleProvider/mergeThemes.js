@@ -1,4 +1,4 @@
-import mergeWith from 'lodash.mergewith'
+import { mergeWith } from 'lodash'
 import invariant from 'tiny-invariant'
 
 const customizeMerge = (objValue, srcValue, key) => {

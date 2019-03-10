@@ -4,7 +4,7 @@ import { Provider as FelaProvider } from 'react-fela'
 import getRenderer from './getRenderer'
 import mergeThemes from './mergeThemes'
 import { ThemeProvider, WithTheme } from './ThemeProvider'
-import { defaultTheme } from '../defaultTheme'
+import defaultTheme from '../defaultTheme'
 
 class StyleProvider extends Component {
   render() {

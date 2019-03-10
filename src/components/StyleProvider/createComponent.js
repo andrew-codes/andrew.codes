@@ -1,6 +1,7 @@
-import React, { createElement as reactCreateElement } from 'react'
+import React, { createElement as reactCreateElement, useContext } from 'react'
 import extractPassThroughProps from 'fela-bindings/lib/extractPassThroughProps'
 import PropTypes from 'prop-types'
+import { RendererContext } from 'react-fela'
 import resolvePassThrough from 'fela-bindings/lib/resolvePassThrough'
 import { getComponentDisplayName } from '../utils'
 import { WithTheme } from './ThemeProvider'
@@ -11,7 +12,7 @@ const createComponentFactory = (createElement, contextTypes) => (
   passThroughProps = [],
 ) => {
   const componentName = getComponentDisplayName(type)
-  const FelaComponent = ({ children, theme, ...ruleProps }, { renderer }) => {
+  const FelaComponent = ({ children, renderer, theme, ...ruleProps }) => {
     if (!renderer) {
       throw new Error(
         "createComponent() can't render styles without the renderer in the context. Wrap the root of your app with <StyleProvider />.",
@@ -67,7 +68,15 @@ const createComponentFactory = (createElement, contextTypes) => (
   FelaComponent._isFelaComponent = true
 
   return props => (
-    <WithTheme>{theme => <FelaComponent {...props} theme={theme} />}</WithTheme>
+    <WithTheme>
+      {theme => (
+        <RendererContext.Consumer>
+          {renderer => (
+            <FelaComponent {...props} theme={theme} renderer={renderer} />
+          )}
+        </RendererContext.Consumer>
+      )}
+    </WithTheme>
   )
 }
 

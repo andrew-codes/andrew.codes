@@ -1,8 +1,7 @@
 const { getRenderer } = require('./src/components/StyleProvider')
 const { rehydrate } = require('fela-dom')
-require('@babel/polyfill')
 
-exports.onRouteUpdate = ({ location }) => {
+module.exports.onRouteUpdate = ({ location }) => {
   const mainSelector = document.querySelector('main')
   if (!mainSelector) {
     return
