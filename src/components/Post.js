@@ -16,11 +16,16 @@ const Post = ({ title, body }) => (
       <MDXRenderer
         components={{
           pre: ({ children }) => children,
-          code: ({ children, className }) => {
+          code: ({ children, className, metastring }) => {
             const language = className
               ? className.replace('language-', '')
               : null
-            return <Code language={language}>{children}</Code>
+
+            return (
+              <Code language={language} highlightLines={metastring}>
+                {children}
+              </Code>
+            )
           },
           h1: ({ children }) => {
             return (

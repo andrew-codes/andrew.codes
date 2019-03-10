@@ -236,6 +236,10 @@ const internalTheme = {
     },
   },
   Code: {
+    highlighted: {
+      display: 'block',
+      background: 'rgba(255, 255, 255, 0.18)',
+    },
     'code[class*="language-"]': {
       MozTabSize: '2',
       OTabSize: '2',
