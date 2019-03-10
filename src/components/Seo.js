@@ -7,7 +7,7 @@ import favicon from '../images/logo-48.png'
 
 const Seo = ({ description, lang, meta, keywords, title, cover, url }) => (
   <StaticQuery
-    query={detailsQuery}
+    query={siteMetadataQuery}
     render={({ site }) => {
       const metaDescription = description || site.siteMetadata.description
       const headTitle = title
@@ -144,8 +144,8 @@ Seo.propTypes = {
 
 export default Seo
 
-const detailsQuery = graphql`
-  query DefaultSEOQuery {
+const siteMetadataQuery = graphql`
+  query SeoQuery {
     site {
       siteMetadata {
         altTitle

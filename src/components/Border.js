@@ -20,8 +20,8 @@ const BorderImpl = createComponent(
     [placement]: -width,
     overflow: 'hidden',
     background: isHorizontal(placement)
-      ? `radial-gradient(50% 65%, rgba(0, 0, 0, .25), rgba(255, 255, 255, 0))`
-      : `radial-gradient(65% 50%, rgba(0, 0, 0, .25), rgba(255, 255, 255, 0))`,
+      ? `radial-gradient(50% 70%, rgba(0, 0, 0, .25), rgba(255, 255, 255, 0))`
+      : `radial-gradient(70% 50%, rgba(0, 0, 0, .25), rgba(255, 255, 255, 0))`,
     ...styleUtils.conditionalStyle(isHorizontal(placement), 'top', 0),
     ...styleUtils.conditionalStyle(!isHorizontal(placement), 'right', 0),
     ...styleUtils.conditionalStyle(isHorizontal(placement), 'bottom', 0),

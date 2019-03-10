@@ -1,30 +1,10 @@
 import React, { Fragment } from 'react'
 import Seo from './Seo'
-import {
-  createComponent,
-  StyleProvider,
-  styleUtils,
-  WithRenderer,
-} from './StyleProvider'
+import { StyleProvider, styleUtils, WithRenderer } from './StyleProvider'
 import { Paper } from './Paper'
 import Border from './Border'
-
-const Box = createComponent(({ ...other }) => ({ ...other }), 'div')
-const FixedContainer = createComponent(
-  ({ below, width, ...other }) => ({
-    position: 'fixed',
-    width,
-    ...styleUtils.conditionalStyle(below, 'zIndex', '-1'),
-    ...other,
-  }),
-  'div',
-)
-
-const Fixed = ({ below, children, width, ...other }) => (
-  <FixedContainer below={below} width={width} {...other}>
-    {children}
-  </FixedContainer>
-)
+import { Box } from './Box'
+import WindowResizeListener from './WindowResizeListener'
 
 const Layout = ({ children }) => (
   <StyleProvider>
@@ -36,13 +16,17 @@ const Layout = ({ children }) => (
       </WithRenderer>
       <Seo />
       <Box maxWidth={960} {...styleUtils.margin(0, 'auto')}>
-        <Border radial left right width={16}>
-          <main>
-            <Paper>
-              <Box padding={16}>{children}</Box>
-            </Paper>
-          </main>
-        </Border>
+        <WindowResizeListener>
+          {({ width }) => (
+            <Border radial left right width={width > 1006 ? 16 : 0}>
+              <main>
+                <Paper>
+                  <Box padding={16}>{children}</Box>
+                </Paper>
+              </main>
+            </Border>
+          )}
+        </WindowResizeListener>
       </Box>
     </Fragment>
   </StyleProvider>

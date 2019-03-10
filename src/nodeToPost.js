@@ -8,4 +8,5 @@ export default ({ node }) => ({
   })),
   body: node.code ? node.code.body : '',
   excerpt: node.excerpt,
+  tableOfContents: node.tableOfContents,
 })

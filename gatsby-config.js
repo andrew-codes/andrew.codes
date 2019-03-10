@@ -9,6 +9,9 @@ const siteMetadata = {
     process.env.NODE_ENV === 'development'
       ? 'localhost'
       : 'https://andrew.codes',
+  disqus: {
+    shortName: 'andrew-codes',
+  },
   rssMetadata: {
     site_url: 'https://andrew.codes',
     feed_url: 'https://andrew.codes/rss.xml',
@@ -51,7 +54,6 @@ module.exports = {
             },
           },
           { resolve: 'gatsby-remark-responsive-iframe' },
-          { resolve: 'gatsby-remark-autolink-headers' },
         ],
       },
     },
