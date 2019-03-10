@@ -36,10 +36,9 @@ const TableOfContents = ({ post: { tableOfContents, slug } }) => (
       theme={{
         Link: {
           current: {
-            color: 'darkgray',
             fontWeight: 600,
           },
-          color: 'lightgray',
+          color: '#111',
         },
       }}
     >

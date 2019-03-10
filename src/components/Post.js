@@ -84,7 +84,6 @@ const Post = ({ title, body }) => (
       >
         {body}
       </MDXRenderer>
-      <footer />
     </Paper>
   </article>
 )

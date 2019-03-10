@@ -12,7 +12,7 @@ const BorderContainer = createComponent(
   'div',
 )
 const BorderImpl = createComponent(
-  ({ placement, width }) => ({
+  ({ color, placement, width }) => ({
     position: 'absolute',
     zIndex: '-1',
     ...styleUtils.conditionalStyle(isHorizontal(placement), 'width', 100),
@@ -20,8 +20,8 @@ const BorderImpl = createComponent(
     [placement]: -width,
     overflow: 'hidden',
     background: isHorizontal(placement)
-      ? `radial-gradient(50% 70%, rgba(0, 0, 0, .25), rgba(255, 255, 255, 0))`
-      : `radial-gradient(70% 50%, rgba(0, 0, 0, .25), rgba(255, 255, 255, 0))`,
+      ? `radial-gradient(50% 70%, ${color}, rgba(255, 255, 255, 0))`
+      : `radial-gradient(70% 50%, ${color}, rgba(255, 255, 255, 0))`,
     ...styleUtils.conditionalStyle(isHorizontal(placement), 'top', 0),
     ...styleUtils.conditionalStyle(!isHorizontal(placement), 'right', 0),
     ...styleUtils.conditionalStyle(isHorizontal(placement), 'bottom', 0),
@@ -40,4 +40,7 @@ const Border = ({ children, radial, left, right, top, bottom, ...other }) => (
     </BorderContainer>
   </StyleProvider>
 )
+Border.defaultProps = {
+  color: 'rgba(0, 0, 0, .25)',
+}
 export default Border

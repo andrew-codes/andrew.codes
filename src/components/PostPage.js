@@ -21,10 +21,12 @@ const PostPage = ({ data: { mdx } }) => {
           {({ ref }) => (
             <div ref={ref}>
               <Post default {...post} />
-              <Box>
-                <h2 id="comments">Discussion</h2>
-                <Comments post={post} />
-              </Box>
+              <footer>
+                <Box>
+                  <h2 id="comments">Discussion</h2>
+                  <Comments post={post} />
+                </Box>
+              </footer>
             </div>
           )}
         </Reference>
@@ -45,18 +47,25 @@ const PostPage = ({ data: { mdx } }) => {
             </WindowResizeListener>
           )}
         </Popper>
+
+        <Popper placement="left-start">
+          {({ ref, style, placement }) => (
+            <WindowResizeListener>
+              {({ width }) => (
+                <PortalContainer mounted={width >= 1420}>
+                  <FixedBox top={0} bottom={0}>
+                    <div ref={ref} style={style} data-placement={placement}>
+                      <Box left={-240} position="absolute" top={48} bottom={0}>
+                        <TableOfContents post={post} />
+                      </Box>
+                    </div>
+                  </FixedBox>
+                </PortalContainer>
+              )}
+            </WindowResizeListener>
+          )}
+        </Popper>
       </Manager>
-      <WindowResizeListener>
-        {({ width }) => (
-          <PortalContainer mounted={width >= 1420}>
-            <FixedBox top={0} bottom={0}>
-              <Box left={8} position="absolute" top={'16%'} bottom={0}>
-                <TableOfContents post={post} />
-              </Box>
-            </FixedBox>
-          </PortalContainer>
-        )}
-      </WindowResizeListener>
     </Layout>
   )
 }

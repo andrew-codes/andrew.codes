@@ -21,7 +21,13 @@ const Layout = ({ children }) => (
       <Box maxWidth={960} {...styleUtils.margin(0, 'auto')}>
         <WindowResizeListener>
           {({ width }) => (
-            <Border radial left right width={width > 1006 ? 16 : 0}>
+            <Border
+              radial
+              left
+              right
+              color="#111"
+              width={width > 1006 ? 16 : 0}
+            >
               <Main>
                 <Paper>
                   <Box padding="64px 16px">{children}</Box>
