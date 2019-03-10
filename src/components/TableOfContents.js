@@ -38,7 +38,7 @@ const TableOfContents = ({ post: { tableOfContents, slug } }) => (
           current: {
             fontWeight: 600,
           },
-          color: '#111',
+          color: '#999',
         },
       }}
     >

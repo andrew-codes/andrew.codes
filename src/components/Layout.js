@@ -14,7 +14,14 @@ const Layout = ({ children }) => (
     <Fragment>
       <WithRenderer>
         {renderer => {
-          renderer.renderStatic({ margin: 0 }, 'body')
+          renderer.renderStatic(
+            {
+              margin: 0,
+              color: '#333',
+              fontFamily: '"Helvetica Neue",arial,sans-serif',
+            },
+            'body',
+          )
         }}
       </WithRenderer>
       <Seo />
