@@ -5,6 +5,9 @@ import { Paper } from './Paper'
 import Border from './Border'
 import { Box } from './Box'
 import WindowResizeListener from './WindowResizeListener'
+import createComponent from './StyleProvider/createComponent'
+
+const Main = createComponent(() => ({ width: '100%' }), 'main')
 
 const Layout = ({ children }) => (
   <StyleProvider>
@@ -19,11 +22,11 @@ const Layout = ({ children }) => (
         <WindowResizeListener>
           {({ width }) => (
             <Border radial left right width={width > 1006 ? 16 : 0}>
-              <main>
+              <Main>
                 <Paper>
                   <Box padding={16}>{children}</Box>
                 </Paper>
-              </main>
+              </Main>
             </Border>
           )}
         </WindowResizeListener>

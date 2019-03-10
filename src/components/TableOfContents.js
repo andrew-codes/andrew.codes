@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+import { isEmpty } from 'lodash'
 import Link from './Link'
 import { StyleProvider, createComponent, ThemeProvider } from './StyleProvider'
 import Clamp from './Clamp'
@@ -14,7 +15,7 @@ const Headings = createComponent(
 
 const Heading = ({ items, url, title, level, slug }) => {
   return (
-    <Fragment>
+    <nav>
       {url && (
         <Headings level={level}>
           <Clamp>
@@ -26,7 +27,7 @@ const Heading = ({ items, url, title, level, slug }) => {
         items.map((item, index) => (
           <Heading key={index} {...item} level={level + 1} slug={slug} />
         ))}
-    </Fragment>
+    </nav>
   )
 }
 
@@ -46,7 +47,7 @@ const TableOfContents = ({ post: { tableOfContents, slug } }) => (
       <SpacedGroup direction="vertical" xs={4}>
         <Heading
           level={-1}
-          items={tableOfContents.items.concat([
+          items={(tableOfContents.items || []).concat([
             { url: '#comments', title: 'Discussion' },
           ])}
           slug={slug}
