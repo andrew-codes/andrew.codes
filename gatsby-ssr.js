@@ -17,14 +17,16 @@ module.exports.replaceRenderer = ({
   const styleMarkup = renderToMarkup(renderer)
   replaceBodyHTMLString(bodyHTML)
   const hydrationString = hydrationExp.exec(styleMarkup)
-  const hydrationId = hydrationString[0].replace(hydrationReplacementExp, '')
-  const styles = styleMarkup.replace(replaceStyleTagExp, '')
-  const Styles = createElement('style', {
-    type: 'text/css',
-    'data-fela-type': 'RULE',
-    'data-fela-id': '@versionone/components',
-    'data-fela-rehydration': hydrationId,
-    dangerouslySetInnerHTML: { __html: styles },
-  })
-  setHeadComponents([Styles])
+  if (hydrationString) {
+    const hydrationId = hydrationString[0].replace(hydrationReplacementExp, '')
+    const styles = styleMarkup.replace(replaceStyleTagExp, '')
+    const Styles = createElement('style', {
+      type: 'text/css',
+      'data-fela-type': 'RULE',
+      'data-fela-id': '@versionone/components',
+      'data-fela-rehydration': hydrationId,
+      dangerouslySetInnerHTML: { __html: styles },
+    })
+    setHeadComponents([Styles])
+  }
 }

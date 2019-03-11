@@ -5,15 +5,15 @@ class WindowResizeListener extends Component {
   constructor() {
     super()
     this.state = {
-      height: window.innerHeight,
-      width: window.innerWidth,
+      height: typeof window !== 'undefined' ? window.innerHeight : 0,
+      width: typeof window !== 'undefined' ? window.innerWidth : 0,
     }
   }
   render() {
     const { children } = this.props
     return (
       <EventListener
-        target={window}
+        target={typeof window !== 'undefined' ? window : 'window'}
         onResize={evt =>
           this.setState({
             height: evt.target.innerHeight,
