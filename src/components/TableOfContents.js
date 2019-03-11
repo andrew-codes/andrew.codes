@@ -38,12 +38,12 @@ const TableOfContents = ({ post: { tableOfContents, slug } }) => (
           current: {
             fontWeight: 600,
           },
-          color: '#999',
+          color: '#666',
         },
       }}
     >
       <nav>
-        <SpacedGroup direction="vertical">
+        <SpacedGroup direction="vertical" xs={4}>
           <Heading
             level={-1}
             items={[
