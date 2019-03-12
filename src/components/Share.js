@@ -37,7 +37,11 @@ const Share = ({ direction, post }) => (
       return (
         <aside>
           <SpacedGroup direction={direction}>
-            <TwitterShareButton via={url} title={post.title}>
+            <TwitterShareButton
+              url={url}
+              via="@andrew-codes"
+              title={post.title}
+            >
               <TwitterIcon round size={iconSize} />
             </TwitterShareButton>
             <LinkedinShareButton
@@ -50,7 +54,7 @@ const Share = ({ direction, post }) => (
             <RedditShareButton url={url} title={post.title}>
               <RedditIcon round size={iconSize} />
             </RedditShareButton>
-            <FacebookShareButton quote={post.title}>
+            <FacebookShareButton url={url} quote={post.title}>
               <FacebookIcon round size={iconSize} />
             </FacebookShareButton>
             <TelegramShareButton url={url}>
