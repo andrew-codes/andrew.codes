@@ -1,17 +1,13 @@
 import PropTypes from 'prop-types'
-import React, { createContext } from 'react'
+import React, { useContext } from 'react'
 import mergeThemes from './mergeThemes'
+import { ThemeProvider as FelaThemeProvider, ThemeContext } from 'react-fela'
 
-const { Consumer, Provider } = createContext()
-
-const ThemeProvider = ({ children, theme }) => (
-  <Consumer>
-    {contextTheme => {
-      const mergedTheme = mergeThemes(contextTheme, theme)
-      return <Provider value={mergedTheme}>{children}</Provider>
-    }}
-  </Consumer>
-)
+const ThemeProvider = ({ children, theme }) => {
+  const contextTheme = useContext(ThemeContext)
+  const mergedTheme = mergeThemes(contextTheme, theme)
+  return <FelaThemeProvider theme={mergedTheme}>{children}</FelaThemeProvider>
+}
 ThemeProvider.propTypes = {
   children: PropTypes.node,
   /**
@@ -21,5 +17,8 @@ ThemeProvider.propTypes = {
   theme: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 }
 
-export const WithTheme = Consumer
+export const WithTheme = ({ children }) => {
+  const contextTheme = useContext(ThemeContext)
+  return children(contextTheme)
+}
 export { ThemeProvider }

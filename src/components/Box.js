@@ -1,7 +1,7 @@
 import React from 'react'
 import { createComponent, StyleProvider } from './StyleProvider'
 
-const BoxImpl = createComponent(styles => styles, 'div')
+const BoxImpl = createComponent(({ theme, ...styles }) => styles, 'div')
 
 export const Box = props => (
   <StyleProvider>
