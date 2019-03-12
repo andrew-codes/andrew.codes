@@ -4,6 +4,7 @@ import Seo from './Seo'
 import { Paper } from './Paper'
 import { kebabCase } from '../../node_modules/change-case/change-case'
 import Code from './Code'
+import Typography from './Typography'
 
 const Post = ({ title, body }) => (
   <article>
@@ -28,58 +29,61 @@ const Post = ({ title, body }) => (
           },
           h1: ({ children }) => {
             return (
-              <h1 id={kebabCase(children)}>
+              <Typography as="h1" id={kebabCase(children)}>
                 <a name={kebabCase(children.replace(/['"]/g, ''))}>
                   {children}
                 </a>
-              </h1>
+              </Typography>
             )
           },
           h2: ({ children }) => {
             return (
-              <h2 id={kebabCase(children)}>
+              <Typography as="h2" id={kebabCase(children)}>
                 <a name={kebabCase(children.replace(/['"]/g, ''))}>
                   {children}
                 </a>
-              </h2>
+              </Typography>
             )
           },
           h3: ({ children }) => {
             return (
-              <h3 id={kebabCase(children)}>
+              <Typography as="h3" id={kebabCase(children)}>
                 <a name={kebabCase(children.replace(/['"]/g, ''))}>
                   {children}
                 </a>
-              </h3>
+              </Typography>
             )
           },
           h4: ({ children }) => {
             return (
-              <h4 id={kebabCase(children)}>
+              <Typography as="h4" id={kebabCase(children)}>
                 <a name={kebabCase(children.replace(/['"]/g, ''))}>
                   {children}
                 </a>
-              </h4>
+              </Typography>
             )
           },
           h5: ({ children }) => {
             return (
-              <h5 id={kebabCase(children)}>
+              <Typography as="h5" id={kebabCase(children)}>
                 <a name={kebabCase(children.replace(/['"]/g, ''))}>
                   {children}
                 </a>
-              </h5>
+              </Typography>
             )
           },
           h6: ({ children }) => {
             return (
-              <h6 id={kebabCase(children)}>
+              <Typography as="h6" id={kebabCase(children)}>
                 <a name={kebabCase(children.replace(/['"]/g, ''))}>
                   {children}
                 </a>
-              </h6>
+              </Typography>
             )
           },
+          blockquote: ({ children }) => (
+            <Typography as="blockquote">{children}</Typography>
+          ),
         }}
       >
         {body}

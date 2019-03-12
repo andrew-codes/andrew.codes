@@ -3,10 +3,23 @@ import { Link } from 'gatsby'
 import { Location } from '@reach/router'
 import { StyleProvider, createComponent, styleUtils } from './StyleProvider'
 
+const linkStyles = ({ theme }) => ({
+  backgroundColor: 'transparent',
+  backgroundImage:
+    'linear-gradient(to right,rgba(0,0,0,.84) 100%,rgba(0,0,0,0) 0)',
+  backgroundImage: 'linear-gradient(to right,currentColor 100%,currentColor 0)',
+  backgroundRepeat: 'repeat-x',
+  backgroundSize: '1px 1px',
+  backgroundPosition: '0 1.05em',
+  backgroundPosition: '0 calc(1em + 1px)',
+  outline: 0,
+  textDecoration: 'none',
+  ...theme.Link,
+})
+
 const LinkImpl = createComponent(
   ({ isCurrent, theme }) => ({
-    color: theme.Link.color,
-    textDecoration: 'none',
+    ...linkStyles({ theme }),
     ...styleUtils.conditionalStyles(isCurrent, theme.Link.current),
   }),
   Link,
@@ -14,8 +27,7 @@ const LinkImpl = createComponent(
 )
 const Anchor = createComponent(
   ({ theme }) => ({
-    color: theme.Link.color,
-    textDecoration: 'none',
+    ...linkStyles({ theme }),
   }),
   'a',
   ['href'],

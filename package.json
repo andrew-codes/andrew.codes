@@ -39,7 +39,6 @@
     "gatsby-remark-responsive-iframe": "^2.0.9",
     "gatsby-source-filesystem": "^2.0.23",
     "lodash": "^4.17.11",
-    "material-design-icons": "^3.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",

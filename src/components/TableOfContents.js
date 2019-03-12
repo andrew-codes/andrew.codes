@@ -6,6 +6,9 @@ import { SpacedGroup } from './SpacedGroup'
 
 const Headings = createComponent(
   ({ level }) => ({
+    fontFamily:
+      'medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif!important',
+    fontSize: 14,
     paddingLeft: level * 16,
     width: 200,
   }),
@@ -39,6 +42,7 @@ const TableOfContents = ({ post: { tableOfContents, slug } }) => (
             fontWeight: 600,
           },
           color: '#666',
+          background: 'none',
         },
       }}
     >
