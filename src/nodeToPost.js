@@ -6,7 +6,7 @@ export default ({ node }) => ({
     name: tag,
     slug: node.fields.tagSlugs[index],
   })),
-  body: node.code ? node.code.body : '',
+  body: node.body,
   excerpt: node.excerpt,
   tableOfContents: node.tableOfContents,
 })

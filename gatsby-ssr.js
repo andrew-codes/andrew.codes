@@ -23,7 +23,7 @@ module.exports.replaceRenderer = ({
     const Styles = createElement('style', {
       type: 'text/css',
       'data-fela-type': 'RULE',
-      'data-fela-id': '@versionone/components',
+      'data-fela-id': '@andrew-codes/andrew.codes',
       'data-fela-rehydration': hydrationId,
       dangerouslySetInnerHTML: { __html: styles },
     })

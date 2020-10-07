@@ -7,7 +7,7 @@ const siteMetadata = {
   description: 'A professional profile, resume, and blog of Andrew Smith.',
   siteUrl:
     process.env.NODE_ENV === 'development'
-      ? 'localhost'
+      ? 'http://localhost'
       : 'https://andrew.codes',
   disqus: {
     shortName: 'andrew-codes',
@@ -42,7 +42,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-mdx`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: ['.mdx', '.md'],
         gatsbyRemarkPlugins: [

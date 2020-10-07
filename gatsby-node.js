@@ -25,7 +25,7 @@ exports.onCreateNode = ({ node, actions }) => {
     }
     if (node.frontmatter && !isEmpty(node.frontmatter.tags)) {
       const tagSlugs = node.frontmatter.tags.map(
-        tag => `/tag/${kebabCase(tag)}`,
+        (tag) => `/tag/${kebabCase(tag)}`,
       )
       createNodeField({
         name: 'tagSlugs',
@@ -71,7 +71,7 @@ exports.createPages = ({ graphql, actions }) => {
             }
           }
         `,
-      ).then(result => {
+      ).then((result) => {
         if (result.errors) {
           /* eslint no-console: "off" */
           console.log(result.errors)
@@ -80,9 +80,9 @@ exports.createPages = ({ graphql, actions }) => {
 
         const tagSet = new Set()
         const categorySet = new Set()
-        result.data.allMdx.edges.forEach(edge => {
+        result.data.allMdx.edges.forEach((edge) => {
           if (edge.node.frontmatter.tags) {
-            edge.node.frontmatter.tags.forEach(tag => {
+            edge.node.frontmatter.tags.forEach((tag) => {
               tagSet.add(tag)
             })
           }
@@ -101,7 +101,7 @@ exports.createPages = ({ graphql, actions }) => {
         })
 
         const tagList = Array.from(tagSet)
-        tagList.forEach(tag => {
+        tagList.forEach((tag) => {
           createPage({
             path: `/tag/${kebabCase(tag)}/`,
             component: tagPage,

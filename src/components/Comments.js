@@ -1,6 +1,6 @@
 import React from 'react'
 import { DiscussionEmbed, CommentCount } from 'disqus-react'
-import { StaticQuery } from 'gatsby'
+import { graphql, StaticQuery } from 'gatsby'
 
 const siteMetadataQuery = graphql`
   query CommentsQuery {

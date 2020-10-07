@@ -1,4 +1,4 @@
-import MDXRenderer from 'gatsby-mdx/mdx-renderer'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 import React from 'react'
 import Seo from './Seo'
 import { Paper } from './Paper'

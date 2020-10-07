@@ -2,7 +2,7 @@ import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { isEmpty } from 'lodash'
-import { StaticQuery, graphql } from 'gatsby'
+import { graphql, StaticQuery } from 'gatsby'
 import favicon from '../images/logo-48.png'
 
 const Seo = ({ description, lang, meta, keywords, title, cover, url }) => (

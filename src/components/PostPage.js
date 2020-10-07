@@ -88,9 +88,7 @@ export const pageQuery = graphql`
           text
         }
       }
-      code {
-        body
-      }
+      body
       tableOfContents
     }
   }

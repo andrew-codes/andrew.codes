@@ -11,7 +11,7 @@ import {
   TwitterIcon,
   TwitterShareButton,
 } from 'react-share'
-import { StaticQuery } from 'gatsby'
+import { graphql, StaticQuery } from 'gatsby'
 import { SpacedGroup } from './SpacedGroup'
 
 const siteMetadataQuery = graphql`
