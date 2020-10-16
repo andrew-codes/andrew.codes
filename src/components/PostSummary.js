@@ -53,6 +53,7 @@ const ReadTime = styled.span`
 `
 
 const PostSummary = ({
+  color,
   featuredImage,
   index,
   date,
@@ -61,31 +62,26 @@ const PostSummary = ({
   slug,
   tags,
   title,
-}) => {
-  BackgroundColors.set(0)
-  const background = BackgroundColors.nextTimes(index)
-  const articleSlug = `${slug}?colorIndex=${BackgroundColors.getCurrentIndex()}`
-
-  return (
-    <Article background={background}>
-      <LinkOverlay aria-label={title} to={articleSlug} />
-      <ArticleTitle>
-        <Link to={articleSlug}>{title}</Link>
-      </ArticleTitle>
-      <Author>
+}) => (
+  <Article background={color}>
+    <LinkOverlay aria-label={title} to={slug} />
+    <ArticleTitle>
+      <Link to={slug}>{title}</Link>
+    </ArticleTitle>
+    <Author>
+      <Typography as="span" variant="small">
+        by{' '}
+      </Typography>
+      <AuthorName>Andrew Smith</AuthorName>
+      <time dateTime={date.toString()}>
         <Typography as="span" variant="small">
-          by{' '}
+          {' '}
+          {approximateTime(new Date(date))} ago
         </Typography>
-        <AuthorName>Andrew Smith</AuthorName>
-        <time dateTime={date.toString()}>
-          <Typography as="span" variant="small">
-            {' '}
-            {approximateTime(new Date(date))} ago
-          </Typography>
-        </time>
-      </Author>
-      <ReadTime>{readingTime}</ReadTime>
-    </Article>
-  )
-}
+      </time>
+    </Author>
+    <ReadTime>{readingTime}</ReadTime>
+  </Article>
+)
+
 export default PostSummary

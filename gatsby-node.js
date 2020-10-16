@@ -1,6 +1,7 @@
 const path = require('path')
 const readingTime = require('reading-time')
 const { isEmpty, kebabCase } = require('lodash')
+const BackgroundColors = require('./src/utilities/BackgroundColors')
 
 exports.onCreateNode = ({ node, actions }) => {
   const { createNodeField } = actions
@@ -40,6 +41,12 @@ exports.onCreateNode = ({ node, actions }) => {
         value: `/category/${kebabCase(node.frontmatter.category)}`,
       })
     }
+
+    createNodeField({
+      name: 'color',
+      node,
+      value: BackgroundColors.next(),
+    })
   }
 }
 

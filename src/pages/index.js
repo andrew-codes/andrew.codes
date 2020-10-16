@@ -18,6 +18,7 @@ export const pageQuery = graphql`
         node {
           excerpt
           fields {
+            color
             categorySlug
             readingTime {
               text

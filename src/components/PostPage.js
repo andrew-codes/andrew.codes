@@ -59,26 +59,21 @@ const CommentsLayout = styled.div`
 const PostPage = ({ data: { allMdx }, pageContext: { id } }) => {
   const node = allMdx.edges.find((edge) => edge.node.id === id)
   const post = nodeToPost({ node: node.node })
-  const location = useLocation()
-  const query = querystring.parse(location.search.replace(/^\?/, ''))
-  const background = BackgroundColors.at(query.colorIndex)
-  const newerArticleBackground = BackgroundColors.previous(background)
-  const olderArticleBackground = BackgroundColors.next(background)
 
   return (
     <Layout>
-      <Post background={background} {...post} />
+      <Post {...post} />
       <Aside>
         <Articles>
           {node.previous && (
-            <NewerArticle background={newerArticleBackground}>
+            <NewerArticle background={node.previous.fields.color}>
               <LinkOverlay to={node.previous.fields.slug} />
               <Typography variant="small">Newer post</Typography>
               <ArticleTitle>{node.previous.frontmatter.title}</ArticleTitle>
             </NewerArticle>
           )}
           {node.next && (
-            <OlderArticle background={olderArticleBackground}>
+            <OlderArticle background={node.next.fields.color}>
               <LinkOverlay to={node.next.fields.slug} />{' '}
               <Typography variant="small">Older post</Typography>
               <ArticleTitle>{node.next.frontmatter.title}</ArticleTitle>
@@ -101,6 +96,7 @@ export const pageQuery = graphql`
       edges {
         next {
           fields {
+            color
             slug
           }
           frontmatter {
@@ -109,6 +105,7 @@ export const pageQuery = graphql`
         }
         previous {
           fields {
+            color
             slug
           }
           frontmatter {
@@ -123,6 +120,7 @@ export const pageQuery = graphql`
             tags
           }
           fields {
+            color
             slug
             tagSlugs
             readingTime {

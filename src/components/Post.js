@@ -61,7 +61,9 @@ const Footer = styled.footer`
   display: flex;
   flex-direction: row;
   margin: 0 auto;
-  z-index: 2;
+  > * {
+    z-index: 2;
+  }
 `
 const Share = styled.div`
   min-width: 264px;
@@ -94,12 +96,12 @@ const Blockquote = styled.blockquote`
   }
 `
 
-const Post = ({ background, date, body, readingTime, title }) => {
+const Post = ({ color, date, body, readingTime, title }) => {
   return (
     <Article>
       <Seo title={title} />
       <div>
-        <HeaderLayout background={background}>
+        <HeaderLayout background={color}>
           <Header>
             <ArticleTitle>{title}</ArticleTitle>
             <div>

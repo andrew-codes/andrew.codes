@@ -1,4 +1,4 @@
-import { first, last } from 'lodash'
+const { first, last } = require('lodash')
 
 class OrderedLinkedList {
   constructor(items = []) {
@@ -62,4 +62,4 @@ const BackgroundColors = new OrderedLinkedList([
   'linear-gradient(45deg, #327ae7, #6bd0ff)',
 ])
 
-export default BackgroundColors
+module.exports = BackgroundColors
