@@ -18,7 +18,7 @@ const Article = styled.article`
 
 const Aside = styled.aside`
   width: calc(100% - 85px - 85px);
-  margin: 0 auto;
+  margin: 0 auto 96px;
   background: rgb(40, 41, 46);
   border-radius: 8px;
   display: flex;
