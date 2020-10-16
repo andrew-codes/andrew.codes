@@ -1,4 +1,3 @@
-import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import PostList from '../components/PostList'
@@ -29,7 +28,9 @@ export const pageQuery = graphql`
             tagSlugs
           }
           frontmatter {
-            cover
+            featuredImage {
+              publicURL
+            }
             date
             tags
             title

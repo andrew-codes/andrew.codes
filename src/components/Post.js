@@ -1,94 +1,206 @@
+import approximateTime from 'approximate-time'
+import styled from 'styled-components'
+import { MDXProvider } from '@mdx-js/react'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
-import React from 'react'
+import AuthorName from './AuthorName'
+import BackgroundColors from '../utilities/BackgroundColors'
+import Link from './Link'
 import Seo from './Seo'
-import { Paper } from './Paper'
-import { kebabCase } from '../../node_modules/change-case/change-case'
-import Code from './Code'
 import Typography from './Typography'
+import { kebabCase } from '../../node_modules/change-case/change-case'
 
-const Post = ({ title, body }) => (
-  <article>
-    <Seo title={title} />
-    <Paper>
-      <header>
-        <h1>{title}</h1>
-      </header>
-      <MDXRenderer
-        components={{
-          pre: ({ children }) => children,
-          code: ({ children, className, metastring }) => {
-            const language = className
-              ? className.replace('language-', '')
-              : null
+const HeaderLayout = styled.div`
+  background: ${({ background }) => background};
+  border-radius: 8px;
+  display: flex;
+  width: calc(100% - 170px);
+  min-height: 600px;
+  margin: 0 85px;
+  align-items: center;
 
-            return (
-              <Code language={language} highlightLines={metastring}>
-                {children}
-              </Code>
-            )
-          },
-          h1: ({ children }) => {
-            return (
-              <Typography as="h1" id={kebabCase(children)}>
-                <a name={kebabCase(children.replace(/['"]/g, ''))}>
-                  {children}
-                </a>
+  > * {
+    padding: 24px;
+  }
+`
+
+const Header = styled.header`
+  display: flex;
+  width: 500px;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 96px;
+`
+
+const ArticleTitle = styled.h1`
+  font-size: 54px;
+`
+
+const ReadTime = styled.span`
+  display: inline-block;
+  margin-left: 24px;
+`
+
+const Article = styled.article`
+  position: relative;
+`
+
+const ArticleBody = styled.div`
+  background-color: rgb(34, 35, 39);
+  border-radius: 28px;
+  padding: 32px 85px 120px;
+  margin: -96px auto 0 auto;
+  max-width: 1200px;
+`
+
+const Footer = styled.footer`
+  position: absolute;
+  bottom: -28px;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+`
+const Share = styled.div`
+  min-width: 264px;
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  border-radius: 28px;
+  background-color: rgb(34, 35, 39);
+  padding: 16px;
+`
+
+const Paragraph = styled.p`
+  line-height: 32px;
+  font-size: 18px;
+  margin: 0 0 48px;
+`
+
+const Blockquote = styled.blockquote`
+  border-left: 5px solid #414242;
+  margin: 0 0 48px -55px;
+  padding: 20px 50px;
+
+  > p {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    line-height: 1.65;
+    font-weight: 200;
+  }
+`
+
+const Post = ({ background, date, body, readingTime, title }) => {
+  return (
+    <Article>
+      <Seo title={title} />
+      <div>
+        <HeaderLayout background={background}>
+          <Header>
+            <ArticleTitle>{title}</ArticleTitle>
+            <div>
+              <Typography as="span" variant="small">
+                by
               </Typography>
-            )
-          },
-          h2: ({ children }) => {
-            return (
-              <Typography as="h2" id={kebabCase(children)}>
-                <a name={kebabCase(children.replace(/['"]/g, ''))}>
-                  {children}
-                </a>
+              <AuthorName> Andrew Smith</AuthorName>
+              <Typography as="time" variant="small" dateTime={date.toString()}>
+                {' '}
+                {approximateTime(new Date(date))} ago
               </Typography>
-            )
-          },
-          h3: ({ children }) => {
-            return (
-              <Typography as="h3" id={kebabCase(children)}>
-                <a name={kebabCase(children.replace(/['"]/g, ''))}>
-                  {children}
-                </a>
+              <Typography as={ReadTime} variant="small">
+                {' '}
+                {readingTime}
               </Typography>
-            )
-          },
-          h4: ({ children }) => {
-            return (
-              <Typography as="h4" id={kebabCase(children)}>
-                <a name={kebabCase(children.replace(/['"]/g, ''))}>
-                  {children}
-                </a>
-              </Typography>
-            )
-          },
-          h5: ({ children }) => {
-            return (
-              <Typography as="h5" id={kebabCase(children)}>
-                <a name={kebabCase(children.replace(/['"]/g, ''))}>
-                  {children}
-                </a>
-              </Typography>
-            )
-          },
-          h6: ({ children }) => {
-            return (
-              <Typography as="h6" id={kebabCase(children)}>
-                <a name={kebabCase(children.replace(/['"]/g, ''))}>
-                  {children}
-                </a>
-              </Typography>
-            )
-          },
-          blockquote: ({ children }) => (
-            <Typography as="blockquote">{children}</Typography>
-          ),
-        }}
-      >
-        {body}
-      </MDXRenderer>
-    </Paper>
-  </article>
-)
+            </div>
+          </Header>
+        </HeaderLayout>
+        <ArticleBody>
+          <MDXProvider
+            components={{
+              a: ({ ...rest }) => <Link {...rest} />,
+              p: ({ ...rest }) => <Typography as={Paragraph} {...rest} />,
+              pre: ({ children }) => children,
+              code: ({ children, className, metastring }) => {
+                const language = className
+                  ? className.replace('language-', '')
+                  : null
+
+                return (
+                  <Code language={language} highlightLines={metastring}>
+                    {children}
+                  </Code>
+                )
+              },
+              h1: ({ children }) => {
+                return (
+                  <Typography as="h1" id={kebabCase(children)}>
+                    <a name={kebabCase(children.replace(/['"]/g, ''))}>
+                      {children}
+                    </a>
+                  </Typography>
+                )
+              },
+              h2: ({ children }) => {
+                return (
+                  <Typography as="h2" id={kebabCase(children)}>
+                    <a name={kebabCase(children.replace(/['"]/g, ''))}>
+                      {children}
+                    </a>
+                  </Typography>
+                )
+              },
+              h3: ({ children }) => {
+                return (
+                  <Typography as="h3" id={kebabCase(children)}>
+                    <a name={kebabCase(children.replace(/['"]/g, ''))}>
+                      {children}
+                    </a>
+                  </Typography>
+                )
+              },
+              h4: ({ children }) => {
+                return (
+                  <Typography as="h4" id={kebabCase(children)}>
+                    <a name={kebabCase(children.replace(/['"]/g, ''))}>
+                      {children}
+                    </a>
+                  </Typography>
+                )
+              },
+              h5: ({ children }) => {
+                return (
+                  <Typography as="h5" id={kebabCase(children)}>
+                    <a name={kebabCase(children.replace(/['"]/g, ''))}>
+                      {children}
+                    </a>
+                  </Typography>
+                )
+              },
+              h6: ({ children }) => {
+                return (
+                  <Typography as="h6" id={kebabCase(children)}>
+                    <a name={kebabCase(children.replace(/['"]/g, ''))}>
+                      {children}
+                    </a>
+                  </Typography>
+                )
+              },
+              blockquote: ({ children }) => (
+                <Typography as={Blockquote}>{children}</Typography>
+              ),
+            }}
+          >
+            <MDXRenderer>{body}</MDXRenderer>
+          </MDXProvider>
+        </ArticleBody>
+        <Footer>
+          <Share>Twitter</Share>
+        </Footer>
+      </div>
+    </Article>
+  )
+}
 export default Post

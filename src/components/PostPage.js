@@ -1,71 +1,88 @@
-import React from 'react'
+import querystring from 'querystring'
+import { useLocation } from '@reach/router'
+import styled from 'styled-components'
 import { graphql } from 'gatsby'
-import { Manager, Reference, Popper } from 'react-popper'
+import BackgroundColors from '../utilities/BackgroundColors'
+import Comments from './Comments'
 import Layout from './Layout'
 import nodeToPost from '../nodeToPost'
 import Post from './Post'
-import Share from './Share'
-import { PortalContainer } from './PortalContainer'
-import { Box, FixedBox } from './Box'
-import Comments from './Comments'
-import TableOfContents from './TableOfContents'
-import WindowResizeListener from './WindowResizeListener'
+import Typography from './Typography'
 
-const PostPage = ({ data: { mdx } }) => {
-  const post = nodeToPost({ node: mdx })
+const Article = styled.article`
+  padding: 32px;
+  flex: 1;
+  background: ${({ background }) => background};
+`
+
+const Aside = styled.aside`
+  width: calc(100% - 85px - 85px);
+  margin: 0 auto;
+  background: rgb(40, 41, 46);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+`
+
+const Articles = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+
+const NewerArticle = styled(Article)`
+  border-radius: 8px 0 0;
+`
+
+const OlderArticle = styled(Article)`
+  text-align: right;
+  border-radius: 0 8px 0 0;
+`
+
+const ArticleTitle = styled.h2`
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 24px 0;
+  position: relative;
+  > a {
+    text-decoration: none !important;
+  }
+`
+
+const CommentsLayout = styled.div`
+  padding: 32px;
+`
+
+const PostPage = ({ data: { allMdx }, pageContext: { id } }) => {
+  const node = allMdx.edges.find((edge) => edge.node.id === id)
+  const post = nodeToPost({ node: node.node })
+  const location = useLocation()
+  const query = querystring.parse(location.search.replace(/^\?/, ''))
+  const background = BackgroundColors.at(query.colorIndex)
+  const newerArticleBackground = BackgroundColors.previous(background)
+  const olderArticleBackground = BackgroundColors.next(background)
 
   return (
     <Layout>
-      <Manager>
-        <Reference>
-          {({ ref }) => (
-            <div ref={ref}>
-              <Post default {...post} />
-              <footer>
-                <Box>
-                  <h2 id="comments">Discussion</h2>
-                  <Comments post={post} />
-                </Box>
-              </footer>
-            </div>
+      <Post background={background} {...post} />
+      <Aside>
+        <Articles>
+          {node.previous && (
+            <NewerArticle background={newerArticleBackground}>
+              <Typography variant="small">Newer post</Typography>
+              <ArticleTitle>{node.previous.frontmatter.title}</ArticleTitle>
+            </NewerArticle>
           )}
-        </Reference>
-        <Popper placement="right-start">
-          {({ ref, style, placement }) => (
-            <WindowResizeListener>
-              {({ width }) => (
-                <PortalContainer mounted={width >= 1100}>
-                  <FixedBox>
-                    <div ref={ref} style={style} data-placement={placement}>
-                      <Box right={-72} position="absolute" top={48}>
-                        <Share post={post} />
-                      </Box>
-                    </div>
-                  </FixedBox>
-                </PortalContainer>
-              )}
-            </WindowResizeListener>
+          {node.next && (
+            <OlderArticle background={olderArticleBackground}>
+              <Typography variant="small">Older post</Typography>
+              <ArticleTitle>{node.next.frontmatter.title}</ArticleTitle>
+            </OlderArticle>
           )}
-        </Popper>
-
-        <Popper placement="left-start">
-          {({ ref, style, placement }) => (
-            <WindowResizeListener>
-              {({ width }) => (
-                <PortalContainer mounted={width >= 1420}>
-                  <FixedBox top={0} bottom={0}>
-                    <div ref={ref} style={style} data-placement={placement}>
-                      <Box left={-240} position="absolute" top={48} bottom={0}>
-                        <TableOfContents post={post} />
-                      </Box>
-                    </div>
-                  </FixedBox>
-                </PortalContainer>
-              )}
-            </WindowResizeListener>
-          )}
-        </Popper>
-      </Manager>
+        </Articles>
+        <CommentsLayout>
+          <Comments post={post} />
+        </CommentsLayout>
+      </Aside>
     </Layout>
   )
 }
@@ -73,23 +90,43 @@ const PostPage = ({ data: { mdx } }) => {
 export default PostPage
 
 export const pageQuery = graphql`
-  query PostById($id: String!) {
-    mdx(id: { eq: $id }) {
-      frontmatter {
-        title
-        cover
-        date
-        tags
-      }
-      fields {
-        slug
-        tagSlugs
-        readingTime {
-          text
+  query Posts {
+    allMdx(limit: 2000, sort: { fields: [frontmatter___date], order: DESC }) {
+      edges {
+        next {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+          }
+        }
+        previous {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+          }
+        }
+        node {
+          id
+          frontmatter {
+            title
+            date
+            tags
+          }
+          fields {
+            slug
+            tagSlugs
+            readingTime {
+              text
+            }
+          }
+          body
+          tableOfContents
         }
       }
-      body
-      tableOfContents
     }
   }
 `

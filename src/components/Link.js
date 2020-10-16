@@ -1,83 +1,46 @@
-import React, { Component, Fragment } from 'react'
+import styled from 'styled-components'
 import { Link } from 'gatsby'
 import { Location } from '@reach/router'
-import { StyleProvider, createComponent, styleUtils } from './StyleProvider'
 
-const linkStyles = ({ theme }) => {
-  const { current, ...rest } = theme.Link
-  return {
-    backgroundColor: 'transparent',
-    backgroundImage:
-      'linear-gradient(to right,rgba(0,0,0,.84) 100%,rgba(0,0,0,0) 0)',
-    backgroundImage:
-      'linear-gradient(to right,currentColor 100%,currentColor 0)',
-    backgroundRepeat: 'repeat-x',
-    backgroundSize: '1px 1px',
-    backgroundPosition: '0 1.05em',
-    backgroundPosition: '0 calc(1em + 1px)',
-    outline: 0,
-    textDecoration: 'none',
-    ...rest,
-  }
-}
+const sharedStyles = () => `
+  color: white;
+`
 
-const LinkImpl = createComponent(
-  ({ isCurrent, theme }) => ({
-    ...linkStyles({ theme }),
-    ...styleUtils.conditionalStyles(isCurrent, theme.Link.current),
-  }),
-  Link,
-  ['to'],
-)
-const Anchor = createComponent(
-  ({ theme }) => ({
-    ...linkStyles({ theme }),
-  }),
-  'a',
-  ['href'],
-)
-const AnchorLink = ({ children, to, ...other }) => (
+const InternalLink = styled(Link)`
+  ${sharedStyles}
+`
+const Anchor = styled.a`
+  ${sharedStyles}
+`
+const ExternalLink = ({ children, to, ...other }) => (
   <Anchor href={to} {...other}>
     {children}
   </Anchor>
 )
 
-class StyledLink extends Component {
-  constructor() {
-    super()
-    this.state = {
-      isCurrent: false,
-    }
-  }
+const isExternalLink = new RegExp(/^https?/)
 
-  render() {
-    const { children, to } = this.props
-    const isRouteMatch = new RegExp(`${to}$`)
-    const isExternalLink = new RegExp(/^https?/)
+const ApplicationLink = ({ children, to, ...rest }) => {
+  const isRouteMatch = new RegExp(`${to}$`)
 
-    return (
-      <StyleProvider>
-        <Fragment>
-          {isExternalLink.test(to) && (
-            <AnchorLink to={to}>{children}</AnchorLink>
-          )}
-          {!isExternalLink.test(to) && (
-            <Location>
-              {({ location }) => {
-                return (
-                  <LinkImpl
-                    to={to}
-                    isCurrent={isRouteMatch.test(location.href)}
-                  >
-                    {children}
-                  </LinkImpl>
-                )
-              }}
-            </Location>
-          )}
-        </Fragment>
-      </StyleProvider>
-    )
-  }
+  return isExternalLink.test(to) ? (
+    <ExternalLink to={to} {...rest}>
+      {children}
+    </ExternalLink>
+  ) : (
+    <Location>
+      {({ location }) => {
+        return (
+          <InternalLink
+            to={to}
+            isCurrent={isRouteMatch.test(location.href)}
+            {...rest}
+          >
+            {children}
+          </InternalLink>
+        )
+      }}
+    </Location>
+  )
 }
-export default StyledLink
+export default ApplicationLink

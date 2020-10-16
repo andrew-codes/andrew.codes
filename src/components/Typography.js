@@ -1,19 +1,13 @@
-import React, { Component } from 'react'
-import createComponent from './StyleProvider/createComponent'
+import styled from 'styled-components'
 
-class Typography extends Component {
-  constructor(props) {
-    super(props)
-    this.Component = createComponent(
-      ({ as, theme }) => ({
-        ...theme.Typography[as],
-      }),
-      props.as,
-    )
-  }
-  render() {
-    const { as, children } = this.props
-    return <this.Component as={as}>{children}</this.Component>
-  }
+const Typography = ({ as, ...rest }) => {
+  const Root = styled(as)`
+    position: relative;
+    font-size: ${({ variant }) => (variant === 'small' ? '14px' : undefined)};
+  `
+  return <Root {...rest} />
+}
+Typography.defaultProps = {
+  as: 'span',
 }
 export default Typography

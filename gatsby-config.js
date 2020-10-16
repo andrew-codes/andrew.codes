@@ -27,6 +27,7 @@ module.exports = {
   siteMetadata,
   plugins: [
     'gatsby-plugin-react-helmet',
+    'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -98,6 +99,7 @@ module.exports = {
       },
     },
     'gatsby-plugin-offline',
+    'gatsby-plugin-styled-components',
     // {
     //   resolve: 'gatsby-plugin-feed',
     //   options: {

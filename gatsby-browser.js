@@ -1,6 +1,3 @@
-const { getRenderer } = require('./src/components/StyleProvider')
-const { rehydrate } = require('fela-dom')
-
 module.exports.onRouteUpdate = ({ location }) => {
   const mainSelector = document.querySelector('main')
   if (!mainSelector) {
@@ -19,10 +16,4 @@ module.exports.onRouteUpdate = ({ location }) => {
       window.scrollTo(0, scrollToValue)
     }, 0)
   }
-}
-
-module.exports.wrapRootElement = ({ element }) => {
-  const renderer = getRenderer({})
-  rehydrate(renderer)
-  return element
 }
