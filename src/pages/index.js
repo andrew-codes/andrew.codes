@@ -5,9 +5,7 @@ import nodeToPost from '../nodeToPost'
 
 const Index = ({ data }) => (
   <Layout>
-    <div>
-      <PostList posts={data.allMdx.edges.map(nodeToPost)} />
-    </div>
+    <PostList posts={data.allMdx.edges.map(nodeToPost)} />
   </Layout>
 )
 

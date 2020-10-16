@@ -8,6 +8,7 @@ import Layout from './Layout'
 import nodeToPost from '../nodeToPost'
 import Post from './Post'
 import Typography from './Typography'
+import LinkOverlay from './LinkOverlay'
 
 const Article = styled.article`
   padding: 32px;
@@ -27,6 +28,9 @@ const Aside = styled.aside`
 const Articles = styled.div`
   display: flex;
   flex-direction: row;
+  > * {
+    position: relative;
+  }
 `
 
 const NewerArticle = styled(Article)`
@@ -68,12 +72,14 @@ const PostPage = ({ data: { allMdx }, pageContext: { id } }) => {
         <Articles>
           {node.previous && (
             <NewerArticle background={newerArticleBackground}>
+              <LinkOverlay to={node.previous.fields.slug} />
               <Typography variant="small">Newer post</Typography>
               <ArticleTitle>{node.previous.frontmatter.title}</ArticleTitle>
             </NewerArticle>
           )}
           {node.next && (
             <OlderArticle background={olderArticleBackground}>
+              <LinkOverlay to={node.next.fields.slug} />{' '}
               <Typography variant="small">Older post</Typography>
               <ArticleTitle>{node.next.frontmatter.title}</ArticleTitle>
             </OlderArticle>

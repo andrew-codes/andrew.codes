@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import AuthorName from './AuthorName'
 import BackgroundColors from '../utilities/BackgroundColors'
 import Link from './Link'
+import LinkOverlay from './LinkOverlay'
 import Typography from './Typography'
 
 const Article = styled.article`
@@ -42,15 +43,6 @@ const ArticleTitle = styled.h2`
 
 const Author = styled.div`
   position: relative;
-`
-
-const LinkOverlay = styled(Link)`
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 1;
 `
 
 const ReadTime = styled.span`

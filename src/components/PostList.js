@@ -5,7 +5,6 @@ const MasonLayout = ({ as, ...rest }) => {
   const Root = styled(as)`
     display: flex;
     flex-wrap: wrap;
-    padding: 16px;
   `
   return <Root {...rest} />
 }
@@ -21,6 +20,8 @@ const MasonTile = ({ as, ...rest }) => {
 
 const OrderedList = styled.ol`
   list-style: none;
+  margin: 0;
+  padding: 0 !important;
 `
 const ListItem = styled.li`
   list-style: none;

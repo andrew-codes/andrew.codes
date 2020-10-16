@@ -13,9 +13,9 @@ const HeaderLayout = styled.div`
   background: ${({ background }) => background};
   border-radius: 8px;
   display: flex;
-  width: calc(100% - 170px);
+  width: calc(100% - 96px);
   min-height: 600px;
-  margin: 0 85px;
+  margin: 0 48px;
   align-items: center;
 
   > * {
@@ -50,7 +50,7 @@ const ArticleBody = styled.div`
   border-radius: 28px;
   padding: 32px 85px 120px;
   margin: -96px auto 0 auto;
-  max-width: 1200px;
+  max-width: 1000px;
 `
 
 const Footer = styled.footer`
@@ -61,6 +61,7 @@ const Footer = styled.footer`
   display: flex;
   flex-direction: row;
   margin: 0 auto;
+  z-index: 2;
 `
 const Share = styled.div`
   min-width: 264px;
