@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { MDXProvider } from '@mdx-js/react'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import AuthorName from './AuthorName'
-import BackgroundColors from '../utilities/BackgroundColors'
 import Link from './Link'
 import Seo from './Seo'
 import Typography from './Typography'
@@ -17,8 +16,22 @@ const HeaderLayout = styled.div`
   min-height: 600px;
   margin: 0 48px;
   align-items: center;
+  postion: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 48px;
+    top: 0;
+    width: calc(100% - 96px);
+    min-height: 600px;
+    background: darkgray;
+    opacity: 0.35;
+    border-radius: 8px;
+  }
 
   > * {
+    position: relative;
     padding: 24px;
   }
 `
@@ -51,6 +64,7 @@ const ArticleBody = styled.div`
   padding: 32px 85px 120px;
   margin: -96px auto 0 auto;
   max-width: 1000px;
+  position: relative;
 `
 
 const Footer = styled.footer`
@@ -100,109 +114,107 @@ const Post = ({ color, date, body, readingTime, title }) => {
   return (
     <Article>
       <Seo title={title} />
-      <div>
-        <HeaderLayout background={color}>
-          <Header>
-            <ArticleTitle>{title}</ArticleTitle>
-            <div>
-              <Typography as="span" variant="small">
-                by
-              </Typography>
-              <AuthorName> Andrew Smith</AuthorName>
-              <Typography as="time" variant="small" dateTime={date.toString()}>
-                {' '}
-                {approximateTime(new Date(date))} ago
-              </Typography>
-              <Typography as={ReadTime} variant="small">
-                {' '}
-                {readingTime}
-              </Typography>
-            </div>
-          </Header>
-        </HeaderLayout>
-        <ArticleBody>
-          <MDXProvider
-            components={{
-              a: ({ ...rest }) => <Link {...rest} />,
-              p: ({ ...rest }) => <Typography as={Paragraph} {...rest} />,
-              pre: ({ children }) => children,
-              code: ({ children, className, metastring }) => {
-                const language = className
-                  ? className.replace('language-', '')
-                  : null
+      <HeaderLayout background={color}>
+        <Header>
+          <ArticleTitle>{title}</ArticleTitle>
+          <div>
+            <Typography as="span" variant="small">
+              by
+            </Typography>
+            <AuthorName> Andrew Smith</AuthorName>
+            <Typography as="time" variant="small" dateTime={date.toString()}>
+              {' '}
+              {approximateTime(new Date(date))} ago
+            </Typography>
+            <Typography as={ReadTime} variant="small">
+              {' '}
+              {readingTime}
+            </Typography>
+          </div>
+        </Header>
+      </HeaderLayout>
+      <ArticleBody>
+        <MDXProvider
+          components={{
+            a: ({ ...rest }) => <Link {...rest} />,
+            p: ({ ...rest }) => <Typography as={Paragraph} {...rest} />,
+            pre: ({ children }) => children,
+            code: ({ children, className, metastring }) => {
+              const language = className
+                ? className.replace('language-', '')
+                : null
 
-                return (
-                  <Code language={language} highlightLines={metastring}>
+              return (
+                <Code language={language} highlightLines={metastring}>
+                  {children}
+                </Code>
+              )
+            },
+            h1: ({ children }) => {
+              return (
+                <Typography as="h1" id={kebabCase(children)}>
+                  <a name={kebabCase(children.replace(/['"]/g, ''))}>
                     {children}
-                  </Code>
-                )
-              },
-              h1: ({ children }) => {
-                return (
-                  <Typography as="h1" id={kebabCase(children)}>
-                    <a name={kebabCase(children.replace(/['"]/g, ''))}>
-                      {children}
-                    </a>
-                  </Typography>
-                )
-              },
-              h2: ({ children }) => {
-                return (
-                  <Typography as="h2" id={kebabCase(children)}>
-                    <a name={kebabCase(children.replace(/['"]/g, ''))}>
-                      {children}
-                    </a>
-                  </Typography>
-                )
-              },
-              h3: ({ children }) => {
-                return (
-                  <Typography as="h3" id={kebabCase(children)}>
-                    <a name={kebabCase(children.replace(/['"]/g, ''))}>
-                      {children}
-                    </a>
-                  </Typography>
-                )
-              },
-              h4: ({ children }) => {
-                return (
-                  <Typography as="h4" id={kebabCase(children)}>
-                    <a name={kebabCase(children.replace(/['"]/g, ''))}>
-                      {children}
-                    </a>
-                  </Typography>
-                )
-              },
-              h5: ({ children }) => {
-                return (
-                  <Typography as="h5" id={kebabCase(children)}>
-                    <a name={kebabCase(children.replace(/['"]/g, ''))}>
-                      {children}
-                    </a>
-                  </Typography>
-                )
-              },
-              h6: ({ children }) => {
-                return (
-                  <Typography as="h6" id={kebabCase(children)}>
-                    <a name={kebabCase(children.replace(/['"]/g, ''))}>
-                      {children}
-                    </a>
-                  </Typography>
-                )
-              },
-              blockquote: ({ children }) => (
-                <Typography as={Blockquote}>{children}</Typography>
-              ),
-            }}
-          >
-            <MDXRenderer>{body}</MDXRenderer>
-          </MDXProvider>
-        </ArticleBody>
-        <Footer>
-          <Share>Twitter</Share>
-        </Footer>
-      </div>
+                  </a>
+                </Typography>
+              )
+            },
+            h2: ({ children }) => {
+              return (
+                <Typography as="h2" id={kebabCase(children)}>
+                  <a name={kebabCase(children.replace(/['"]/g, ''))}>
+                    {children}
+                  </a>
+                </Typography>
+              )
+            },
+            h3: ({ children }) => {
+              return (
+                <Typography as="h3" id={kebabCase(children)}>
+                  <a name={kebabCase(children.replace(/['"]/g, ''))}>
+                    {children}
+                  </a>
+                </Typography>
+              )
+            },
+            h4: ({ children }) => {
+              return (
+                <Typography as="h4" id={kebabCase(children)}>
+                  <a name={kebabCase(children.replace(/['"]/g, ''))}>
+                    {children}
+                  </a>
+                </Typography>
+              )
+            },
+            h5: ({ children }) => {
+              return (
+                <Typography as="h5" id={kebabCase(children)}>
+                  <a name={kebabCase(children.replace(/['"]/g, ''))}>
+                    {children}
+                  </a>
+                </Typography>
+              )
+            },
+            h6: ({ children }) => {
+              return (
+                <Typography as="h6" id={kebabCase(children)}>
+                  <a name={kebabCase(children.replace(/['"]/g, ''))}>
+                    {children}
+                  </a>
+                </Typography>
+              )
+            },
+            blockquote: ({ children }) => (
+              <Typography as={Blockquote}>{children}</Typography>
+            ),
+          }}
+        >
+          <MDXRenderer>{body}</MDXRenderer>
+        </MDXProvider>
+      </ArticleBody>
+      <Footer>
+        <Share>Twitter</Share>
+      </Footer>
     </Article>
   )
 }

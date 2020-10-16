@@ -39,7 +39,7 @@ const GlobalNavigation = () => {
 
   return (
     <SpacedGroup as={Nav} spacing={8}>
-      <LogoLink to="/profile">
+      <LogoLink to="/">
         <Logo fixed={data.fileName.childImageSharp.fixed} />
       </LogoLink>
       <Link to="/profile">Profile</Link>
