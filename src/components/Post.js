@@ -8,6 +8,7 @@ import AuthorName from './AuthorName'
 import Link from './Link'
 import Seo from './Seo'
 import Share from './Share'
+import SpacedGroup from './SpacedGroup'
 import Typography, { BodyCopy } from './Typography'
 import { kebabCase } from '../../node_modules/change-case/change-case'
 
@@ -146,7 +147,7 @@ const Post = ({
         <Header>
           <ArticleTitle>{title}</ArticleTitle>
           <div>
-            <Typography variant="small">by</Typography>
+            <Typography variant="small">by </Typography>
             <AuthorName>{data.site.siteMetadata.author.name}</AuthorName>
             <Typography as="time" variant="small" dateTime={date.toString()}>
               {' '}
@@ -156,6 +157,13 @@ const Post = ({
               {' '}
               {readingTime}
             </Typography>
+            <SpacedGroup noGutters spacing={4}>
+              {tags.map(({ name, slug }) => (
+                <Link to={slug}>
+                  <Typography variant="small">{name}</Typography>
+                </Link>
+              ))}
+            </SpacedGroup>
           </div>
         </Header>
       </HeaderLayout>
