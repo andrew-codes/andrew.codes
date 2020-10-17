@@ -22,10 +22,10 @@ const LogoContainer = styled.div`
 
 const LogoLink = styled(Link)`
   text-decoration: none;
+  border-radius: 24px;
 `
 
 const Logo = styled.div`
-  border-radius: 24px;
   width: 100px;
   height: 100px;
 `
@@ -127,10 +127,9 @@ const GlobalNavigation = () => {
             noGutters
             as={LogoContainer}
             spacing={WithBreakpoint.isBreakpointUp('md', breakpoint) ? 24 : 0}
-            to="/"
           >
             {WithBreakpoint.isBreakpointUp('xs', breakpoint, false) && (
-              <LogoLink>
+              <LogoLink to="/">
                 <Logo>
                   <Img fixed={data.fileName.childImageSharp.fixed} />
                 </Logo>
