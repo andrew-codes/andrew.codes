@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import PostSummary from './PostSummary'
+import WithBreakpoint from './WithBreakpoint'
 
 const MasonLayout = ({ as, ...rest }) => {
   const Root = styled(as)`
@@ -13,7 +14,8 @@ const MasonTile = ({ as, ...rest }) => {
   const Root = styled(as)`
     display: flex;
     flex-wrap: wrap;
-    padding: 16px;
+    padding: ${({ breakpoint }) =>
+      WithBreakpoint.isBreakpointUp('md', breakpoint) ? '16px' : '8px'};
   `
   return <Root {...rest} />
 }
@@ -27,13 +29,17 @@ const ListItem = styled.li`
   list-style: none;
 `
 const PostList = ({ posts }) => (
-  <MasonLayout as={OrderedList}>
-    {posts.map((post, index) => (
-      <MasonTile as={ListItem} key={post.slug}>
-        <PostSummary key={post.slug} {...post} index={index} />
-      </MasonTile>
-    ))}
-  </MasonLayout>
+  <WithBreakpoint>
+    {(breakpoint) => (
+      <MasonLayout as={OrderedList}>
+        {posts.map((post, index) => (
+          <MasonTile as={ListItem} breakpoint={breakpoint} key={post.slug}>
+            <PostSummary key={post.slug} {...post} index={index} />
+          </MasonTile>
+        ))}
+      </MasonLayout>
+    )}
+  </WithBreakpoint>
 )
 
 export default PostList

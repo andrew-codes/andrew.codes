@@ -1,14 +1,12 @@
-import querystring from 'querystring'
-import { useLocation } from '@reach/router'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
-import BackgroundColors from '../utilities/BackgroundColors'
 import Comments from './Comments'
 import Layout from './Layout'
 import nodeToPost from '../nodeToPost'
 import Post from './Post'
 import Typography from './Typography'
 import LinkOverlay from './LinkOverlay'
+import WithBreakpoint from './WithBreakpoint'
 
 const Article = styled.article`
   padding: 32px;
@@ -17,8 +15,12 @@ const Article = styled.article`
 `
 
 const Aside = styled.aside`
-  width: calc(100% - 85px - 85px);
-  margin: 0 auto 96px;
+  width: ${({ breakpoint }) =>
+    WithBreakpoint.isBreakpointUp('md', breakpoint)
+      ? 'calc(100% - 85px - 85px)'
+      : '100%'};
+  margin: ${({ breakpoint }) =>
+    WithBreakpoint.isBreakpointUp('md', breakpoint) ? '0 auto 96px' : '0 auto'};
   background: rgb(40, 41, 46);
   border-radius: 8px;
   display: flex;
@@ -43,7 +45,8 @@ const OlderArticle = styled(Article)`
 `
 
 const ArticleTitle = styled.h2`
-  font-size: 24px;
+  font-size: ${({ breakpoint }) =>
+    WithBreakpoint.isBreakpointUp('md', breakpoint) ? '24px' : '18px'};
   font-weight: 700;
   margin: 0 0 24px 0;
   position: relative;
@@ -63,27 +66,35 @@ const PostPage = ({ data: { allMdx }, pageContext: { id } }) => {
   return (
     <Layout>
       <Post {...post} />
-      <Aside>
-        <Articles>
-          {node.previous && (
-            <NewerArticle background={node.previous.fields.color}>
-              <LinkOverlay to={node.previous.fields.slug} />
-              <Typography variant="small">Newer post</Typography>
-              <ArticleTitle>{node.previous.frontmatter.title}</ArticleTitle>
-            </NewerArticle>
-          )}
-          {node.next && (
-            <OlderArticle background={node.next.fields.color}>
-              <LinkOverlay to={node.next.fields.slug} />{' '}
-              <Typography variant="small">Older post</Typography>
-              <ArticleTitle>{node.next.frontmatter.title}</ArticleTitle>
-            </OlderArticle>
-          )}
-        </Articles>
-        <CommentsLayout>
-          <Comments post={post} />
-        </CommentsLayout>
-      </Aside>
+      <WithBreakpoint>
+        {(breakpoint) => (
+          <Aside breakpoint={breakpoint}>
+            <Articles>
+              {node.previous && (
+                <NewerArticle background={node.previous.fields.color}>
+                  <LinkOverlay to={node.previous.fields.slug} />
+                  <Typography variant="small">Newer post</Typography>
+                  <ArticleTitle breakpoint={breakpoint}>
+                    {node.previous.frontmatter.title}
+                  </ArticleTitle>
+                </NewerArticle>
+              )}
+              {node.next && (
+                <OlderArticle background={node.next.fields.color}>
+                  <LinkOverlay to={node.next.fields.slug} />{' '}
+                  <Typography variant="small">Older post</Typography>
+                  <ArticleTitle breakpoint={breakpoint}>
+                    {node.next.frontmatter.title}
+                  </ArticleTitle>
+                </OlderArticle>
+              )}
+            </Articles>
+            <CommentsLayout>
+              <Comments post={post} />
+            </CommentsLayout>
+          </Aside>
+        )}
+      </WithBreakpoint>
     </Layout>
   )
 }

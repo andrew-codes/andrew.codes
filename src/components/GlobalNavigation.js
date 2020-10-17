@@ -3,12 +3,13 @@ import styled from 'styled-components'
 import { graphql, useStaticQuery } from 'gatsby'
 import Link from './Link'
 import SpacedGroup from './SpacedGroup'
+import WithBreakpoint from './WithBreakpoint'
 
 const Nav = styled.nav`
   align-items: center;
   display: flex;
 
-  > a {
+  a {
     text-transform: uppercase;
     text-decoration: none;
     display: inline-block;
@@ -37,7 +38,8 @@ const Subtitle = styled.span`
 `
 
 const GlobaNavLink = styled(Link)`
-  font-weight: 700;
+  font-weight: ${({ breakpoint }) =>
+    WithBreakpoint.isBreakpointUp('md', breakpoint) ? '700' : '400'};
   font-size: 20px;
   border-radius: 8px;
   background: rgb(34, 35, 39);
@@ -88,18 +90,46 @@ const GlobalNavigation = () => {
   `)
 
   return (
-    <SpacedGroup noGutters as={Nav} spacing={16}>
-      <SpacedGroup noGutters as={LogoLink} spacing={24} to="/">
-        <Logo fixed={data.fileName.childImageSharp.fixed} />{' '}
-        <SpacedGroup noGutters direction="vertical" spacing={0}>
-          <SiteTitle>{data.site.siteMetadata.title}</SiteTitle>
-          <Subtitle>{data.site.siteMetadata.subtitle}</Subtitle>
+    <WithBreakpoint>
+      {(breakpoint) => (
+        <SpacedGroup
+          noGutters
+          as={Nav}
+          direction={
+            WithBreakpoint.isBreakpointUp('md', breakpoint)
+              ? 'horizontal'
+              : 'vertical'
+          }
+          spacing={WithBreakpoint.isBreakpointUp('md', breakpoint) ? 16 : 0}
+        >
+          <SpacedGroup
+            noGutters
+            as={LogoLink}
+            spacing={WithBreakpoint.isBreakpointUp('md', breakpoint) ? 24 : 0}
+            to="/"
+          >
+            {WithBreakpoint.isBreakpointUp('xs', breakpoint, false) && (
+              <Logo fixed={data.fileName.childImageSharp.fixed} />
+            )}{' '}
+            <SpacedGroup noGutters direction="vertical" spacing={0}>
+              <SiteTitle>{data.site.siteMetadata.title}</SiteTitle>
+              <Subtitle>{data.site.siteMetadata.subtitle}</Subtitle>
+            </SpacedGroup>
+          </SpacedGroup>
+          <SpacedGroup>
+            <GlobaNavLink breakpoint={breakpoint} to="/profile">
+              Profile
+            </GlobaNavLink>
+            <GlobaNavLink breakpoint={breakpoint} to="https://jas.link/resume">
+              Resume
+            </GlobaNavLink>
+            <GlobaNavLink breakpoint={breakpoint} to="/">
+              Articles
+            </GlobaNavLink>
+          </SpacedGroup>
         </SpacedGroup>
-      </SpacedGroup>
-      <GlobaNavLink to="/profile">Profile</GlobaNavLink>
-      <GlobaNavLink to="https://jas.link/resume">Resume</GlobaNavLink>
-      <GlobaNavLink to="/">Articles</GlobaNavLink>
-    </SpacedGroup>
+      )}
+    </WithBreakpoint>
   )
 }
 

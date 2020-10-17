@@ -6,13 +6,15 @@ import Link from './Link'
 import LinkOverlay from './LinkOverlay'
 import SpacedGroup from './SpacedGroup'
 import Typography from './Typography'
+import WithBreakpoint from './WithBreakpoint'
 
 const Article = styled.article`
   background: ${({ background }) => background};
   border-radius: 28px;
   display: flex;
   flex-direction: column;
-  min-height: 370px;
+  min-height: ${({ breakpoint }) =>
+    WithBreakpoint.isBreakpointUp('md', breakpoint) ? '370px' : undefined};
   padding: 16px;
   position: relative;
   position: relative;
@@ -82,30 +84,34 @@ const PostSummary = ({
   `)
 
   return (
-    <Article background={color}>
-      <LinkOverlay aria-label={title} to={slug} />
-      <ArticleTitle>
-        <Link to={slug}>{title}</Link>
-      </ArticleTitle>
-      <Author>
-        <Typography variant="small">by </Typography>
-        <AuthorName>{data.site.siteMetadata.author.name}</AuthorName>
-        <time dateTime={date.toString()}>
-          <Typography variant="small">
-            {' '}
-            {approximateTime(new Date(date))} ago
-          </Typography>
-        </time>
-      </Author>
-      <SpacedGroup noGutters spacing={4}>
-        {tags.map(({ name, slug }) => (
-          <TagLink to={slug}>
-            <Typography variant="small">{name}</Typography>
-          </TagLink>
-        ))}
-      </SpacedGroup>
-      <ReadTime>{readingTime}</ReadTime>
-    </Article>
+    <WithBreakpoint>
+      {(breakpoint) => (
+        <Article background={color} breakpoint={breakpoint}>
+          <LinkOverlay aria-label={title} to={slug} />
+          <ArticleTitle>
+            <Link to={slug}>{title}</Link>
+          </ArticleTitle>
+          <Author>
+            <Typography variant="small">by </Typography>
+            <AuthorName>{data.site.siteMetadata.author.name}</AuthorName>
+            <time dateTime={date.toString()}>
+              <Typography variant="small">
+                {' '}
+                {approximateTime(new Date(date))} ago
+              </Typography>
+            </time>
+          </Author>
+          <SpacedGroup noGutters spacing={4}>
+            {tags.map(({ name, slug }) => (
+              <TagLink to={slug}>
+                <Typography variant="small">{name}</Typography>
+              </TagLink>
+            ))}
+          </SpacedGroup>
+          <ReadTime>{readingTime}</ReadTime>
+        </Article>
+      )}
+    </WithBreakpoint>
   )
 }
 

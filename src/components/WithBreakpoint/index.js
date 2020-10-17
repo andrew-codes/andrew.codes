@@ -11,4 +11,4 @@ WithBreakpoint.isBreakpointDown = isBreakpointDown
 WithBreakpoint.isBreakpointUp = isBreakpointUp
 WithBreakpoint.breakpointKeys = breakpointKeys
 
-export { WithBreakpoint }
+export default WithBreakpoint
