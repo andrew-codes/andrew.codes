@@ -97,7 +97,7 @@ const GlobalNavigation = () => {
         </SpacedGroup>
       </SpacedGroup>
       <GlobaNavLink to="/profile">Profile</GlobaNavLink>
-      <GlobaNavLink to="/resume">Resume</GlobaNavLink>
+      <GlobaNavLink to="https://jas.link/resume">Resume</GlobaNavLink>
       <GlobaNavLink to="/">Articles</GlobaNavLink>
     </SpacedGroup>
   )
