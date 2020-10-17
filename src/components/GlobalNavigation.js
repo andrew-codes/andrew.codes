@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { graphql, useStaticQuery } from 'gatsby'
 import Link from './Link'
 import SpacedGroup from './SpacedGroup'
+import Typography from './Typography'
 import WithBreakpoint from './WithBreakpoint'
 
 const Nav = styled.nav`
@@ -10,16 +11,17 @@ const Nav = styled.nav`
   display: flex;
 
   a {
-    text-transform: uppercase;
-    text-decoration: none;
-    display: inline-block;
   }
 `
 
-const LogoLink = styled(Link)`
+const LogoContainer = styled.div`
   flex: 1;
   display: flex !important;
   align-items: center;
+`
+
+const LogoLink = styled(Link)`
+  text-decoration: none;
 `
 
 const Logo = styled.div`
@@ -39,6 +41,14 @@ const Subtitle = styled.span`
   letter-spacing: 2px;
 `
 
+const ProfileLink = styled(Link)`
+  font-size: 14px;
+  text-transform: lowercase;
+  letter-spacing: 2px;
+  text-decoration: underline;
+  z-index: 5;
+`
+
 const GlobaNavLink = styled(Link)`
   font-weight: ${({ breakpoint }) =>
     WithBreakpoint.isBreakpointUp('md', breakpoint) ? '700' : '400'};
@@ -49,6 +59,9 @@ const GlobaNavLink = styled(Link)`
   z-index: 1;
   padding: 8px;
   letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
 
   &:before {
     border-radius: inherit;
@@ -79,6 +92,12 @@ const GlobalNavigation = () => {
         siteMetadata {
           title
           subtitle
+          author {
+            socialProfiles {
+              name
+              url
+            }
+          }
         }
       }
       fileName: file(relativePath: { eq: "Profile400px.png" }) {
@@ -106,18 +125,27 @@ const GlobalNavigation = () => {
         >
           <SpacedGroup
             noGutters
-            as={LogoLink}
+            as={LogoContainer}
             spacing={WithBreakpoint.isBreakpointUp('md', breakpoint) ? 24 : 0}
             to="/"
           >
             {WithBreakpoint.isBreakpointUp('xs', breakpoint, false) && (
-              <Logo>
-                <Img fixed={data.fileName.childImageSharp.fixed} />
-              </Logo>
+              <LogoLink>
+                <Logo>
+                  <Img fixed={data.fileName.childImageSharp.fixed} />
+                </Logo>
+              </LogoLink>
             )}
             <SpacedGroup noGutters direction="vertical" spacing={0}>
               <SiteTitle>{data.site.siteMetadata.title}</SiteTitle>
               <Subtitle>{data.site.siteMetadata.subtitle}</Subtitle>
+              <SpacedGroup noGutters spacing={16}>
+                {data.site.siteMetadata.author.socialProfiles.map(
+                  ({ name, url }) => (
+                    <ProfileLink to={url}>{name}</ProfileLink>
+                  ),
+                )}
+              </SpacedGroup>
             </SpacedGroup>
           </SpacedGroup>
           <SpacedGroup>

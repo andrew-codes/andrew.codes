@@ -45,17 +45,6 @@ const Index = ({ data }) => {
               breakpoint={breakpoint}
               fluid={data.fileName.childImageSharp.fluid}
             />
-            <SpacedGroup
-              spread={WithBreakpoint.isBreakpointDown('xs', breakpoint, false)}
-            >
-              <SpacedGroup spread as={Footer} spacing={16}>
-                {data.site.siteMetadata.author.socialProfiles.map(
-                  ({ name, url }) => (
-                    <Link to={url}>{name}</Link>
-                  ),
-                )}
-              </SpacedGroup>
-            </SpacedGroup>
             <ArticleBody breakpoint={breakpoint}>
               <BodyCopy>
                 I am passionate about creating quality software. As an active
@@ -92,17 +81,6 @@ const Index = ({ data }) => {
                 improvement in all the things I do.
               </BodyCopy>
             </ArticleBody>
-            <SpacedGroup
-              spread={WithBreakpoint.isBreakpointDown('xs', breakpoint, false)}
-            >
-              <SpacedGroup spread as={Footer} spacing={16}>
-                {data.site.siteMetadata.author.socialProfiles.map(
-                  ({ name, url }) => (
-                    <Link to={url}>{name}</Link>
-                  ),
-                )}
-              </SpacedGroup>
-            </SpacedGroup>
           </Article>
         )}
       </WithBreakpoint>
