@@ -26,11 +26,11 @@ class ScrollRouter extends Component {
 
   scrollListener() {
     const { routes } = this.props
-    const routeElements = Array.from(document.querySelectorAll('[id]')).filter(
-      el => routes.includes(`#${el.id}`),
-    )
+    const routeElements = Array.from(
+      document.querySelectorAll('[id]'),
+    ).filter((el) => routes.includes(`#${el.id}`))
     const firstInView = routeElements.find(
-      el => el.getBoundingClientRect().top > 0,
+      (el) => el.getBoundingClientRect().top > 0,
     )
     if (!firstInView) {
       return
@@ -41,7 +41,6 @@ class ScrollRouter extends Component {
           activeId: firstInView.id,
         },
         () => {
-          console.log(window.history.pushState)
           window.history.pushState(null, null, `#${firstInView.id}`)
 
           // history.pushState(null, null, `#${firstInView.id}`)

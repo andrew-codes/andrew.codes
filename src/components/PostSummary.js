@@ -80,7 +80,6 @@ const PostSummary = ({
       }
     }
   `)
-  console.log(tags)
 
   return (
     <Article background={color}>
