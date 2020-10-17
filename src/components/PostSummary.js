@@ -1,5 +1,6 @@
 import approximateTime from 'approximate-time'
 import styled from 'styled-components'
+import { graphql, useStaticQuery } from 'gatsby'
 import AuthorName from './AuthorName'
 import BackgroundColors from '../utilities/BackgroundColors'
 import Link from './Link'
@@ -62,26 +63,38 @@ const PostSummary = ({
   slug,
   tags,
   title,
-}) => (
-  <Article background={color}>
-    <LinkOverlay aria-label={title} to={slug} />
-    <ArticleTitle>
-      <Link to={slug}>{title}</Link>
-    </ArticleTitle>
-    <Author>
-      <Typography as="span" variant="small">
-        by{' '}
-      </Typography>
-      <AuthorName>Andrew Smith</AuthorName>
-      <time dateTime={date.toString()}>
-        <Typography as="span" variant="small">
-          {' '}
-          {approximateTime(new Date(date))} ago
-        </Typography>
-      </time>
-    </Author>
-    <ReadTime>{readingTime}</ReadTime>
-  </Article>
-)
+}) => {
+  const data = useStaticQuery(graphql`
+    query PostSummaryAuthorQuery {
+      site {
+        siteMetadata {
+          author {
+            name
+          }
+        }
+      }
+    }
+  `)
+
+  return (
+    <Article background={color}>
+      <LinkOverlay aria-label={title} to={slug} />
+      <ArticleTitle>
+        <Link to={slug}>{title}</Link>
+      </ArticleTitle>
+      <Author>
+        <Typography variant="small">by </Typography>
+        <AuthorName>{data.site.siteMetadata.author.name}</AuthorName>
+        <time dateTime={date.toString()}>
+          <Typography variant="small">
+            {' '}
+            {approximateTime(new Date(date))} ago
+          </Typography>
+        </time>
+      </Author>
+      <ReadTime>{readingTime}</ReadTime>
+    </Article>
+  )
+}
 
 export default PostSummary

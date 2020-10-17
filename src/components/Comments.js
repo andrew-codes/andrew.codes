@@ -1,5 +1,5 @@
 import React from 'react'
-import { DiscussionEmbed, CommentCount } from 'disqus-react'
+import { DiscussionEmbed } from 'disqus-react'
 import { graphql, StaticQuery } from 'gatsby'
 
 const siteMetadataQuery = graphql`
@@ -7,7 +7,6 @@ const siteMetadataQuery = graphql`
     site {
       siteMetadata {
         altTitle
-        author
         description
         disqus {
           shortName

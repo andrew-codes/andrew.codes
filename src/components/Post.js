@@ -1,11 +1,13 @@
 import approximateTime from 'approximate-time'
 import styled from 'styled-components'
+import { graphql, useStaticQuery } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import AuthorName from './AuthorName'
 import Link from './Link'
 import Seo from './Seo'
-import Typography from './Typography'
+import Share from './Share'
+import Typography, { BodyCopy } from './Typography'
 import { kebabCase } from '../../node_modules/change-case/change-case'
 
 const HeaderLayout = styled.div`
@@ -79,7 +81,7 @@ const Footer = styled.footer`
     z-index: 2;
   }
 `
-const Share = styled.div`
+const SocialSharing = styled(Share)`
   min-width: 264px;
   display: flex;
   justify-items: center;
@@ -110,18 +112,37 @@ const Blockquote = styled.blockquote`
   }
 `
 
-const Post = ({ color, date, body, readingTime, title }) => {
+const Post = ({
+  body,
+  color,
+  date,
+  excerpt,
+  readingTime,
+  slug,
+  tags,
+  title,
+}) => {
+  const data = useStaticQuery(graphql`
+    query PostAuthorQuery {
+      site {
+        siteMetadata {
+          author {
+            name
+          }
+        }
+      }
+    }
+  `)
+
   return (
     <Article>
-      <Seo title={title} />
+      <Seo title={title} description={excerpt} keywords={tags} />
       <HeaderLayout background={color}>
         <Header>
           <ArticleTitle>{title}</ArticleTitle>
           <div>
-            <Typography as="span" variant="small">
-              by
-            </Typography>
-            <AuthorName> Andrew Smith</AuthorName>
+            <Typography variant="small">by</Typography>
+            <AuthorName>{data.site.siteMetadata.author.name}</AuthorName>
             <Typography as="time" variant="small" dateTime={date.toString()}>
               {' '}
               {approximateTime(new Date(date))} ago
@@ -137,7 +158,7 @@ const Post = ({ color, date, body, readingTime, title }) => {
         <MDXProvider
           components={{
             a: ({ ...rest }) => <Link {...rest} />,
-            p: ({ ...rest }) => <Typography as={Paragraph} {...rest} />,
+            p: ({ ...rest }) => <BodyCopy {...rest} />,
             pre: ({ children }) => children,
             code: ({ children, className, metastring }) => {
               const language = className
@@ -213,7 +234,9 @@ const Post = ({ color, date, body, readingTime, title }) => {
         </MDXProvider>
       </ArticleBody>
       <Footer>
-        <Share>Twitter</Share>
+        <SocialSharing direction="horizontal" post={{ slug }}>
+          Twitter
+        </SocialSharing>
       </Footer>
     </Article>
   )

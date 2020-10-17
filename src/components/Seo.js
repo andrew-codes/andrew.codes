@@ -70,7 +70,10 @@ const Seo = ({ description, lang, meta, keywords, title, cover, url }) => (
           <meta name="og:description" content={metaDescription} />
           <meta name="og:type" content="website" />
           <meta name="twitter:card" content="summary" />
-          <meta name="twitter:creator" content={site.siteMetadata.author} />
+          <meta
+            name="twitter:creator"
+            content={site.siteMetadata.author.name}
+          />
           <meta name="twitter:title" content={title} />
           <meta name="twitter:description" content={metaDescription} />
           <meta name="twitter:image" content={cover} />
@@ -149,7 +152,9 @@ const siteMetadataQuery = graphql`
     site {
       siteMetadata {
         altTitle
-        author
+        author {
+          name
+        }
         description
         siteUrl
         title

@@ -2,8 +2,16 @@ const path = require('path')
 
 const siteMetadata = {
   title: 'Andrew Smith',
+  subtitle: 'craftsman, speaker, contributor',
   altTitle: 'Professional profile of Andrew Smith',
-  author: 'Andrew Smith',
+  author: {
+    name: 'Andrew Smith',
+    socialProfiles: [
+      { name: 'GitHub', url: 'https://github.com/andrew-codes' },
+      { name: 'LinkedIn', url: 'https://linkedin.com/in/jamesandrewsmith' },
+      { name: 'Twitter', url: 'https://twitter.com/andrew_codes' },
+    ],
+  },
   description: 'A professional profile, resume, and blog of Andrew Smith.',
   siteUrl:
     process.env.NODE_ENV === 'development'
