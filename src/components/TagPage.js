@@ -1,23 +1,34 @@
-import React from 'react'
+import styled from 'styled-components'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import PostList from '../components/PostList'
+import nodeToPost from '../nodeToPost'
+import SpacedGroup from './SpacedGroup'
 
-const TagPage = ({ data }) => (
+const Header = styled.header`
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-size: 18px;
+`
+
+const TagName = styled.span`
+  background: rgb(61, 62, 67);
+  margin-left: 8px;
+  padding: 3px 8px;
+  border-bottom: 2px solid rgb(168, 169, 176);
+`
+
+const TagPage = ({ data, pageContext }) => (
   <Layout>
-    <div>
-      <PostList
-        posts={data.allMdx.edges.map(({ node }) => ({
-          ...node.frontmatter,
-          readingTime: node.fields.readingTime.text,
-          slug: node.fields.slug,
-          tags: node.frontmatter.tags.map((tag, index) => ({
-            name: tag,
-            slug: node.fields.tagSlugs[index],
-          })),
-        }))}
-      />
-    </div>
+    <SpacedGroup direction="vertical" spacing={32}>
+      <Header>
+        articles about <TagName>{pageContext.tag}</TagName>
+      </Header>
+      <div>
+        <PostList posts={data.allMdx.edges.map(nodeToPost)} />
+      </div>
+    </SpacedGroup>
   </Layout>
 )
 
@@ -36,6 +47,7 @@ export const pageQuery = graphql`
             tags
           }
           fields {
+            color
             slug
             tagSlugs
             categorySlug

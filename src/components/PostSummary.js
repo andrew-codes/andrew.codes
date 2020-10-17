@@ -2,9 +2,9 @@ import approximateTime from 'approximate-time'
 import styled from 'styled-components'
 import { graphql, useStaticQuery } from 'gatsby'
 import AuthorName from './AuthorName'
-import BackgroundColors from '../utilities/BackgroundColors'
 import Link from './Link'
 import LinkOverlay from './LinkOverlay'
+import SpacedGroup from './SpacedGroup'
 import Typography from './Typography'
 
 const Article = styled.article`
@@ -53,6 +53,11 @@ const ReadTime = styled.span`
   position: relative;
 `
 
+const TagLink = styled(Link)`
+  position: relative;
+  z-index: 5;
+`
+
 const PostSummary = ({
   color,
   featuredImage,
@@ -75,6 +80,7 @@ const PostSummary = ({
       }
     }
   `)
+  console.log(tags)
 
   return (
     <Article background={color}>
@@ -92,6 +98,13 @@ const PostSummary = ({
           </Typography>
         </time>
       </Author>
+      <SpacedGroup noGutters spacing={4}>
+        {tags.map(({ name, slug }) => (
+          <TagLink to={slug}>
+            <Typography variant="small">{name}</Typography>
+          </TagLink>
+        ))}
+      </SpacedGroup>
       <ReadTime>{readingTime}</ReadTime>
     </Article>
   )

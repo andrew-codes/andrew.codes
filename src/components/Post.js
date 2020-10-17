@@ -1,5 +1,6 @@
 import approximateTime from 'approximate-time'
 import styled from 'styled-components'
+import { get } from 'lodash/fp'
 import { graphql, useStaticQuery } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
@@ -136,7 +137,11 @@ const Post = ({
 
   return (
     <Article>
-      <Seo title={title} description={excerpt} keywords={tags} />
+      <Seo
+        title={title}
+        description={excerpt}
+        keywords={tags.map(get('name'))}
+      />
       <HeaderLayout background={color}>
         <Header>
           <ArticleTitle>{title}</ArticleTitle>
