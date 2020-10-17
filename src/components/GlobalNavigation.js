@@ -42,7 +42,7 @@ const Subtitle = styled.span`
 const GlobaNavLink = styled(Link)`
   font-weight: ${({ breakpoint }) =>
     WithBreakpoint.isBreakpointUp('md', breakpoint) ? '700' : '400'};
-  font-size: 20px;
+  font-size: 18px;
   border-radius: 8px;
   background: rgb(34, 35, 39);
   position: relative;
