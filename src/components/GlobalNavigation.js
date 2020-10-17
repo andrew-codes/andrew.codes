@@ -22,8 +22,10 @@ const LogoLink = styled(Link)`
   align-items: center;
 `
 
-const Logo = styled(Img)`
+const Logo = styled.div`
   border-radius: 24px;
+  width: 100px;
+  height: 100px;
 `
 
 const SiteTitle = styled.span`
@@ -109,8 +111,10 @@ const GlobalNavigation = () => {
             to="/"
           >
             {WithBreakpoint.isBreakpointUp('xs', breakpoint, false) && (
-              <Logo fixed={data.fileName.childImageSharp.fixed} />
-            )}{' '}
+              <Logo>
+                <Img fixed={data.fileName.childImageSharp.fixed} />
+              </Logo>
+            )}
             <SpacedGroup noGutters direction="vertical" spacing={0}>
               <SiteTitle>{data.site.siteMetadata.title}</SiteTitle>
               <Subtitle>{data.site.siteMetadata.subtitle}</Subtitle>
