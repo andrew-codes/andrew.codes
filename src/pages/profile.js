@@ -7,11 +7,20 @@ import SpacedGroup from '../components/SpacedGroup'
 import { BodyCopy } from '../components/Typography'
 import WithBreakpoint from '../components/WithBreakpoint'
 
+const Article = styled.article`
+  > * {
+    margin-bottom: ${({ breakpoint }) =>
+      WithBreakpoint.isBreakpointUp('md', breakpoint)
+        ? '0'
+        : '24px !important'};
+  }
+`
+
 const ArticleBody = styled.div`
   background-color: rgb(34, 35, 39);
   border-radius: 28px;
   padding: ${({ breakpoint }) =>
-    WithBreakpoint.isBreakpointUp('md', breakpoint) ? '32px 85px' : '0 32px'};
+    WithBreakpoint.isBreakpointUp('md', breakpoint) ? '0 85px' : '0 32px'};
   margin: ${({ breakpoint }) =>
     WithBreakpoint.isBreakpointUp('md', breakpoint) ? '0 auto 96px' : '0 auto'};
   max-width: 1000px;
@@ -31,11 +40,22 @@ const Index = ({ data }) => {
     <Layout>
       <WithBreakpoint>
         {(breakpoint) => (
-          <article>
+          <Article>
             <BioCoverImage
               breakpoint={breakpoint}
               fluid={data.fileName.childImageSharp.fluid}
             />
+            <SpacedGroup
+              spread={WithBreakpoint.isBreakpointDown('xs', breakpoint, false)}
+            >
+              <SpacedGroup spread as={Footer} spacing={16}>
+                {data.site.siteMetadata.author.socialProfiles.map(
+                  ({ name, url }) => (
+                    <Link to={url}>{name}</Link>
+                  ),
+                )}
+              </SpacedGroup>
+            </SpacedGroup>
             <ArticleBody breakpoint={breakpoint}>
               <BodyCopy>
                 I am passionate about creating quality software. As an active
@@ -83,7 +103,7 @@ const Index = ({ data }) => {
                 )}
               </SpacedGroup>
             </SpacedGroup>
-          </article>
+          </Article>
         )}
       </WithBreakpoint>
     </Layout>
