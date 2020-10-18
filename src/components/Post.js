@@ -53,6 +53,10 @@ const Header = styled.header`
   margin: 0 auto;
   margin-bottom: ${({ breakpoint }) =>
     WithBreakpoint.isBreakpointUp('md', breakpoint) ? '96px' : '0'};
+
+  h1 {
+    margin: 0;
+  }
 `
 
 const ArticleTitle = styled.h1`
@@ -114,13 +118,18 @@ const SocialSharing = styled(Share)`
 
 const Blockquote = styled.blockquote`
   border-left: 5px solid #414242;
-  margin: 0 0 48px -55px;
-  padding: 20px 50px;
+  margin: ${({ breakpoint }) =>
+    WithBreakpoint.isBreakpointUp('md', breakpoint)
+      ? '0 0 48px -55px'
+      : '0 0 24px 0'};
+  padding: ${({ breakpoint }) =>
+    WithBreakpoint.isBreakpointUp('md', breakpoint) ? '20px 50px' : '20px'};
 
   > p {
     margin: 0;
     padding: 0;
-    font-size: 24px;
+    font-size: ${({ breakpoint }) =>
+      WithBreakpoint.isBreakpointUp('md', breakpoint) ? '24px' : '18px'};
     line-height: 1.65;
     font-weight: 200;
   }
@@ -190,7 +199,9 @@ const Post = ({
             <MDXProvider
               components={{
                 a: ({ ...rest }) => <Link {...rest} />,
-                p: ({ ...rest }) => <BodyCopy {...rest} />,
+                p: ({ ...rest }) => (
+                  <BodyCopy {...rest} breakpoint={breakpoint} />
+                ),
                 pre: ({ children }) => children,
                 code: ({ children, className, metastring }) => {
                   const language = className

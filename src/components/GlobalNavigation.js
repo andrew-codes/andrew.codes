@@ -10,7 +10,11 @@ const Nav = styled.nav`
   align-items: center;
   display: flex;
 
-  a {
+  span {
+    align-self: ${({ breakpoint }) =>
+      WithBreakpoint.isBreakpointUp('xs', breakpoint, false)
+        ? undefined
+        : 'center'};
   }
 `
 
@@ -18,6 +22,7 @@ const LogoContainer = styled.div`
   flex: 1;
   display: flex !important;
   align-items: center;
+  width: 100%;
 `
 
 const LogoLink = styled(Link)`
@@ -52,7 +57,8 @@ const ProfileLink = styled(Link)`
 const GlobaNavLink = styled(Link)`
   font-weight: ${({ breakpoint }) =>
     WithBreakpoint.isBreakpointUp('md', breakpoint) ? '700' : '400'};
-  font-size: 18px;
+  font-size: ${({ breakpoint }) =>
+    WithBreakpoint.isBreakpointUp('md', breakpoint) ? '18px' : '16px'};
   border-radius: 8px;
   background: rgb(34, 35, 39);
   position: relative;
@@ -61,7 +67,6 @@ const GlobaNavLink = styled(Link)`
   letter-spacing: 2px;
   text-transform: uppercase;
   text-decoration: none;
-  display: inline-block;
 
   &:before {
     border-radius: inherit;
@@ -116,6 +121,7 @@ const GlobalNavigation = () => {
         <SpacedGroup
           noGutters
           as={Nav}
+          breakpoint={breakpoint}
           direction={
             WithBreakpoint.isBreakpointUp('md', breakpoint)
               ? 'horizontal'
@@ -126,7 +132,7 @@ const GlobalNavigation = () => {
           <SpacedGroup
             noGutters
             as={LogoContainer}
-            spacing={WithBreakpoint.isBreakpointUp('md', breakpoint) ? 24 : 0}
+            spacing={WithBreakpoint.isBreakpointDown('xs', breakpoint) ? 0 : 24}
           >
             {WithBreakpoint.isBreakpointUp('xs', breakpoint, false) && (
               <LogoLink to="/">
@@ -135,10 +141,19 @@ const GlobalNavigation = () => {
                 </Logo>
               </LogoLink>
             )}
-            <SpacedGroup noGutters direction="vertical" spacing={0}>
+            <SpacedGroup
+              noGutters
+              spread={WithBreakpoint.isBreakpointDown('xs', breakpoint)}
+              direction="vertical"
+              spacing={0}
+            >
               <SiteTitle>{data.site.siteMetadata.title}</SiteTitle>
               <Subtitle>{data.site.siteMetadata.subtitle}</Subtitle>
-              <SpacedGroup noGutters spacing={16}>
+              <SpacedGroup
+                noGutters
+                spread={WithBreakpoint.isBreakpointDown('xs', breakpoint)}
+                spacing={16}
+              >
                 {data.site.siteMetadata.author.socialProfiles.map(
                   ({ name, url }) => (
                     <ProfileLink to={url}>{name}</ProfileLink>

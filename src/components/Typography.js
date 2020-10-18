@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import WithBreakpoint from './WithBreakpoint/index'
 
 const Typography = ({ as, ...rest }) => {
   const Root = styled(as)`
@@ -16,6 +17,8 @@ const BodyCopy = styled.p`
   letter-spacing: 1px;
   line-height: 1.65;
   margin-bottom: 40px;
+  font-size: ${(breakpoint) =>
+    WithBreakpoint.isBreakpointDown('xs', breakpoint) ? '18px' : undefined};
 `
 
 export default Typography

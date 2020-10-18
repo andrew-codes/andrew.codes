@@ -18,7 +18,8 @@ const Article = styled.article`
   padding: 16px;
   position: relative;
   position: relative;
-  width: 354.688px;
+  width: ${({ breakpoint }) =>
+    WithBreakpoint.isBreakpointUp('md', breakpoint) ? '354.688px' : undefined};
 
   &:before {
     background: ${({ coverUrl }) =>

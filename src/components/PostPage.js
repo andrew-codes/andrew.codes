@@ -29,19 +29,26 @@ const Aside = styled.aside`
 
 const Articles = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: ${({ breakpoint }) =>
+    WithBreakpoint.isBreakpointUp('md', breakpoint) ? 'row' : 'column'};
   > * {
     position: relative;
   }
 `
 
 const NewerArticle = styled(Article)`
-  border-radius: 8px 0 0;
+  border-radius: ${({ breakpoint }) =>
+    WithBreakpoint.isBreakpointUp('md', breakpoint)
+      ? '8px 0 0 0'
+      : '8px 8px 0 0'};
 `
 
 const OlderArticle = styled(Article)`
   text-align: right;
-  border-radius: 0 8px 0 0;
+  border-radius: ${({ breakpoint }) =>
+    WithBreakpoint.isBreakpointUp('md', breakpoint)
+      ? '0 8px 0 0'
+      : '0 0 8px 8px'};
 `
 
 const ArticleTitle = styled.h2`
@@ -69,9 +76,12 @@ const PostPage = ({ data: { allMdx }, pageContext: { id } }) => {
       <WithBreakpoint>
         {(breakpoint) => (
           <Aside breakpoint={breakpoint}>
-            <Articles>
+            <Articles breakpoint={breakpoint}>
               {node.previous && (
-                <NewerArticle background={node.previous.fields.color}>
+                <NewerArticle
+                  background={node.previous.fields.color}
+                  breakpoint={breakpoint}
+                >
                   <LinkOverlay to={node.previous.fields.slug} />
                   <Typography variant="small">Newer post</Typography>
                   <ArticleTitle breakpoint={breakpoint}>
@@ -80,7 +90,10 @@ const PostPage = ({ data: { allMdx }, pageContext: { id } }) => {
                 </NewerArticle>
               )}
               {node.next && (
-                <OlderArticle background={node.next.fields.color}>
+                <OlderArticle
+                  background={node.next.fields.color}
+                  breakpoint={breakpoint}
+                >
                   <LinkOverlay to={node.next.fields.slug} />{' '}
                   <Typography variant="small">Older post</Typography>
                   <ArticleTitle breakpoint={breakpoint}>

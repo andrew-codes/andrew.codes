@@ -3,9 +3,8 @@ import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import Layout from '../components/Layout'
 import Link from '../components/Link'
-import SpacedGroup from '../components/SpacedGroup'
-import { BodyCopy } from '../components/Typography'
 import WithBreakpoint from '../components/WithBreakpoint'
+import { BodyCopy } from '../components/Typography'
 
 const Article = styled.article`
   > * {
