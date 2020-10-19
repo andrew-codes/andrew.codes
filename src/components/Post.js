@@ -149,6 +149,7 @@ const Post = ({
     query PostAuthorQuery {
       site {
         siteMetadata {
+          siteUrl
           author {
             name
           }
@@ -165,6 +166,7 @@ const Post = ({
             title={title}
             description={excerpt}
             keywords={tags.map(get('name'))}
+            url={`${siteUrl}${slug}`}
           />
 
           <HeaderLayout background={color} breakpoint={breakpoint}>
