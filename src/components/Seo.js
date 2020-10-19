@@ -5,7 +5,7 @@ import { isEmpty } from 'lodash'
 import { graphql, StaticQuery } from 'gatsby'
 import favicon from '../images/logo-48.png'
 
-const Seo = ({ description, lang, meta, keywords, title, cover, url }) => (
+const Seo = ({ description, lang, meta, keywords, title, cover, slug }) => (
   <StaticQuery
     query={siteMetadataQuery}
     render={({ site }) => {
@@ -22,7 +22,7 @@ const Seo = ({ description, lang, meta, keywords, title, cover, url }) => (
           alternateName: site.siteMetadata.altTitle,
         },
       ]
-      if (url) {
+      if (slug) {
         schemaOrgJSONLD.concat([
           {
             '@context': 'http://schema.org',
@@ -32,7 +32,7 @@ const Seo = ({ description, lang, meta, keywords, title, cover, url }) => (
                 '@type': 'ListItem',
                 position: 1,
                 item: {
-                  '@id': url,
+                  '@id': `${site.siteMetadata.siteUrl}${slug}`,
                   name: title,
                   image: cover,
                 },

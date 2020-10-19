@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import PostList from '../components/PostList'
 import nodeToPost from '../nodeToPost'
+import Seo from '../components/Seo'
 import SpacedGroup from './SpacedGroup'
 
 const Header = styled.header`
@@ -21,6 +22,11 @@ const TagName = styled.span`
 
 const TagPage = ({ data, pageContext }) => (
   <Layout>
+    <Seo
+      description={`Articles tagged with ${pageContext.tag}`}
+      slug={`/tag/${pageContext.tag}`}
+      title={`${pageContext.tag} Articles`}
+    />
     <SpacedGroup direction="vertical" spacing={32}>
       <Header>
         articles about <TagName>{pageContext.tag}</TagName>

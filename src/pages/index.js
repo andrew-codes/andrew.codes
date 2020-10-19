@@ -1,10 +1,16 @@
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import PostList from '../components/PostList'
+import Seo from '../components/Seo'
 import nodeToPost from '../nodeToPost'
 
 const Index = ({ data }) => (
   <Layout>
+    <Seo
+      description="Articles written by Andrew Smith"
+      slug="/"
+      title="Articles"
+    />
     <PostList posts={data.allMdx.edges.map(nodeToPost)} />
   </Layout>
 )

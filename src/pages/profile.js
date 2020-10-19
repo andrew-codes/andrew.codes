@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import Layout from '../components/Layout'
 import Link from '../components/Link'
+import Seo from '../components/Seo'
 import WithBreakpoint from '../components/WithBreakpoint'
 import { BodyCopy } from '../components/Typography'
 
@@ -32,11 +33,17 @@ const BioCoverImage = styled(Img)`
     WithBreakpoint.isBreakpointUp('md', breakpoint) ? '0' : '0 24px'};
 `
 
-const Footer = styled.footer``
-
 const Index = ({ data }) => {
   return (
     <Layout>
+      <Seo
+        description="Professional profile of Andrew Smith"
+        keywords={data.site.siteMetadata.author.socialProfiles.map(
+          ({ name }) => name,
+        )}
+        slug="/profile"
+        title="Profile"
+      />
       <WithBreakpoint>
         {(breakpoint) => (
           <Article>

@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import GlobalNavigation from './GlobalNavigation'
 import GlobalStyles from './GlobalStyles'
-import Seo from './Seo'
 import WithBreakpoint from './WithBreakpoint'
 
 const RootItem = styled.div`
@@ -37,7 +36,6 @@ const Main = styled(RootItem)``
 const Layout = ({ children }) => (
   <>
     <GlobalStyles />
-    <Seo />
     <WithBreakpoint>
       {(breakpoint) => (
         <>

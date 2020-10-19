@@ -163,10 +163,10 @@ const Post = ({
       {(breakpoint) => (
         <Article breakpoint={breakpoint}>
           <Seo
-            title={title}
             description={excerpt}
             keywords={tags.map(get('name'))}
-            url={`${siteUrl}${slug}`}
+            title={title}
+            slug={slug}
           />
 
           <HeaderLayout background={color} breakpoint={breakpoint}>
