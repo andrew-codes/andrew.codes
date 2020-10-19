@@ -23,7 +23,7 @@ const Seo = ({ description, lang, meta, keywords, title, cover, url }) => (
         },
       ]
       if (url) {
-        schemaOrgJSONLD.push([
+        schemaOrgJSONLD.concat([
           {
             '@context': 'http://schema.org',
             '@type': 'BreadcrumbList',
