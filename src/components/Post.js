@@ -149,7 +149,6 @@ const Post = ({
     query PostAuthorQuery {
       site {
         siteMetadata {
-          siteUrl
           author {
             name
           }
