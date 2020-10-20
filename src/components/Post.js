@@ -5,6 +5,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import AuthorName from './AuthorName'
+import Code from './Code'
 import Link from './Link'
 import Seo from './Seo'
 import Share from './Share'
@@ -135,6 +136,11 @@ const Blockquote = styled.blockquote`
   }
 `
 
+const InlineCode = styled.code`
+  background: rgb(61, 62, 67);
+  padding: 1px 6px;
+`
+
 const Post = ({
   body,
   color,
@@ -215,6 +221,7 @@ const Post = ({
                     </Code>
                   )
                 },
+                inlineCode: InlineCode,
                 h1: ({ children }) => {
                   return (
                     <Typography as="h1" id={kebabCase(children)}>
