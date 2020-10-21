@@ -55,8 +55,8 @@ const Index = ({ data }) => {
               <BodyCopy>
                 I am passionate about creating quality software. As an active
                 community member, I encourage others to participate and make
-                development more accessible to a larger audience. My one goal is
-                always to be better today than I was yesterday and overcome
+                development more accessible to a broader audience. My one goal
+                is always to be better today than I was yesterday and overcome
                 tomorrow’s challenges.
               </BodyCopy>
               <BodyCopy>
@@ -70,7 +70,7 @@ const Index = ({ data }) => {
                 open-source software projects. As a former co-organizer of
                 ReactATL, an Atlanta based React meetup group, I encourage
                 others to participate and aim to make software development more
-                accessible to a larger audience.
+                accessible to a broader audience.
               </BodyCopy>
               <BodyCopy>
                 As a contributor, I have helped maintain projects such as{' '}

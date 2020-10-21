@@ -28,7 +28,7 @@ Unit tests predominantly test two things: a unit of work **in isolation** and it
 
 While explicit mocking seems fair, this may be attributed to everyone else also following this mentality. The vast majority of the time, you need to mock all dependencies except for the subject under test. Not mocking a particular dependency is typically an edge-case. If we usually mock everything but the SUT, why do frameworks have us do the exact opposite, not mock the SUT and explicitly define our mocks for everything else?
 
-Here I agree with Jest's approach. Jest automatically mocks all dependencies unless otherwise specified, allowing us to set up our mocks for what is relevant to the test in question but still have all other dependencies be fakes. It also means that changing interactions with collaborators is quicker and easier—no need for the unnecessary setup of a fake.
+Here I agree with Jest's approach. Jest automatically mocks all dependencies unless otherwise specified. It allows us to set up our mocks for what is relevant to the test in question but still have all other dependencies be fakes. It also means that changing interactions with collaborators is quicker—no need for the unnecessary setup of a fake.
 
 ## Configuration has Never Been Easier
 
