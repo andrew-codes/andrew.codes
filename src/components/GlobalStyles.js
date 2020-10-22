@@ -16,7 +16,6 @@ const GlobalStyles = createGlobalStyle`
         outline: 0;
         text-rendering: optimizeLegibility;
         word-break: break-word;
-        word-wrap:  break-word;
     }
 
     * {
