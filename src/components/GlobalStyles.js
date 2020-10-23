@@ -16,11 +16,45 @@ const GlobalStyles = createGlobalStyle`
         outline: 0;
         text-rendering: optimizeLegibility;
         word-break: break-word;
-        word-wrap:  break-word;
     }
 
     * {
         box-sizing: border-box;
+    }
+
+    table {
+        border-collapse: collapse;
+        margin-left: -60px;
+        margin-right: 20px;
+        width: calc(100% + 170px);
+
+        th, td {
+            padding: 8px 16px;
+            word-break: normal;
+        }
+
+        td {
+            color: white;
+        }
+
+        thead {
+            border-bottom: 4px solid white;
+        }
+
+        tr:nth-child(even) {
+            background: rgb(40,41,46);
+            td {
+                color: lightgray !important;
+            }
+        }
+    }
+
+
+    .column-heading {
+        td:first-of-type {
+            border-right: 2px solid white;
+            width: 200px;
+        } 
     }
 `
 
