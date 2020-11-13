@@ -1,0 +1,59 @@
+---
+title: Guest Presence Detection
+slug: guest-presence-detection
+date: '2020-11-13'
+category: tech
+tags:
+  - home automation
+  - home assistant
+  - python
+  - node.js
+---
+
+import WorkflowMp4 from './workflow.mp4'
+
+## Overview
+
+I previously gave a presentation on how detect house guests' presence for my home automation and I want to share more details on how I accomplished it. The [slide deck](https://andrew_codes.keybase.pub/Presentations%20and%20Workshops/Home%20Automation%20-%20Guest%20Detection.pdf?dl=1) may also be downloaded as a PDF.
+
+## Problem
+
+Presence detection is the ability for your smart home to know when you or your family members are home. This is useful in a lot of scenarios; such as, turn off all the lights, lock the doors, and arm your home security once everyone has left. Some of my automations would behave slightly differently if I knew we had guests staying with us. Here are a few examples:
+
+### One Example Guest Automation Problem
+
+| Automation | Action Without Guests   | Action With Guests                                                               |
+| :--------- | :---------------------- | :------------------------------------------------------------------------------- |
+| Goodnight  | Turn off all the lights | Turn off all the lights, except those in the guest room and primary living areas |
+
+#### Explanation
+
+Without any guests, going to bed would often turn off all the lights, lock the doors, and adjust the thermostat to be cold (like 68 degrees cold). This is not ideal when we have guests over as they may not go to bed the same time we do. What I found was that the lights were shutting off for guests and it became too cold to feel comfortable once we had gone to bed.
+
+### Another Guest Automation Problem
+
+| Automation | Action Without Guests                      | Action With Guests                                                  |
+| :--------- | :----------------------------------------- | :------------------------------------------------------------------ |
+| Goodbye    | Lock the doors and arm the security system | Only lock and arm security once all family **AND** guests have left |
+
+#### Explanation
+
+Sometimes we have guests that stay for an event and they may come and go on their own. In these cases, I give them a temporary digital key for the locks; however, the security system may arm when a guest is still home or not arm properly if the guests are the last to leave.
+
+## Presence Detection
+
+There are a number of ways to implement presence detection, GPS geo-fencing, device wifi/network connectivity, LTE bluetooth fobs; all having their own set of pros and cons. By far, the most successful presence detection I've used is with geo-fencing. This technique requires an app to be installed on each family member's phone. The app can access the phone's GPS and determine if the family member is within the boundaries of a defined "home" area.
+
+While this works great for family members, there is a catch! It requires installation of an app on the guest' phone. This is simply a deal breaker for me. I do not wan to enforce my guests to install something on their phone.
+
+## Solution
+
+The overiew of my solutions is fairly simple: a guest is considered present (at home) while they are connected to my guest wifi network. There, of course, some edge cases, such as a guest connecting their laptop to the guest wifi; a device that may or may not leave with them. I have handled this and other cases with my design.
+
+### Actors
+
+Below illustrates the actors/systems in my solution and the general workflow of they interact with one another.
+
+<video controls width="100%">
+  <source src={WorkflowMp4} type="video/mp4" />
+</video>
